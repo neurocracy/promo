@@ -1,0 +1,76 @@
+// -----------------------------------------------------------------------------
+//   Reveal animations for the site
+// -----------------------------------------------------------------------------
+
+///
+/// Reveal overlay animation duration.
+///
+$reveal-overlay-animation-duration: 0.5s;
+
+///
+/// Site reveal overlay animation delay.
+///
+/// This should be just long enough that most browsers will have already done
+/// most of their layout rendering and most DOMContentLoaded JavaScript has
+/// (hopefully) finished executing so the reveal animation has a better chance
+/// of playing smoothly and without too many frames dropped.
+///
+$site-reveal-overlay-animation-delay: 0.3s;
+
+///
+/// Site reveal overlay keyframes.
+///
+@keyframes reveal-overlay {
+  0% {
+    opacity:        1;
+    pointer-events: auto;
+    visibility:     visible;
+  }
+  1% {
+    pointer-events: none;
+  }
+  99% {
+    opacity:    0;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+
+.layout-container::before {
+  @supports (pointer-events: none) and (width: 100vw) {
+    content: '';
+
+    display:  block;
+
+    position: fixed;
+
+    top:      0;
+    bottom:   0;
+    left:     50%;
+
+    margin-left:  -50vw;
+
+    width:    100vw;
+
+    z-index:  1;
+
+    background-color: $background-colour-light;
+
+    @include on-dark-colour-scheme {
+      background-color: $background-colour-dark;
+    }
+
+    // Default to hidden and click-through in case animations are not properly
+    // supported or running.
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+
+    animation-name:             reveal-overlay;
+    animation-duration:         $reveal-overlay-animation-duration;
+    animation-timing-function:  linear;
+    animation-fill-mode:        backwards;
+    animation-delay:            $site-reveal-overlay-animation-delay;
+  }
+}

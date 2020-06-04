@@ -12,6 +12,10 @@ body {
 }
 
 .layout-container {
+  // These two are required for the reveal overlay.
+  position:   relative;
+  overflow-x: hidden;
+
   max-width: 65em;
 
   margin-left:  auto;
