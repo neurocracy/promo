@@ -1,0 +1,83 @@
+// -----------------------------------------------------------------------------
+//   Transition helpers
+// -----------------------------------------------------------------------------
+
+///
+/// Transition duration for beginning interaction with an element.
+///
+/// This is intentionally 0s to make the state change react instantly.
+///
+$transition-fade-in-duration: 0s !default;
+
+///
+/// Transition duration for when interaction with an element has ended.
+///
+/// This is has a non-zero duration to fade out properties on interaction
+/// having to give the element a smooth feel.
+///
+$transition-fade-out-duration: 0.5s !default;
+
+///
+/// Properties to transition by default on interactions.
+///
+/// Does not include text-shadow as that's used by fancy link underlines.
+///
+/// @see {mixin} transition-fade-base
+///   Used in this mixin.
+///
+$transition-fade-properties:
+  color, background-color, border-color, outline-color, opacity, box-shadow,
+  filter, text-decoration-color !default;
+
+///
+/// Set base fade transition properties.
+///
+/// @param {List} $props [$transition-fade-properties]
+///   A comma-separated list of properties to transition.
+///
+/// @param {Number} $duration [$transition-fade-out-duration]
+///   The duration of the fade out in 's' (seconds) or 'ms' (milliseconds).
+///
+/// @param $easing {Mixed}
+///   An easing type to use in transition-timing-function.
+///
+/// @see {Mixin} transition-fade-active
+///   Used to set transition properties when an element is interacted with, such
+///   as being hovered or focused.
+///
+@mixin transition-fade-base(
+  $props:     $transition-fade-properties,
+  $duration:  $transition-fade-out-duration,
+  $easing:    linear
+) {
+  transition-property:        $props;
+  transition-duration:        $duration;
+  transition-timing-function: $easing;
+}
+
+///
+/// Set active fade transition properties. This is usually on focus/hover.
+///
+/// @see {Mixin} transition-fade-base
+///
+@mixin transition-fade-active {
+  transition-duration: $transition-fade-in-duration;
+}
+
+///
+/// Backwards-compatible wrapper around transition-fade-base().
+///
+/// @see {Mixin} transition-fade-base
+///
+@mixin transition-fade-normal($arguments...) {
+  @include transition-fade-base($arguments...);
+}
+
+///
+/// Backwards-compatible wrapper around transition-fade-active().
+///
+/// @see {Mixin} transition-fade-active
+///
+@mixin transition-fade-hover {
+  @include transition-fade-active;
+}

@@ -1,0 +1,71 @@
+// -----------------------------------------------------------------------------
+//   Typography partial
+// -----------------------------------------------------------------------------
+
+///
+/// Default font size for the document.
+///
+/// This is the font size used both when responsive type is enabled and
+/// disabled. In the latter case, this modifies the overall responsive type
+/// size, e.g. setting this to 90% will make whatever the calculated font size
+/// be 90% of its value.
+///
+$font-size: 100% !default;
+
+///
+/// Font weight for normal (non-bold) text.
+///
+/// This defaults to a thinner value than browser default, which is 400.
+///
+$font-weight-normal: 300 !default;
+
+///
+/// Font weight for bold text.
+///
+/// This defaults to 400, which is thicker than our normal weight but thinner
+/// than the default of 700.
+///
+$font-weight-strong: 400 !default;
+
+///
+/// Modern system UI font stack.
+///
+/// This attempts to use the operating system's UI font where possible.
+///
+/// @link https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/#details-of-approach-b
+///   Description of this stack and reasoning as implemented on Medium.
+///
+/// @link https://medium.com/@mwichary/system-shock-6b1dc6d6596f
+///   Slightly older and more general version of the previous link.
+///
+$system-ui-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+  'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif !default;
+
+///
+/// Default font stack, used for most body text.
+///
+$font-stack: $system-ui-font-stack !default;
+
+body {
+  font-size:    $font-size;
+  line-height:  1.5;
+
+  // This prevents overly-long words from breaking out of the layout in
+  // supporting browsers. Note that overflow-wrap will only break a word if it
+  // exceeds the available space, compared to the legacy word-break property,
+  // which always breaks words when they exceed the available space.
+  //
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap
+  overflow-wrap: break-word;
+}
+
+body, input, textarea {
+  font-family:  $font-stack;
+  font-weight:  $font-weight-normal;
+}
+
+// These selectors get the bold font weight.
+strong, label {
+  font-weight: $font-weight-strong;
+}

@@ -1,0 +1,132 @@
+// -----------------------------------------------------------------------------
+//   Base typography heading partial
+// -----------------------------------------------------------------------------
+
+///
+/// Heading selector.
+///
+$heading-selector: 'h1, h2, h3, h4, h5, h6' !default;
+
+///
+/// Heading selector shortcut.
+///
+$h1to6: $heading-selector !default;
+
+///
+/// Heading font sizes when not using responsive type.
+///
+/// These are h1 to h6 in that order.
+///
+$heading-font-sizes: 2em, 1.6em, 1.4em, 1.2em, 1em, 1em !default;
+
+/// Heading font scales when using responsive type.
+///
+/// These are used as the exponent, with the font scale as the base number.
+/// These are h1 to h6 in that order.
+///
+$heading-font-exponents:  3.5, 2.75, 2, 1, 1, 1 !default;
+
+///
+/// The unit to use for headings when using responsive type.
+///
+$heading-font-scale-unit: 'em' !default;
+
+///
+/// The heading font stack.
+///
+/// This is Wikipedia's heading font-family, but with Exo 2 as the first choice.
+///
+$heading-font-stack: 'Exo2', 'Linux Libertine', 'Georgia', 'Times', serif;
+
+///
+/// The heading font weight.
+///
+$heading-font-weight: $font-weight-strong !default;
+
+///
+/// Apply styles to a range of headings.
+///
+/// @param {Number} $from [1]
+///   The heading level to start at, inclusive.
+///
+/// @param {Number} $to [6]
+///   The heading level to end at, inclusive.
+///
+/// @content
+///   Styles to apply for the given heading levels.
+///
+/// @link https://jsfiddle.net/jitendravyas/cxJtc/light/
+///   Inspired by this mixin by jitendravyas on JSFiddle.
+///
+@mixin headings($from: 1, $to: 6) {
+  $selector: ();
+
+  @if ($from < 1) {
+    @warn '$from cannot be lower than "1", was passed "#{$from}".';
+
+    $from: 1;
+  }
+
+  @if ($to > 6) {
+    @warn '$from cannot be greater than "6", was passed "#{$to}".';
+
+    $to: 6;
+  }
+
+  @for $i from $from through $to {
+    $selector: append($selector, 'h' + $i, comma);
+  }
+
+  #{$selector} {
+    @content;
+  }
+}
+
+///
+/// Set heading font size for a given heading level.
+///
+/// @param {Number} $level
+///   The heading level; should be 1 to 6.
+///
+/// @require {mixin} responsive-type
+/// @require {variable} $use-responsive-type
+/// @require {variable} $font-scale-width-min
+/// @require {variable} $font-scale-width-max
+/// @require {variable} $font-scale-min
+/// @require {variable} $heading-font-exponents
+/// @require {variable} $heading-font-scale-unit
+///
+@mixin heading-font-size($level) {
+  // Use the static heading sizes by default in case the browser doesn't
+  // understand calc() or responsive type is disabled.
+  font-size: nth($heading-font-sizes, $level);
+
+  @if $use-responsive-type == true {
+    @include responsive-type(
+      font-size,
+      $font-scale-width-min,
+      $font-scale-width-max,
+      exponent(
+        $font-scale-min,
+        nth($heading-font-exponents, $level)
+      ) * to-number('1' + $heading-font-scale-unit),
+      exponent(
+        $font-scale-max,
+        nth($heading-font-exponents, $level)
+      ) * to-number('1' + $heading-font-scale-unit)
+    );
+  }
+}
+
+// Apply heading font stack and weight to all headings.
+@include headings {
+  font-family: $heading-font-stack;
+  font-weight: $heading-font-weight;
+}
+
+// Apply heading font sizes. This has to be done individually, per level.
+@for $i from 1 through 6 {
+  h#{$i} {
+    @include heading-font-size($i);
+  }
+}

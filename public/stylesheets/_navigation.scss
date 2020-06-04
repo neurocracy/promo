@@ -1,0 +1,40 @@
+// -----------------------------------------------------------------------------
+//   Navigation partial
+// -----------------------------------------------------------------------------
+
+.navigation {
+  display: flex;
+
+  align-items: center;
+
+  margin-left: $header-spacing;
+
+  .menu {
+    margin:   0;
+    padding:  0;
+
+    list-style: none;
+
+    display: flex;
+  }
+
+  .menu-item {
+    margin-right: $header-spacing;
+
+    font-family:  $heading-font-stack;
+    font-size:    140%;
+    font-weight:  $font-weight-strong;
+
+    text-transform: uppercase;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 22em) {
+    .menu-item--home {
+      @include hide-me;
+    }
+  }
+}

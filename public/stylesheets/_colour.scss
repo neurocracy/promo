@@ -1,0 +1,87 @@
+// -----------------------------------------------------------------------------
+//   Colour partial
+// -----------------------------------------------------------------------------
+
+///
+/// Omnipedia blue.
+///
+/// @link https://www.materialui.co/colors/blue/900
+///
+$omnipedia-blue: #0d47a1;
+
+///
+/// Material Design primary colour; using Omnipedia blue.
+///
+/// @require {variable} $omnipedia-blue
+///
+$material-primary-colour: $omnipedia-blue;
+
+///
+/// Light background colour; usually used for light themes.
+///
+$background-colour-light: white !default;
+
+///
+/// Dark background colour; usually used for dark themes.
+///
+$background-colour-dark: black !default;
+
+///
+/// Foreground (usually text) colour on light backgrounds.
+///
+$foreground-colour-on-light: hsl(0, 0, 20%) !default;
+
+///
+/// Foreground colour on dark backgrounds.
+///
+$foreground-colour-on-dark: white !default;
+
+///
+/// Invert the lightness value of a colour.
+///
+/// @param {Color} $colour
+///   The colour to invert the lightness of.
+///
+/// @return {Color}
+///   The colour that was passed as the argument, but with the lightness
+///   inverted.
+///
+@function invert-lightness($colour) {
+  @return hsla(
+    hue($colour),
+    saturation($colour),
+    100% - lightness($colour),
+    alpha($colour)
+  );
+}
+
+///
+/// Apply styles when a dark colour scheme is indicated by the user.
+///
+/// Note that this wraps the styles in an @supports test for CSS custom
+/// properties and the CSS filter: invert(100%), both of which make recolouring
+/// far easier, and the latter being often used to invert colours.
+///
+/// @content The properties to apply when using a dark colour scheme.
+///
+/// @link https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
+///   We use this media feature to detect if the user has chosen a dark theme,
+///   which is usually set at the operating system level.
+///
+@mixin on-dark-colour-scheme {
+  @supports (--test: orange) and (filter: invert(100%)) {
+    @media (prefers-color-scheme: dark) {
+      @content;
+    }
+  }
+}
+
+html, body {
+  color: $foreground-colour-on-light;
+  background-color: $background-colour-light;
+
+  @include on-dark-colour-scheme {
+    color: $foreground-colour-on-dark;
+    background-color: $background-colour-dark;
+  }
+}

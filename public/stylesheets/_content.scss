@@ -1,0 +1,112 @@
+// -----------------------------------------------------------------------------
+//   Content partial
+// -----------------------------------------------------------------------------
+
+#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  $text-shadow-on-light:  0 0 0.5rem $background-colour-light;
+  $text-shadow-on-dark:   0 0 0.5rem $background-colour-dark;
+
+  text-shadow:
+    $text-shadow-on-light, $text-shadow-on-light, $text-shadow-on-light;
+
+  @include on-dark-colour-scheme {
+    text-shadow:
+      $text-shadow-on-dark, $text-shadow-on-dark, $text-shadow-on-dark;
+  }
+
+  h1, p {
+    flex-grow: 1;
+
+    margin-top:     0;
+    margin-bottom:  0;
+  }
+
+  h1 {
+    display: flex;
+    align-items: flex-end;
+
+    padding-bottom: 1.2rem;
+
+    font-size:      300%;
+    font-weight:    $font-weight-normal;
+    line-height:    1;
+    text-transform: uppercase;
+  }
+
+  p {
+    max-width: 18em;
+
+    padding-top: 0.7rem;
+  }
+}
+
+.features-section {
+  @media (min-width: 40em) {
+    display: grid;
+
+    grid-template-areas:    "heading      media"
+                            "description  media";
+
+    // Reverse the layout every second section. Note that this seems to start at
+    // 0 rather than 1, so 0 = odd, 1 = even.
+    &:nth-child(odd) {
+      grid-template-areas:  "media  heading"
+                            "media  description";
+    }
+
+    grid-template-columns:  1fr 1fr;
+    grid-template-rows:     min-content 1fr;
+
+    grid-gap: 1em;
+
+    @media (min-width: 50em) {
+      grid-column-gap: 3em;
+    }
+
+    &__media {
+      grid-area: media;
+    }
+
+    &__heading {
+      grid-area: heading;
+
+      @supports (grid-area: heading) {
+        margin-top:     -0.15em;
+        margin-bottom:  0;
+
+        line-height:    1;
+      }
+    }
+
+    &__description {
+      grid-area: description;
+
+      @supports (grid-area: description) {
+        margin-top:     0;
+        margin-bottom:  0;
+      }
+    }
+
+    & + .features-section {
+      margin-top: 3em;
+    }
+  }
+}
+
+.layout-section h2 {
+  margin-bottom: 2rem;
+
+  border-bottom: 1px solid hsl(0, 0, 75%);
+
+  @include on-dark-colour-scheme {
+    border-bottom-color: hsl(0, 0, 25%);
+  }
+}
+
+@include headings {
+  text-transform: uppercase;
+}

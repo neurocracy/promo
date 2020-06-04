@@ -1,0 +1,43 @@
+// -----------------------------------------------------------------------------
+//  Font definitions partial
+// -----------------------------------------------------------------------------
+
+$fonts-path: '../fonts';
+
+// Exo 2 font, converted from original TTF to WOFF/WOFF2 files.
+//
+// @link https://fonts.google.com/specimen/Exo+2
+@font-face {
+  font-family: 'Exo2';
+
+  font-weight:  500;
+  // Required so that browsers accept multiple declarations of the same font at
+  // different weights.
+  //
+  // @see https://stackoverflow.com/a/21614532
+  font-style:   normal;
+
+  // Tell the browser to not make the text invisible while this font is
+  // loading, see: https://tabatkins.github.io/specs/css-font-display/
+  font-display: swap;
+
+  src:  url('#{$fonts-path}/Exo2/woff2/Exo2-Medium.woff2?v=1')  format('woff2'),
+        url('#{$fonts-path}/Exo2/woff/Exo2-Medium.woff?v=1')    format('woff');
+}
+@font-face {
+  font-family: 'Exo2';
+
+  font-weight:  200;
+  // Required so that browsers accept multiple declarations of the same font at
+  // different weights.
+  //
+  // @see https://stackoverflow.com/a/21614532
+  font-style:   normal;
+
+  // Tell the browser to not make the text invisible while this font is
+  // loading, see: https://tabatkins.github.io/specs/css-font-display/
+  font-display: swap;
+
+  src:  url('#{$fonts-path}/Exo2/woff2/Exo2-ExtraLight.woff2?v=1')  format('woff2'),
+        url('#{$fonts-path}/Exo2/woff/Exo2-ExtraLight.woff?v=1')    format('woff');
+}

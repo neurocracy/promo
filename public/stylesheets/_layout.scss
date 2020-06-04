@@ -1,0 +1,33 @@
+// -----------------------------------------------------------------------------
+//   Layout partial
+// -----------------------------------------------------------------------------
+
+$viewport-padding: 0.5em;
+
+$header-spacing: 1rem;
+
+body {
+  margin:   0;
+  padding:  0;
+}
+
+.layout-container {
+  max-width: 65em;
+
+  margin-left:  auto;
+  margin-right: auto;
+
+  padding: $viewport-padding;
+}
+
+.layout-header {
+  display: flex;
+}
+
+.layout-section {
+  min-height: calc(100vh - #{$viewport-padding * 2});
+}
+
+.layout-section + .layout-section {
+  margin-top: 8em;
+}
