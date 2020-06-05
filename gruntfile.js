@@ -55,8 +55,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('all', [
-    'sass',
-    'postcss',
+    'css',
     'favicons',
     'fonts',
     'js',
