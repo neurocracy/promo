@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+//   Site header partial
+// -----------------------------------------------------------------------------
+
+.layout-header {
+  &--initialized {
+    transition:   transform 200ms ease-in-out;
+    will-change:  transform;
+  }
+
+  &--pinned {
+    transform: translateY(0%);
+  }
+  &--unpinned {
+    transform: translateY(-100%);
+  }
+}

@@ -49,7 +49,8 @@ module.exports = function(grunt) {
       extensionPaths:   paths.extensions,
       stylesheetPaths:  paths.stylesheets,
       javascriptPaths:  paths.javascript,
-      fontPaths:        paths.fonts
+      fontPaths:        paths.fonts,
+      javascriptVendorPath: 'public/javascript/vendor/'
     }
   });
 
@@ -58,6 +59,7 @@ module.exports = function(grunt) {
     'postcss',
     'favicons',
     'fonts',
+    'js',
   ]);
 
   grunt.registerTask('css', [
@@ -68,5 +70,9 @@ module.exports = function(grunt) {
   grunt.registerTask('fonts', [
     'ttf2woff',
     'ttf2woff2',
+  ]);
+
+  grunt.registerTask('js', [
+    'copy:javascript',
   ]);
 };

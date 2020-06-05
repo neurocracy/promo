@@ -11,3 +11,6 @@ public/images/icons/generated/*
 # Ignore generated fonts.
 **/fonts/**/woff
 **/fonts/**/woff2
+
+# Ignore third-party JavaScript.
+public/javascript/vendor/*
