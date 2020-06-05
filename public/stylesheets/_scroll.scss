@@ -13,4 +13,7 @@ html {
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
   }
+
+  // This offsets the scrolling to a #hash by the height of the fixed header.
+  scroll-padding-top: $header-height + ($viewport-padding * 2);
 }

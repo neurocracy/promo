@@ -4,8 +4,9 @@
 
 .site-logo {
   // Required to keep the intrinsic ratio from imploding to zero width due to
-  // the display: flex; on .layout-header.
-  min-width: 3.5em;
+  // the display: flex; on .layout-header. Since the logo is square, we can just
+  // use the height variable.
+  min-width: $header-height;
 }
 
 .site-name {

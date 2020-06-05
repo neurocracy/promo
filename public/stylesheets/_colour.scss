@@ -76,7 +76,7 @@ $foreground-colour-on-dark: white !default;
   }
 }
 
-html, body {
+html, body, .layout-header {
   color: $foreground-colour-on-light;
   background-color: $background-colour-light;
 
