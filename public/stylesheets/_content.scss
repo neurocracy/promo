@@ -110,3 +110,7 @@ h2 {
 @include headings {
   text-transform: uppercase;
 }
+
+details summary {
+  cursor: pointer;
+}
