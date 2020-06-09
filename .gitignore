@@ -12,5 +12,5 @@ public/images/icons/generated/*
 **/fonts/**/woff
 **/fonts/**/woff2
 
-# Ignore third-party JavaScript.
-public/javascript/vendor/*
+# Ignore third-party code.
+public/vendor/*

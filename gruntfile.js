@@ -50,7 +50,7 @@ module.exports = function(grunt) {
       stylesheetPaths:  paths.stylesheets,
       javascriptPaths:  paths.javascript,
       fontPaths:        paths.fonts,
-      javascriptVendorPath: 'public/javascript/vendor/'
+      vendorPath:       'public/vendor'
     }
   });
 
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
     'css',
     'favicons',
     'fonts',
-    'js',
+    'vendor',
   ]);
 
   grunt.registerTask('css', [
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
     'ttf2woff2',
   ]);
 
-  grunt.registerTask('js', [
-    'copy:javascript',
+  grunt.registerTask('vendor', [
+    'copy:vendor',
   ]);
 };

@@ -1,10 +1,9 @@
 # This copies the listed third-party libraries from their node_modules
-# directories to the publicly accessible JavaScript vendor directory.
-javascript:
+# directories to the publicly accessible vendor directory.
+vendor:
   nonull: true
-  flatten: true
   files:
-    - src: 'headroom.min.js'
-      cwd: 'node_modules/headroom.js/dist/'
-      dest: '<%= javascriptVendorPath %>'
+    - cwd: 'node_modules/headroom.js/dist/'
+      src: 'headroom.min.js'
+      dest: '<%= vendorPath %>/headroom.js/'
       expand: true
