@@ -7,3 +7,7 @@ vendor:
       src: 'headroom.min.js'
       dest: '<%= vendorPath %>/headroom.js/'
       expand: true
+    - cwd: 'node_modules/photoswipe/dist/'
+      src: '**'
+      dest: '<%= vendorPath %>/photoswipe/'
+      expand: true
