@@ -101,4 +101,7 @@ $link-underline-active-colour-on-dark: $link-active-colour-on-dark;
 
 .ambientimpact-link-has-image {
   display: block;
+
+  border: 1px solid currentColor;
+  border-radius: 2px;
 }

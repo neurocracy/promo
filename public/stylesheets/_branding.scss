@@ -7,6 +7,10 @@
   // the display: flex; on .layout-header. Since the logo is square, we can just
   // use the height variable.
   min-width: $header-height;
+
+  &__link {
+    border-width: 0;
+  }
 }
 
 .site-name {
