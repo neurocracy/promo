@@ -45,6 +45,10 @@
 }
 
 .features-section {
+  & + .features-section {
+    margin-top: 3em;
+  }
+
   @media (min-width: 40em) {
     display: grid;
 
@@ -89,10 +93,6 @@
         margin-top:     0;
         margin-bottom:  0;
       }
-    }
-
-    & + .features-section {
-      margin-top: 3em;
     }
   }
 }
