@@ -68,7 +68,8 @@ body {
   }
 }
 
-.layout-section + .layout-section {
+.layout-section + .layout-section,
+footer[role='contentinfo'] {
   margin-top: 8em;
 }
 
