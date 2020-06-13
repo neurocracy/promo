@@ -65,6 +65,26 @@ $link-underline-active-colour-on-light: $link-active-colour-on-light;
 ///
 $link-underline-active-colour-on-dark: $link-active-colour-on-dark;
 
+///
+/// Image element filters in a link when link is not highlighted/actived.
+///
+$image-link-normal-filters: contrast(100%) brightness(100%);
+
+///
+/// Image element filters in a link when link is highlighted.
+///
+$image-link-hover-filters: contrast(75%) brightness(150%);
+
+///
+/// Image element filters in a link when link is activated.
+///
+$image-link-active-filters: contrast(100%) brightness(100%);
+
+///
+/// Elements that are considered "image" elements, inside of a link.
+///
+$image-link-elements: img, picture;
+
 :any-link {
   color: $link-normal-colour-on-light;
   text-decoration-color: $link-underline-normal-colour-on-light;
@@ -104,4 +124,26 @@ $link-underline-active-colour-on-dark: $link-active-colour-on-dark;
 
   border: 1px solid currentColor;
   border-radius: 2px;
+
+  #{$image-link-elements} {
+    filter: $image-link-normal-filters;
+
+    @include transition-fade-base(
+      $props: filter
+    );
+  }
+
+  &:hover, &:focus {
+    #{$image-link-elements} {
+      filter: $image-link-hover-filters;
+
+      @include transition-fade-active();
+    }
+  }
+
+  &:active {
+    #{$image-link-elements} {
+      filter: $image-link-active-filters;
+    }
+  }
 }
