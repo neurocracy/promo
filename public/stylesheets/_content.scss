@@ -34,7 +34,10 @@ $content-two-column-min-width: 40rem;
   }
 
   h1, p {
-    flex-grow: 1;
+    // This fixes an issue where the hitting the max responsive font size would
+    // cause the height of one of these to get larger than the other, which
+    // would cause the background to be misaligned.
+    height: calc(50vh - #{$viewport-padding * 3} - #{$header-height});
 
     margin-top:     0;
     margin-bottom:  0;
