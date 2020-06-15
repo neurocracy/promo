@@ -7,7 +7,13 @@
 
   align-items: center;
 
-  margin-left: $header-spacing;
+  html[dir='ltr'] & {
+    margin-left: $header-spacing;
+  }
+
+  html[dir='rtl'] & {
+    margin-right: $header-spacing;
+  }
 
   .menu {
     margin:   0;
@@ -20,7 +26,14 @@
 
   .menu-item {
     margin-top:   0;
-    margin-right: $header-spacing;
+
+    html[dir='ltr'] & {
+      margin-right: $header-spacing;
+    }
+
+    html[dir='rtl'] & {
+      margin-left: $header-spacing;
+    }
 
     font-family:  $heading-font-stack;
     font-size:    140%;
@@ -29,7 +42,13 @@
     text-transform: uppercase;
 
     &:last-child {
-      margin-right: 0;
+      html[dir='ltr'] & {
+        margin-right: 0;
+      }
+
+      html[dir='rtl'] & {
+        margin-left: 0;
+      }
     }
   }
 

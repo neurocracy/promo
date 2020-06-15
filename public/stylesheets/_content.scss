@@ -23,11 +23,26 @@ $content-two-column-min-width: 40em;
       $text-shadow-on-dark, $text-shadow-on-dark, $text-shadow-on-dark;
   }
 
+  // To flip the background image for RTL, we use this clever trick:
+  //
+  // @link https://stackoverflow.com/a/21443680
+  html[dir='rtl'] & {
+    // This keeps the double flipped <p> on the correct side.
+    align-items: end;
+
+    transform: scaleX(-1);
+  }
+
   h1, p {
     flex-grow: 1;
 
     margin-top:     0;
     margin-bottom:  0;
+
+    // Undo the container's transform.
+    html[dir='rtl'] & {
+      transform: scaleX(-1);
+    }
   }
 
   h1 {
@@ -139,7 +154,13 @@ h2 {
 }
 
 ul {
-  padding-left: 1em;
+  html[dir='ltr'] & {
+    padding-left: 1em;
+  }
+
+  html[dir='rtl'] & {
+    padding-right: 1em;
+  }
 }
 
 li + li {
