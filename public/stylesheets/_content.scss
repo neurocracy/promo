@@ -5,7 +5,7 @@
 ///
 /// Minimum viewport width to display content in two columns.
 ///
-$content-two-column-min-width: 40em;
+$content-two-column-min-width: 40rem;
 
 #home {
   display: flex;
@@ -87,7 +87,7 @@ $content-two-column-min-width: 40em;
 
     grid-gap: 1em;
 
-    @media (min-width: #{$content-two-column-min-width + 10em}) {
+    @media (min-width: #{$content-two-column-min-width + 10rem}) {
       grid-column-gap: 3em;
     }
 
@@ -134,7 +134,7 @@ $content-two-column-min-width: 40em;
     }
   }
 
-  @media (min-width: #{$content-two-column-min-width + 10em}) {
+  @media (min-width: #{$content-two-column-min-width + 10rem}) {
     grid-column-gap: 3em;
   }
 }
