@@ -139,6 +139,25 @@ $content-two-column-min-width: 40em;
   }
 }
 
+.join-link-list {
+  // The icons for each list item make the list markers feel redundant, so we
+  // remove the markers.
+  list-style: none;
+
+  // Padding + negative text indent allow lines after the first to align with
+  // start of first line text, rather than the icon.
+
+  html[dir='ltr'] & {
+    padding-left: $icon-size + $icon-text-spacing;
+  }
+
+  html[dir='rtl'] & {
+    padding-right: $icon-size + $icon-text-spacing;
+  }
+
+  text-indent: -#{$icon-size + $icon-text-spacing};
+}
+
 h2 {
   margin-bottom: 2rem;
 

@@ -1,0 +1,54 @@
+// -----------------------------------------------------------------------------
+//   Icon partial
+// -----------------------------------------------------------------------------
+
+///
+/// The icon width and height.
+///
+$icon-size: 1.2em;
+
+///
+/// The spacing between an icon and its text, if visible.
+///
+$icon-text-spacing: 0.3em;
+
+.ambientimpact-icon {
+  &__icon {
+    width:      $icon-size;
+    min-width:  $icon-size;
+    height:     $icon-size;
+
+    html[dir='ltr'] & {
+      padding-right:  $icon-text-spacing;
+    }
+
+    html[dir='rtl'] & {
+      padding-left:   $icon-text-spacing;
+    }
+
+    fill: currentColor;
+
+    // Prevents events being triggered in Chrome and probably any browsers based
+    // on Chromium.
+    pointer-events: none;
+
+    vertical-align: -0.3em;
+  }
+
+  // This no work. :(
+  &__text {
+    // html[dir='ltr'] & {
+    //   padding-left: $icon-size + $icon-text-spacing;
+    // }
+
+    // html[dir='rtl'] & {
+    //   padding-right: $icon-size + $icon-text-spacing;
+    // }
+
+/**/    box-decoration-break: clone;
+  }
+
+  // &::first-line {
+  //   text-indent: -#{$icon-size + $icon-text-spacing};
+  // }
+}
