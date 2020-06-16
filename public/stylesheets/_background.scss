@@ -3,8 +3,43 @@
 // -----------------------------------------------------------------------------
 
 #home {
-  background-image: url('../images/home.svg');
-  background-repeat: no-repeat;
-  background-position: 0 50%;
-  background-size: contain;
+  position: relative;
+
+  // Background image is applied using generated content to allow applying
+  // filters and transforms without affecting the rest of this element's
+  // content.
+  &::after {
+    content: '';
+
+    display: block;
+
+    position: absolute;
+
+    top:    0;
+    bottom: 0;
+    left:   0;
+    right:  0;
+
+    background-image:     url('../images/home.svg');
+    background-repeat:    no-repeat;
+    background-position:  0 50%;
+    background-size:      contain;
+
+    // The background image doesn't contrast well against the light colour theme
+    // background colour, so we reduce the brightness, which is only applied to
+    // this element.
+    filter: brightness(65%);
+
+    // Remove the filters on the dark colour theme.
+    @include on-dark-colour-scheme {
+      filter: none;
+    }
+
+    // This flips the background horizontally for RTL languages.
+    html[dir='rtl'] & {
+      transform: scaleX(-1);
+    }
+
+    pointer-events: none;
+  }
 }

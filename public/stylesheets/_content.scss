@@ -23,16 +23,6 @@ $content-two-column-min-width: 40rem;
       $text-shadow-on-dark, $text-shadow-on-dark, $text-shadow-on-dark;
   }
 
-  // To flip the background image for RTL, we use this clever trick:
-  //
-  // @link https://stackoverflow.com/a/21443680
-  html[dir='rtl'] & {
-    // This keeps the double flipped <p> on the correct side.
-    align-items: end;
-
-    transform: scaleX(-1);
-  }
-
   h1, p {
     // This fixes an issue where the hitting the max responsive font size would
     // cause the height of one of these to get larger than the other, which
@@ -41,11 +31,6 @@ $content-two-column-min-width: 40rem;
 
     margin-top:     0;
     margin-bottom:  0;
-
-    // Undo the container's transform.
-    html[dir='rtl'] & {
-      transform: scaleX(-1);
-    }
   }
 
   h1 {
