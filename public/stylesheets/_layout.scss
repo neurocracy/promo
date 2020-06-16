@@ -25,7 +25,7 @@ $layout-max-width: 65rem;
 ///
 /// Stacking order (z-index) for main site layout; later in list is higher.
 ///
-$layout-stacking-order:  header, reveal-overlay;
+$layout-stacking-order:  content, header, reveal-overlay;
 
 body {
   margin:   0;
@@ -72,6 +72,8 @@ body {
   &:first-child {
     margin-top: $viewport-padding + $header-height;
   }
+
+  z-index: index($layout-stacking-order, content);
 }
 
 .layout-section + .layout-section,

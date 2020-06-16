@@ -24,6 +24,11 @@ $content-two-column-min-width: 40rem;
   }
 
   h1, p {
+    // This ensures these are above the background image generated content, so
+    // that the text-shadow correctly occludes it.
+    position: relative;
+    z-index: 1;
+
     // This fixes an issue where the hitting the max responsive font size would
     // cause the height of one of these to get larger than the other, which
     // would cause the background to be misaligned.
