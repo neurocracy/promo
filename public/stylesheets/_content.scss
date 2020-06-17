@@ -151,13 +151,27 @@ $content-two-column-min-width: 40rem;
   text-indent: -#{$icon-size + $icon-text-spacing};
 }
 
-h2 {
+///
+/// Heading level 2 (h2) styles.
+///
+/// @require {mixin} on-dark-colour-scheme
+///
+@mixin heading-level2 {
   margin-bottom: 2rem;
 
   border-bottom: 1px solid hsl(0, 0, 75%);
 
   @include on-dark-colour-scheme {
     border-bottom-color: hsl(0, 0, 25%);
+  }
+}
+
+h2 {
+  @include heading-level2;
+
+  summary & {
+    margin-bottom: 0;
+    border-bottom-width: 0;
   }
 }
 
@@ -181,4 +195,20 @@ li + li {
 
 details summary {
   cursor: pointer;
+}
+
+.credits {
+  &__label {
+    @include heading-level2;
+
+    @include heading-font-size(2);
+
+    // This resets the heading so that we can apply the heading styles just to
+    // the <summary>.
+    h2 {
+      display: inline;
+
+      font-size: 100%;
+    }
+  }
 }
