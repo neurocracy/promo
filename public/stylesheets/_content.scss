@@ -195,6 +195,22 @@ li + li {
 
 details summary {
   cursor: pointer;
+
+  @include transition-fade-base;
+
+  &:hover {
+    background-color: mix(
+      $background-colour-light, $foreground-colour-on-light, 80%
+    );
+
+    @include on-dark-colour-scheme {
+      background-color: mix(
+        $background-colour-dark, $foreground-colour-on-dark, 80%
+      );
+    }
+
+    @include transition-fade-active();
+  }
 }
 
 .credits {
