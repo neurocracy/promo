@@ -1,0 +1,33 @@
+// -----------------------------------------------------------------------------
+//   Focus partial
+// -----------------------------------------------------------------------------
+
+///
+/// Focus outline colour on light backgrounds.
+///
+$focus-outline-colour-on-light: $material-primary-colour;
+
+///
+/// Focus outline colour on dark backgrounds.
+///
+$focus-outline-colour-on-dark: invert-lightness($material-primary-colour);
+
+* {
+  outline: 2px solid transparent;
+
+  outline-offset: 2px;
+
+  // Note that this will be removed from Gecko/Firefox at a certain point and
+  // border-radius will instead cause the outline to gain a corner radius.
+  //
+  // @link https://bugzilla.mozilla.org/show_bug.cgi?id=315209
+  -moz-outline-radius: 2px;
+
+  &:focus {
+    outline-color: $focus-outline-colour-on-light;
+
+    @include on-dark-colour-scheme {
+      outline-color: $focus-outline-colour-on-dark;
+    }
+  }
+}

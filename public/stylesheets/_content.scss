@@ -198,6 +198,10 @@ details summary {
 
   @include transition-fade-base;
 
+  &:hover, &:focus {
+    @include transition-fade-hover;
+  }
+
   &:hover {
     background-color: mix(
       $background-colour-light, $foreground-colour-on-light, 80%
@@ -208,8 +212,6 @@ details summary {
         $background-colour-dark, $foreground-colour-on-dark, 80%
       );
     }
-
-    @include transition-fade-active();
   }
 }
 

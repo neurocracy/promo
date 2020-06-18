@@ -89,13 +89,20 @@ $image-link-elements: img, picture;
   color: $link-normal-colour-on-light;
   text-decoration-color: $link-underline-normal-colour-on-light;
 
+  // This should apply to focus outlines when browsers implement it.
+  //
+  // @link https://bugzilla.mozilla.org/show_bug.cgi?id=315209
+  border-radius: 2px;
+
   @include transition-fade-normal;
+
+  &:hover, &:focus {
+    @include transition-fade-hover;
+  }
 
   &:hover {
     color: $link-hover-colour-on-light;
     text-decoration-color: $link-underline-hover-colour-on-light;
-
-    @include transition-fade-hover;
   }
 
   &:active {
@@ -123,7 +130,6 @@ $image-link-elements: img, picture;
   display: block;
 
   border: 1px solid currentColor;
-  border-radius: 2px;
 
   #{$image-link-elements} {
     filter: $image-link-normal-filters;
@@ -133,7 +139,7 @@ $image-link-elements: img, picture;
     );
   }
 
-  &:hover, &:focus {
+  &:hover {
     #{$image-link-elements} {
       filter: $image-link-hover-filters;
 
