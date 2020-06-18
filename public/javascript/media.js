@@ -66,6 +66,16 @@
         }
       );
 
+      // This moves focus to the corresponding link containing the thumbnail of
+      // the current slide when PhotoSwipe closes, so that keyboard navigation
+      // doesn't get reset to the top of the page. Ugh. Note that we're doing
+      // this right when PhotoSwipe begins to close rather than on destroy, so
+      // that we don't risk anything else getting focus for a brief moment and
+      // potentially confusing or annoying assistive software users.
+      gallery.listen('initialZoomOut', function() {
+        gallery.currItem.el.focus();
+      });
+
       gallery.init();
 
       event.preventDefault();
