@@ -11,6 +11,11 @@
   &--pinned {
     transform: translateY(0%);
   }
+  // This shows the header if anything within it becomes focused, overriding
+  // Headroom.js.
+  &:focus-within {
+    transform: translateY(0%);
+  }
   &--unpinned {
     transform: translateY(-100%);
   }
