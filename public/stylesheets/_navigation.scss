@@ -52,9 +52,10 @@
     }
   }
 
-  @media (max-width: 22em) {
+  // This hides the home link if there isn't enough room for it horizontally.
+  @media (max-width: 26em) {
     .menu-item--home {
-      @include hide-me;
+      display: none;
     }
   }
 }
