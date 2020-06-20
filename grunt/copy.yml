@@ -3,6 +3,14 @@
 vendor:
   nonull: true
   files:
+    - cwd: 'node_modules/ally.js/'
+      src:
+        - 'ally.js'
+        - 'ally.js.map'
+        - 'ally.min.js'
+        - 'ally.min.js.map'
+      dest: '<%= vendorPath %>/ally.js/'
+      expand: true
     - cwd: 'node_modules/headroom.js/dist/'
       src: 'headroom.min.js'
       dest: '<%= vendorPath %>/headroom.js/'

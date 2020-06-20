@@ -5,7 +5,8 @@
 (function() {
   if (
     !('querySelector' in document) ||
-    !('PhotoSwipe' in window)
+    !('PhotoSwipe' in window) ||
+    !('ally' in window)
   ) {
     return;
   }
@@ -66,6 +67,14 @@
         }
       );
 
+      var focusDisabledHandle;
+
+      gallery.listen('initialZoomInEnd', function() {
+        focusDisabledHandle = ally.maintain.disabled({
+          filter: '.pswp *'
+        });
+      });
+
       // This moves focus to the corresponding link containing the thumbnail of
       // the current slide when PhotoSwipe closes, so that keyboard navigation
       // doesn't get reset to the top of the page. Ugh. Note that we're doing
@@ -73,11 +82,14 @@
       // that we don't risk anything else getting focus for a brief moment and
       // potentially confusing or annoying assistive software users.
       gallery.listen('initialZoomOut', function() {
+        focusDisabledHandle.disengage();
         gallery.currItem.el.focus();
       });
 
       gallery.init();
 
+      // Always prevent the default link action at the end of the handler, in
+      // case of an exception in the preceding code.
       event.preventDefault();
     });
   }
