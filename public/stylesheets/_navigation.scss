@@ -2,6 +2,44 @@
 //   Navigation partial
 // -----------------------------------------------------------------------------
 
+///
+/// Navigation menu clip-path padding to account for focus outlines.
+///
+$navigation-menu-clip-padding: 4px;
+
+///
+/// Navigation menu clip-path value.
+///
+/// @require {variable} $navigation-menu-clip-padding
+///
+$navigation-menu-clip-path: polygon(
+  -#{$navigation-menu-clip-padding}
+    -#{$navigation-menu-clip-padding},
+  calc(100% + #{$navigation-menu-clip-padding})
+    -#{$navigation-menu-clip-padding},
+  calc(100% + #{$navigation-menu-clip-padding})
+    calc(100% + #{$navigation-menu-clip-padding}),
+  -#{$navigation-menu-clip-padding}
+    calc(100% + #{$navigation-menu-clip-padding})
+);
+
+///
+/// Navigation menu item hiding transition duration.
+///
+$navigation-menu-transition-duration: 350ms;
+
+///
+/// Animation to hide the Home link from keyboard focus and accessibility tree.
+///
+@keyframes navigation-home-hide {
+  0% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+
 .navigation {
   display: flex;
 
@@ -22,6 +60,9 @@
     list-style: none;
 
     display: flex;
+
+    // This hides the home item when it's transitioning in and out.
+    clip-path: $navigation-menu-clip-path;
   }
 
   .menu-item {
@@ -34,6 +75,10 @@
     html[dir='rtl'] & {
       margin-left: $header-spacing;
     }
+
+    transition-property: transform;
+    transition-duration: $navigation-menu-transition-duration;
+    transition-timing-function: $easing-standard;
 
     font-family:  $heading-font-stack;
     font-size:    140%;
@@ -50,12 +95,48 @@
         margin-left: 0;
       }
     }
+
+    &--hidden {
+      // If clip-path is not supported, just hide the menu item.
+      display: none;
+
+      @supports (clip-path: $navigation-menu-clip-path) {
+        display: list-item;
+      }
+
+      // This animation removes the hidden link from the tabbing order and
+      // accessibility tree.
+      //
+      // @todo Since we only use this for the Home link and it's largely
+      // redundant from an accessibility point of view - given that the logo
+      // is right before it and has the same link - would it make more sense to
+      // set aria-hidden="true" and tab-index="-1" on the Home link?
+      animation-name:             navigation-home-hide;
+      animation-duration:         1ms;
+      animation-timing-function:  linear;
+      animation-fill-mode:        forwards;
+      animation-delay:            $navigation-menu-transition-duration;
+
+      &, & ~ .menu-item {
+        @supports (clip-path: $navigation-menu-clip-path) {
+          // The first value is roughly the width of the "Home" text. Since
+          // we're applying this to all items, we can't just use 100%.
+          transform: translateX(-3.9rem - $header-spacing);
+        }
+      }
+    }
   }
 
-  // This hides the home link if there isn't enough room for it horizontally.
+  // This hides the Home link if there isn't enough room for it horizontally.
   @media (max-width: 26em) {
     .menu-item--home {
       display: none;
+
+      &, & ~ .menu-item {
+        // Remove the translateX() that may be set above, since the Home link no
+        // longer takes up any space.
+        transform: none;
+      }
     }
   }
 }
