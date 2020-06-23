@@ -15,14 +15,12 @@
 
   var itemLinks = document.querySelectorAll('.features-section__media a');
 
-  var path = document.location.pathname.replace('/index.htm', '');
-
   var items = [];
 
   for (var i = 0; i < itemLinks.length; i++) {
     items.push({
       el:   itemLinks[i],
-      src:  path + '/' + itemLinks[i].getAttribute('href'),
+      src:  itemLinks[i].href,
       msrc: itemLinks[i].getElementsByTagName('img')[0].getAttribute('src'),
       w:    itemLinks[i].getAttribute('data-photoswipe-linked-width'),
       h:    itemLinks[i].getAttribute('data-photoswipe-linked-height')
