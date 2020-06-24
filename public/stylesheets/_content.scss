@@ -229,4 +229,17 @@ details summary {
       font-size: 100%;
     }
   }
+
+  &__list {
+    // This lays out the credits list as multiple columns when space allows.
+    @supports (column-gap: 2em) {
+      // The minimum width of columns when displaying as multiple columns.
+      //
+      // @link https://developer.mozilla.org/en-US/docs/Web/CSS/column-width
+      column-width: 20em;
+      // The gap between columns. This must be larger than the padding on lists
+      // to accomodate the list markers.
+      column-gap:   2em;
+    }
+  }
 }
