@@ -26,9 +26,9 @@
     background-size:      contain;
 
     // The background image doesn't contrast well against the light colour theme
-    // background colour, so we reduce the brightness, which is only applied to
-    // this element.
-    filter: brightness(65%);
+    // background colour, so we reduce the brightness and increase the
+    // saturation.
+    filter: brightness(65%) saturate(150%);
 
     // Remove the filters on the dark colour theme.
     @include on-dark-colour-scheme {
