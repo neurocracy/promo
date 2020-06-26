@@ -6,7 +6,8 @@
   if (
     !('querySelector' in document) ||
     !('PhotoSwipe' in window) ||
-    !('ally' in window)
+    !('ally' in window) ||
+    !('matchMedia' in window)
   ) {
     return;
   }
@@ -49,20 +50,33 @@
 
       var link = this;
 
+      var galleryOptions = {
+        index:    parseInt(this.getAttribute('data-photoswipe-gallery-index')),
+        shareEl:  false,
+        galleryUID: 'features',
+      };
+
+      // This only provides the thumbnail callback if reduced motion is not
+      // specified. If the thumbnail callback isn't set, PhotoSwipe will not do
+      // the zoom transition in and out on open and close.
+      if (!window.matchMedia('(prefers-reduced-motion)').matches) {
+        galleryOptions.getThumbBoundsFn = function(index) {
+          var thumbnail = items[index].el.getElementsByTagName('img')[0],
+              pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+              rect = thumbnail.getBoundingClientRect();
+
+          return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+        };
+
+      // If reduced motion is specified, tell PhotoSwipe to do a fade in and out
+      // on open and close, so that there's still some smoothness to the UX even
+      // without the zoom transitions.
+      } else {
+        galleryOptions.showHideOpacity = true;
+      }
+
       var gallery = new PhotoSwipe(
-        photoswipeElement, PhotoSwipeUI_Default, items, {
-          index:    parseInt(this.getAttribute('data-photoswipe-gallery-index')),
-          shareEl:  false,
-          galleryUID: 'features',
-
-          getThumbBoundsFn: function(index) {
-            var thumbnail = items[index].el.getElementsByTagName('img')[0],
-                pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
-                rect = thumbnail.getBoundingClientRect();
-
-            return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
-          }
-        }
+        photoswipeElement, PhotoSwipeUI_Default, items, galleryOptions
       );
 
       var focusDisabledHandle;
