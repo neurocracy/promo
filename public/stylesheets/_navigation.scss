@@ -128,7 +128,7 @@ $navigation-menu-transition-duration: 350ms;
   }
 
   // This hides the Home link if there isn't enough room for it horizontally.
-  @media (max-width: 26em) {
+  @media (max-width: 23em) {
     .menu-item--home {
       display: none;
 
