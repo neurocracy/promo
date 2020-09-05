@@ -44,7 +44,16 @@ $content-two-column-min-width: 40rem;
 
     padding-bottom: 1.2rem;
 
-    font-size:      300%;
+    font-size:      250%;
+
+    @media (min-width: 22em) {
+      font-size:    275%;
+    }
+
+    @media (min-width: 25em) {
+      font-size:    300%;
+    }
+
     font-weight:    $font-weight-normal;
     line-height:    1;
     text-transform: uppercase;
