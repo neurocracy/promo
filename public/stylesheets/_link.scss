@@ -132,6 +132,8 @@ $image-link-elements: img, picture;
   border: 1px solid currentColor;
 
   #{$image-link-elements} {
+    display: block;
+
     filter: $image-link-normal-filters;
 
     @include transition-fade-base(

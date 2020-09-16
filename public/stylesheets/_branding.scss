@@ -3,10 +3,9 @@
 // -----------------------------------------------------------------------------
 
 .site-logo {
-  // Required to keep the intrinsic ratio from imploding to zero width due to
-  // the display: flex; on .layout-header. Since the logo is square, we can just
-  // use the height variable.
-  min-width: $header-height;
+  // Ensure the logo doesn't get too large, regardless of the dimensions set in
+  // the HTML. Since the logo is square, we can just use the height variable.
+  max-width: $header-height;
 
   &__link {
     border-width: 0;
