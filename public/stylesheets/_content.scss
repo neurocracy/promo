@@ -70,22 +70,6 @@ $content-two-column-min-width: 40rem;
   margin-top: 3em;
 }
 
-#kickstarter {
-  &-heading {
-    @include hide-me;
-  }
-
-  p {
-    margin-bottom:  4em;
-
-    font-family:    $heading-font-stack;
-    font-weight:    $font-weight-strong;
-    font-size:      200%;
-    text-align:     center;
-    text-transform: uppercase;
-  }
-}
-
 .features-section {
   @media (min-width: $content-two-column-min-width) {
     display: grid;

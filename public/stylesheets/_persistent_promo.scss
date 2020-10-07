@@ -1,0 +1,196 @@
+// -----------------------------------------------------------------------------
+//   Persistent promo partial
+// -----------------------------------------------------------------------------
+
+///
+/// Persistent promo icon size.
+///
+$persistent-promo-icon-size: 1.95em;
+
+.persistent-promo {
+  // Replace default list styles.
+  margin:     0 auto;
+  padding:    $viewport-padding !important;
+  list-style: none;
+
+  // Remove the margin between list items if modern grid is supported.
+  @supports (grid-area: auto) {
+    &__item + &__item {
+      margin-top: 0;
+    }
+  }
+
+  max-width:  $layout-max-width;
+
+  position: fixed;
+
+  left:     0;
+  right:    0;
+  bottom:   0;
+
+  @supports (grid-area: auto) {
+    display: grid;
+    grid-gap: $viewport-padding;
+
+    grid-template-columns: minmax(min-content, 1fr);
+    justify-items: start;
+
+    @media (min-width: 50em) {
+      grid-template-columns: repeat(2, max-content);
+    }
+  }
+
+  // Disable pointer events so that empty areas of the list don't block clicks/
+  // taps to content underneath. This is undone in &__item {} rule lower down.
+  pointer-events: none;
+
+  &__item {
+    font-family:    $heading-font-stack;
+    font-weight:    $font-weight-strong;
+    font-size:      150%;
+    text-transform: uppercase;
+
+    // Re-enable clicking/tapping on list items.
+    pointer-events: auto;
+
+    :any-link {
+      position: relative;
+
+      @supports (grid-area: auto) {
+        display:  grid;
+        align-items: center;
+      }
+
+      min-height: 1.5em;
+
+      padding-top:    0.4em;
+      padding-bottom: 0.4em;
+
+      html[dir='ltr'] & {
+        padding-left:   0.5em;
+        padding-right:  0.8em;
+      }
+      html[dir='rtl'] & {
+        padding-left:   0.8em;
+        padding-right:  0.5em;
+      }
+
+      border-radius: 4em;
+
+      color: $foreground-colour-on-dark;
+
+      text-decoration-color: rgba($foreground-colour-on-dark, 0.6);
+
+      &:hover {
+        text-decoration-color: $foreground-colour-on-dark;
+      }
+
+      &:active {
+        color: rgba($foreground-colour-on-dark, 0.6);
+        text-decoration-color: rgba($foreground-colour-on-dark, 0.6);
+      }
+
+      &::before {
+        content: '';
+
+        display:  inline-block;
+
+        position: absolute;
+
+        left: 0.15em;
+        top:  50%;
+
+        z-index: 1;
+
+        width:  $persistent-promo-icon-size;
+        height: $persistent-promo-icon-size;
+
+        margin-top: calc(#{$persistent-promo-icon-size} / 2 * -1);
+
+        border-radius: 100%;
+
+        background-color: $foreground-colour-on-dark;
+      }
+
+      // This converts the icons to grid so that things line up well vertically
+      // and in edge cases where the text doesn't have enough room and must wrap
+      // to a second line.
+      .ambientimpact-icon {
+        position: relative;
+        z-index: 2;
+
+        @supports (grid-area: auto) {
+          display: grid;
+          grid-template-columns: min-content 1fr;
+          grid-column-gap: 1.1em;
+          align-items: center;
+        }
+
+        &__icon {
+          html[dir='ltr'] & {
+            padding-right:  0;
+          }
+
+          html[dir='rtl'] & {
+            padding-left:   0;
+          }
+        }
+      }
+    }
+  }
+
+  &__kickstarter {
+    :any-link {
+      background-color: $kickstarter-green;
+    }
+
+    .ambientimpact-icon__icon {
+      // Black Lives Matter black.
+      fill: black;
+    }
+
+    @media (max-width: 30em) {
+      // Reduce the Kickstarter font size on narrow screens to attempt to fit
+      // more text on one line.
+      .ambientimpact-icon__text {
+        font-size: 85%;
+      }
+    }
+  }
+
+  &__trailer {
+    :any-link {
+      // We're using Omnipedia blue rather than Vimeo's blue here as it Vimeo's
+      // clashes a bit with our colour scheme.
+      background-color: $omnipedia-blue;
+    }
+
+    // Use Vimeo blue for the play icon.
+    .ambientimpact-icon__icon {
+      fill: $vimeo-blue;
+
+      position: relative;
+      // This needs shifting slightly to make it feel properly centred. Magic
+      // number alert.
+      left: $persistent-promo-icon-size * 0.077;
+    }
+  }
+
+  // Headroom.js stuff follows.
+  &--initialized {
+    transition:   transform 200ms ease-in-out;
+    will-change:  transform;
+  }
+
+  &--pinned {
+    transform: translateY(0%);
+  }
+  // This shows the header if anything within it becomes focused, overriding
+  // Headroom.js.
+  &:focus-within {
+    transform: translateY(0%);
+  }
+  &--unpinned {
+    transform: translateY(calc(100% + #{$viewport-padding}));
+  }
+}

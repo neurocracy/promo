@@ -25,7 +25,7 @@ $layout-max-width: 65rem;
 ///
 /// Stacking order (z-index) for main site layout; later in list is higher.
 ///
-$layout-stacking-order:  content, header, reveal-overlay;
+$layout-stacking-order: content, header, persistent-promo, reveal-overlay;
 
 body {
   margin:   0;
@@ -63,6 +63,10 @@ body {
 
     box-sizing: border-box;
   }
+}
+
+.persistent-promo {
+  z-index: index($layout-stacking-order, persistent-promo);
 }
 
 .layout-section {
