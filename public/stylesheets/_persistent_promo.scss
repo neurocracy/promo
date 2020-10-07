@@ -3,6 +3,11 @@
 // -----------------------------------------------------------------------------
 
 ///
+/// Minimum viewport width to display persistent promo in two columns.
+///
+$persistent-promo-two-column-min-width: 50rem;
+
+///
 /// Persistent promo icon size.
 ///
 $persistent-promo-icon-size: 1.95em;
@@ -18,6 +23,18 @@ $persistent-promo-drop-shadow-on-light:
 ///
 $persistent-promo-drop-shadow-on-dark:
   drop-shadow(0 0 0.3rem $background-colour-dark);
+
+///
+/// Persistent promo reveal animation keyframes.
+///
+@keyframes persistent-promo-reveal {
+  0% {
+    transform: translateY(calc(100% + #{$viewport-padding}));
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
 
 .persistent-promo {
   // Replace default list styles.
@@ -47,7 +64,7 @@ $persistent-promo-drop-shadow-on-dark:
     grid-template-columns: minmax(min-content, 1fr);
     justify-items: start;
 
-    @media (min-width: 50em) {
+    @media (min-width: $persistent-promo-two-column-min-width) {
       grid-template-columns: repeat(2, max-content);
     }
   }
@@ -199,21 +216,80 @@ $persistent-promo-drop-shadow-on-dark:
     }
   }
 
-  // Headroom.js stuff follows.
+  @media (prefers-reduced-motion: no-preference) {
+    // Slides the list into view after a short delay on loading.
+    animation-name:             persistent-promo-reveal;
+    animation-duration:         0.4s;
+    animation-timing-function:  ease-out;
+    animation-fill-mode:        backwards;
+    animation-delay:            0.6s;
+
+    // If we're wide enough for two columns, also apply the same animation with
+    // a longer delay to the second list item for a staggered effect.
+    @media (min-width: $persistent-promo-two-column-min-width) {
+      &__item + &__item {
+        animation-name:             persistent-promo-reveal;
+        animation-duration:         0.4s;
+        animation-timing-function:  ease-out;
+        animation-fill-mode:        backwards;
+        animation-delay:            1s;
+      }
+    }
+  }
+
+  // Headroom.js stuff follows. Note that we only apply transforms and
+  // transitions to individual list items when we're displaying them
+  // side-by-side, as the individual transforms break if they're stacked
+  // vertically. Note that the slide effect is still applied if the user prefers
+  // reduced motion as it adds a sense of where the items are going to or coming
+  // from, but the staggered effect is disabled in this case.
+
+  // Headroom.js initialized properties.
   &--initialized {
     transition:   transform 200ms ease-in-out;
     will-change:  transform;
   }
+  @media (min-width: $persistent-promo-two-column-min-width) {
+    &--initialized &__item {
+      transition:   transform 200ms ease-in-out;
+      will-change:  transform;
+    }
+  }
 
+  // Shows the items when Headroom.js considers them pinned.
   &--pinned {
     transform: translateY(0%);
   }
-  // This shows the header if anything within it becomes focused, overriding
-  // Headroom.js.
+  @media (min-width: $persistent-promo-two-column-min-width) {
+    &--pinned &__item {
+      transform: translateY(0%);
+    }
+  }
+  // Shows list and items if anything within the list becomes focused,
+  // overriding whether Headroom.js considers this unpinned.
   &:focus-within {
     transform: translateY(0%);
   }
+  @media (min-width: $persistent-promo-two-column-min-width) {
+    &:focus-within &__item {
+      transform: translateY(0%);
+    }
+  }
+  // Hides the list and items if Headroom.js marks the unpinned.
   &--unpinned {
     transform: translateY(calc(100% + #{$viewport-padding}));
+  }
+  @media (min-width: $persistent-promo-two-column-min-width) {
+    &--unpinned &__item {
+      transform: translateY(calc(100% + #{$viewport-padding}));
+    }
+  }
+
+  // This adds a brief delay on the second list item's transition to give it a
+  // bit more personality and physicality.
+  @media (min-width: $persistent-promo-two-column-min-width) and (prefers-reduced-motion: no-preference) {
+    &__item + &__item {
+      transition-delay: 100ms;
+    }
   }
 }
