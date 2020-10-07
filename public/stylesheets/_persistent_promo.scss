@@ -7,6 +7,18 @@
 ///
 $persistent-promo-icon-size: 1.95em;
 
+///
+/// Persistent promo drop shadow filter value on light backgrounds.
+///
+$persistent-promo-drop-shadow-on-light:
+  drop-shadow(0 0 0.8rem $background-colour-light);
+
+///
+/// Persistent promo drop shadow filter value on dark backgrounds.
+///
+$persistent-promo-drop-shadow-on-dark:
+  drop-shadow(0 0 0.3rem $background-colour-dark);
+
 .persistent-promo {
   // Replace default list styles.
   margin:     0 auto;
@@ -43,6 +55,17 @@ $persistent-promo-icon-size: 1.95em;
   // Disable pointer events so that empty areas of the list don't block clicks/
   // taps to content underneath. This is undone in &__item {} rule lower down.
   pointer-events: none;
+
+  // Light shadow is extra heavy.
+  filter:
+    $persistent-promo-drop-shadow-on-light
+    $persistent-promo-drop-shadow-on-light
+    $persistent-promo-drop-shadow-on-light;
+
+  @include on-dark-colour-scheme {
+    // Dark shadow is more subtle with only one shadow.
+    filter: $persistent-promo-drop-shadow-on-dark;
+  }
 
   &__item {
     font-family:    $heading-font-stack;
