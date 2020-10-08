@@ -264,4 +264,15 @@ details summary {
       }
     }
   }
+
+  // Give the heading font credit item the heading font family, weight, and
+  // uppercase it. Note that we're reducing the font size so it roughly matches
+  // the body font size.
+  &__list-heading-font {
+    font-family:  $heading-font-stack;
+    font-weight:  $font-weight-strong;
+    font-size:    90%;
+
+    text-transform: uppercase;
+  }
 }
