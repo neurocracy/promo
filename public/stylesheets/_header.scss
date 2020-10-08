@@ -4,8 +4,11 @@
 
 .layout-header {
   &--initialized {
-    transition:   transform 200ms ease-in-out;
-    will-change:  transform;
+    transition-property:        transform;
+    transition-duration:        200ms;
+    transition-timing-function: $easing-standard;
+
+    will-change: transform;
   }
 
   &--pinned {

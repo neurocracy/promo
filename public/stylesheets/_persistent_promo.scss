@@ -222,7 +222,7 @@ $persistent-promo-drop-shadow-on-dark:
     &__item + &__item {
       animation-name:             persistent-promo-reveal;
       animation-duration:         0.4s;
-      animation-timing-function:  ease-out;
+      animation-timing-function:  $easing-decelerate;
       animation-fill-mode:        backwards;
     }
 
@@ -244,8 +244,8 @@ $persistent-promo-drop-shadow-on-dark:
   &--initialized,
   &--initialized &__item + &__item {
     transition-property:        transform;
-    transition-duration:        200ms;
-    transition-timing-function: ease-in-out;
+    transition-duration:        250ms;
+    transition-timing-function: $easing-standard;
 
     will-change: transform;
   }
@@ -273,7 +273,7 @@ $persistent-promo-drop-shadow-on-dark:
   // bit more personality and physicality.
   @media (prefers-reduced-motion: no-preference) {
     &__item + &__item {
-      transition-delay: 100ms;
+      transition-delay: 150ms;
     }
   }
 }
