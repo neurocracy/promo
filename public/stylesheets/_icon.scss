@@ -32,7 +32,11 @@ $icon-text-spacing: 0.3em;
     // on Chromium.
     pointer-events: none;
 
-    vertical-align: -0.3em;
+    vertical-align: -0.2em;
+
+    :any-link & {
+      vertical-align: -0.3em;
+    }
   }
 
   // This no work. :(
