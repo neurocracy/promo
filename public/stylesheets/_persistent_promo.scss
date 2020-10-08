@@ -216,78 +216,62 @@ $persistent-promo-drop-shadow-on-dark:
     }
   }
 
+  // Slides the list and list items into view after a short delay on loading.
   @media (prefers-reduced-motion: no-preference) {
-    // Slides the list into view after a short delay on loading.
-    animation-name:             persistent-promo-reveal;
-    animation-duration:         0.4s;
-    animation-timing-function:  ease-out;
-    animation-fill-mode:        backwards;
-    animation-delay:            0.6s;
+    &,
+    &__item + &__item {
+      animation-name:             persistent-promo-reveal;
+      animation-duration:         0.4s;
+      animation-timing-function:  ease-out;
+      animation-fill-mode:        backwards;
+    }
 
-    // If we're wide enough for two columns, also apply the same animation with
-    // a longer delay to the second list item for a staggered effect.
-    @media (min-width: $persistent-promo-two-column-min-width) {
-      &__item + &__item {
-        animation-name:             persistent-promo-reveal;
-        animation-duration:         0.4s;
-        animation-timing-function:  ease-out;
-        animation-fill-mode:        backwards;
-        animation-delay:            1s;
-      }
+    // Short delay to hopefully run the animation after the DOM has been built
+    // to reduce the chances of stutter.
+    animation-delay:              0.6s;
+
+    // Apply a longer delay to the second list item for a staggered effect.
+    &__item + &__item {
+      animation-delay:            1s;
     }
   }
 
-  // Headroom.js stuff follows. Note that we only apply transforms and
-  // transitions to individual list items when we're displaying them
-  // side-by-side, as the individual transforms break if they're stacked
-  // vertically. Note that the slide effect is still applied if the user prefers
-  // reduced motion as it adds a sense of where the items are going to or coming
-  // from, but the staggered effect is disabled in this case.
+  // Headroom.js stuff follows. Note that the slide effect is still applied if
+  // the user prefers reduced motion as it adds a sense of where the items are
+  // going to or coming from, but the staggered effect is disabled in this case.
 
   // Headroom.js initialized properties.
-  &--initialized {
-    transition:   transform 200ms ease-in-out;
-    will-change:  transform;
-  }
-  @media (min-width: $persistent-promo-two-column-min-width) {
-    &--initialized &__item {
-      transition:   transform 200ms ease-in-out;
-      will-change:  transform;
-    }
+  &--initialized,
+  &--initialized &__item + &__item {
+    transition-property:        transform;
+    transition-duration:        200ms;
+    transition-timing-function: ease-in-out;
+
+    will-change: transform;
   }
 
   // Shows the items when Headroom.js considers them pinned.
-  &--pinned {
+  &--pinned,
+  &--pinned &__item + &__item {
     transform: translateY(0%);
   }
-  @media (min-width: $persistent-promo-two-column-min-width) {
-    &--pinned &__item {
-      transform: translateY(0%);
-    }
-  }
+
   // Shows list and items if anything within the list becomes focused,
   // overriding whether Headroom.js considers this unpinned.
-  &:focus-within {
+  &:focus-within,
+  &:focus-within &__item + &__item {
     transform: translateY(0%);
   }
-  @media (min-width: $persistent-promo-two-column-min-width) {
-    &:focus-within &__item {
-      transform: translateY(0%);
-    }
-  }
+
   // Hides the list and items if Headroom.js marks the unpinned.
-  &--unpinned {
+  &--unpinned,
+  &--unpinned &__item + &__item {
     transform: translateY(calc(100% + #{$viewport-padding}));
-  }
-  @media (min-width: $persistent-promo-two-column-min-width) {
-    &--unpinned &__item {
-      transform: translateY(calc(100% + #{$viewport-padding}));
-    }
   }
 
   // This adds a brief delay on the second list item's transition to give it a
   // bit more personality and physicality.
-  @media (min-width: $persistent-promo-two-column-min-width) and (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) {
     &__item + &__item {
       transition-delay: 100ms;
     }
