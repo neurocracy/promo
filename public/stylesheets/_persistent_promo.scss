@@ -25,6 +25,12 @@ $persistent-promo-drop-shadow-on-dark:
   drop-shadow(0 0 0.3rem $background-colour-dark);
 
 ///
+/// Persistent promo reveal animation delay.
+///
+$persistent-promo-reveal-animation-delay:
+  $home-reveal-animation-delay + $home-reveal-animation-duration;
+
+///
 /// Persistent promo reveal animation keyframes.
 ///
 @keyframes persistent-promo-reveal {
@@ -226,13 +232,11 @@ $persistent-promo-drop-shadow-on-dark:
       animation-fill-mode:        backwards;
     }
 
-    // Short delay to hopefully run the animation after the DOM has been built
-    // to reduce the chances of stutter.
-    animation-delay:              0.6s;
+    animation-delay: $persistent-promo-reveal-animation-delay;
 
     // Apply a longer delay to the second list item for a staggered effect.
     &__item + &__item {
-      animation-delay:            1s;
+      animation-delay: $persistent-promo-reveal-animation-delay + 0.3s;
     }
   }
 
