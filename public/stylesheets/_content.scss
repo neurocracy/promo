@@ -7,6 +7,11 @@
 ///
 $content-two-column-min-width: 40rem;
 
+///
+/// Stacking order (z-index) for home section; later in list is higher.
+///
+$home-stacking-order: background, background-reveal, content;
+
 #home {
   display: flex;
   flex-direction: column;
@@ -27,7 +32,7 @@ $content-two-column-min-width: 40rem;
     // This ensures these are above the background image generated content, so
     // that the text-shadow correctly occludes it.
     position: relative;
-    z-index: 1;
+    z-index:  index($home-stacking-order, content);
 
     // This fixes an issue where the hitting the max responsive font size would
     // cause the height of one of these to get larger than the other, which
@@ -63,6 +68,14 @@ $content-two-column-min-width: 40rem;
     max-width: 18em;
 
     padding-top: 0.7rem;
+  }
+
+  &::before {
+    z-index: index($home-stacking-order, background-reveal);
+  }
+
+  &::after {
+    z-index: index($home-stacking-order, background);
   }
 }
 
