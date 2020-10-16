@@ -5,7 +5,26 @@
 ///
 /// Minimum viewport width to display persistent promo in two columns.
 ///
-$persistent-promo-two-column-min-width: 50rem;
+$persistent-promo-two-column-min-width: 40rem;
+
+///
+/// Persistent promo base font size.
+///
+$persistent-promo-base-font-size: 110%;
+
+///
+/// Persistent promo font size increments.
+///
+/// Keys are @media min-widths while the values are the font sizes.
+///
+/// @require {variable} $persistent-promo-two-column-min-width
+///
+$persistent-promo-font-size-increments: (
+  30em: $persistent-promo-base-font-size + 10%,
+  40em: $persistent-promo-base-font-size + 20%,
+  50em: $persistent-promo-base-font-size + 30%,
+  60em: $persistent-promo-base-font-size + 40%,
+);
 
 ///
 /// Persistent promo icon size.
@@ -93,8 +112,16 @@ $persistent-promo-reveal-animation-delay:
   &__item {
     font-family:    $heading-font-stack;
     font-weight:    $font-weight-strong;
-    font-size:      150%;
     text-transform: uppercase;
+
+    font-size:      $persistent-promo-base-font-size;
+
+    // Output the font size increments at their specified viewport min-widths.
+    @each $min-width, $font-size in $persistent-promo-font-size-increments {
+      @media (min-width: $min-width) {
+        font-size:  $font-size;
+      }
+    }
 
     // Re-enable clicking/tapping on list items.
     pointer-events: auto;
