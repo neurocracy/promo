@@ -39,6 +39,9 @@ $icon-text-spacing: 0.3em;
     }
   }
 
+  // Force space between the icon and text to never wrap.
+  white-space: nowrap;
+
   // This no work. :(
   &__text {
     // html[dir='ltr'] & {
@@ -50,6 +53,9 @@ $icon-text-spacing: 0.3em;
     // }
 
     box-decoration-break: clone;
+
+    // Allow space inside of the icon text (i.e. between words) to wrap again.
+    white-space: normal;
   }
 
   // &::first-line {
