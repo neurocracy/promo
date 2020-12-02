@@ -1,4 +1,5 @@
-# Ignore any Node modules, as they're downloaded via NPM.
+# Ignore development directories and files.
+sftp-config.json
 node_modules
 
 # Ignore generated CSS files and their associated map files.
