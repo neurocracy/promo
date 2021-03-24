@@ -32,16 +32,19 @@ $persistent-promo-font-size-increments: (
 $persistent-promo-icon-size: 1.95em;
 
 ///
-/// Persistent promo drop shadow filter value on light backgrounds.
+/// Persistent promo drop shadow value on light backgrounds.
+///
+/// Note the addition of the spread radius to make the shadow intense enough for
+/// the effect we want. This seems to perform more smoothly on mobile than
+/// layering three shadows, which was the previous method we used.
 ///
 $persistent-promo-drop-shadow-on-light:
-  drop-shadow(0 0 0.8rem $background-colour-light);
+  0 0 1rem 0.8rem $background-colour-light;
 
 ///
-/// Persistent promo drop shadow filter value on dark backgrounds.
+/// Persistent promo drop shadow value on dark backgrounds.
 ///
-$persistent-promo-drop-shadow-on-dark:
-  drop-shadow(0 0 0.3rem $background-colour-dark);
+$persistent-promo-drop-shadow-on-dark: 0 0 0.3rem $background-colour-dark;
 
 ///
 /// Persistent promo reveal animation delay.
@@ -98,17 +101,6 @@ $persistent-promo-reveal-animation-delay:
   // taps to content underneath. This is undone in &__item {} rule lower down.
   pointer-events: none;
 
-  // Light shadow is extra heavy.
-  filter:
-    $persistent-promo-drop-shadow-on-light
-    $persistent-promo-drop-shadow-on-light
-    $persistent-promo-drop-shadow-on-light;
-
-  @include on-dark-colour-scheme {
-    // Dark shadow is more subtle with only one shadow.
-    filter: $persistent-promo-drop-shadow-on-dark;
-  }
-
   &__item {
     font-family:    $heading-font-stack;
     font-weight:    $font-weight-strong;
@@ -149,6 +141,12 @@ $persistent-promo-reveal-animation-delay:
       }
 
       border-radius: 4em;
+
+      box-shadow: $persistent-promo-drop-shadow-on-light;
+
+      @include on-dark-colour-scheme {
+        box-shadow: $persistent-promo-drop-shadow-on-dark;
+      }
 
       color: $foreground-colour-on-dark;
 
