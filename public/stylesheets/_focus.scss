@@ -23,7 +23,30 @@ $focus-outline-colour-on-dark: invert-lightness($material-primary-colour);
   // @link https://bugzilla.mozilla.org/show_bug.cgi?id=315209
   -moz-outline-radius: 2px;
 
+  // Focus outlines for browsers that don't support :focus-visible.
   &:focus {
+    outline-color: $focus-outline-colour-on-light;
+
+    @include on-dark-colour-scheme {
+      outline-color: $focus-outline-colour-on-dark;
+    }
+  }
+
+  // Hide focus outlines if the browser supports :focus-visible but its
+  // heuristics are telling us :focus-visible doesn't match, i.e. is probably a
+  // pointer focus.
+  //
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible
+  &:focus:not(:focus-visible) {
+    outline-color: transparent;
+
+    @include on-dark-colour-scheme {
+      outline-color: transparent;
+    }
+  }
+
+  // Focus outlines for browsers that do support :focus-visible.
+  &:focus-visible {
     outline-color: $focus-outline-colour-on-light;
 
     @include on-dark-colour-scheme {

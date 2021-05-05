@@ -220,7 +220,22 @@ details summary {
 
   @include transition-fade-base;
 
+  // Focus state for browsers that don't support :focus-visible.
   &:hover, &:focus {
+    @include transition-fade-hover;
+  }
+
+  // Revert the above if the browser supports :focus-visible but its heuristics
+  // are telling us :focus-visible doesn't match, i.e. is probably a pointer
+  // focus. The :not(:hover) is to not affect pointer-triggered fade outs.
+  //
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible
+  &:focus:not(:hover):not(:focus-visible) {
+    transition-duration: $transition-fade-out-duration;
+  }
+
+  // Focus state for browsers that do support :focus-visible.
+  &:hover, &:focus-visible {
     @include transition-fade-hover;
   }
 
