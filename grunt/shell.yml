@@ -1,3 +1,16 @@
+screenshot_jpg:
+  options:
+    execOptions:
+      cwd: 'public/images/screenshots'
+  # @todo Figure out how to do proper cross-platform globbing as this is
+  #   Windows-only; ImageMagick doesn't seem to provide the original input
+  #   filename anywhere obvious that we can use.
+  #
+  # @see https://imagemagick.org/script/command-line-processing.php
+  # @see https://imagemagick.org/script/convert.php
+  # @see https://legacy.imagemagick.org/Usage/files/
+  command: 'FOR /R %a in (*.png) DO magick convert "%~a" -quality 80 optimized/%~na.jpg'
+
 screenshot_thumbnails:
   options:
     execOptions:

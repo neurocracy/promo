@@ -8,6 +8,7 @@ node_modules
 
 # Ignore generated icons and images.
 public/images/icons/generated/*
+public/images/screenshots/optimized/*
 public/images/screenshots/thumbnails/*
 
 # Ignore generated fonts.

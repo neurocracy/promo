@@ -78,5 +78,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('imagemagick', [
     'shell:screenshot_thumbnails',
+    'shell:screenshot_jpg',
   ]);
 };
