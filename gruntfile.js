@@ -57,6 +57,7 @@ module.exports = function(grunt) {
   grunt.registerTask('all', [
     'css',
     'favicons',
+    'imagemagick',
     'fonts',
     'vendor',
   ]);
@@ -73,5 +74,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('vendor', [
     'copy:vendor',
+  ]);
+
+  grunt.registerTask('imagemagick', [
+    'shell:screenshot_thumbnails',
   ]);
 };

@@ -6,8 +6,9 @@ node_modules
 **/*.css
 **/*.css.map
 
-# Ignore generated icons.
+# Ignore generated icons and images.
 public/images/icons/generated/*
+public/images/screenshots/thumbnails/*
 
 # Ignore generated fonts.
 **/fonts/**/woff
