@@ -130,6 +130,40 @@ $home-stacking-order: background, background-reveal, content;
       }
     }
   }
+
+  &__media {
+    display: grid;
+
+    grid-template-columns:  1fr;
+    grid-template-rows:     1fr;
+
+    // So that links don't end up spanning the full height.
+    align-items: start;
+
+    :any-link {
+      // This layers both the light and dark links on top of each other so
+      // whichever one that's hidden doesn't take up extra space.
+      grid-column:  1;
+      grid-row:     1;
+    }
+  }
+
+  // Remove dark mode image links when not in dark mode. Note that we're using
+  // visibility so that it can't be focused via keyboard or other means.
+  .image-link--dark {
+    visibility: hidden;
+  }
+
+  // Remove light mode image links in dark mode and show dark mode image links.
+  @include on-dark-colour-scheme {
+    .image-link--light {
+      visibility: hidden;
+    }
+
+    .image-link--dark {
+      visibility: visible;
+    }
+  }
 }
 
 .join-content {
