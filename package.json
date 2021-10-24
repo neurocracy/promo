@@ -4,9 +4,9 @@
   "license": "GPL-2.0",
   "repository": "gitlab:neurocracy/promo",
   "devDependencies": {
-    "@lodder/grunt-postcss": "^3.0.1",
+    "@lodder/grunt-postcss": "^3.1.0",
     "SassyCast": "github:HugoGiraudel/SassyCast",
-    "autoprefixer": "^10.2.5",
+    "autoprefixer": "^10.3.7",
     "grunt": "^1.4.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-favicons": "github:japrescott/grunt-favicons#f9b4f3d99a7d05632f6291564086bb72bd43cdcc",
@@ -17,7 +17,7 @@
     "grunt-ttf2woff2": "^1.0.1",
     "load-grunt-config": "^3.0.2",
     "node-sass": "^6.0.1",
-    "postcss": "^8.2.15",
+    "postcss": "^8.3.11",
     "postcss-easing-gradients": "^3.0.1"
   },
   "dependencies": {
