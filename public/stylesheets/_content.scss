@@ -323,3 +323,59 @@ details summary {
     text-transform: uppercase;
   }
 }
+
+.press {
+
+  --row-gap:    1em;
+  --column-gap: 1em;
+
+  &__item {
+    margin: 0;
+  }
+
+  // &__item + &__item {
+  //   margin-top: var(--row-gap);
+  // }
+
+  display: grid;
+
+  column-gap: var(--column-gap);
+  row-gap:    var(--row-gap);
+
+  @media (min-width: $content-two-column-min-width) {
+
+    grid-template-columns: 1fr 1fr;
+
+    // // Remove the subsequent section top margin if modern grid is supported, as
+    // // that's only needed on narrow viewports and if modern is not supported.
+    // @supports (grid-area: omg) {
+    //   &__item + &__item {
+    //     margin-top: 0;
+    //   }
+    // }
+
+  }
+
+  @media (min-width: #{$content-two-column-min-width + 10rem}) {
+    column-gap: calc(var(--column-gap) * 2);
+  }
+
+  blockquote, blockquote p {
+    margin: 0;
+  }
+
+  blockquote p {
+    &::before {
+      content: '“';
+    }
+    &::after {
+      content: '”';
+    }
+  }
+
+  figcaption::before {
+    // Em dash.
+    content: '— ';
+  }
+
+}
