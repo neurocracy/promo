@@ -373,6 +373,10 @@ details summary {
     }
   }
 
+  figcaption {
+    font-style: italic;
+  }
+
   figcaption::before {
     // Em dash.
     content: '— ';
