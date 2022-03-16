@@ -382,4 +382,37 @@ details summary {
     content: '— ';
   }
 
+  &__award {
+
+    :any-link {
+
+      display: block;
+
+      max-width: 20em;
+
+      margin-left:  auto;
+      margin-right: auto;
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      &:active {
+        opacity: 1;
+      }
+
+    }
+
+    img {
+      display: block;
+    }
+
+    @include on-dark-colour-scheme {
+      img {
+        filter: #{'invert()'}; // Sass being dumb.
+      }
+    }
+
+  }
+
 }
