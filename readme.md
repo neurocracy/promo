@@ -65,6 +65,8 @@ To build specific things:
 
 # Planned improvements
 
+* Switch from [Node Sass to Dart Sass](https://sass-lang.com/blog/libsass-is-deprecated).
+
 * Convert stylesheets to [Sass modules](https://sass-lang.com/documentation/modules).
 
 * Convert to a [Drupal](https://www.drupal.org/) site using [Layout Builder](https://www.drupal.org/docs/8/core/modules/layout-builder) for easier content management.
