@@ -4,9 +4,11 @@
 
 $fonts-path: '../fonts';
 
-// Exo 2 font, converted from original TTF to WOFF/WOFF2 files.
+// Exo 2 font.
 //
 // @link https://fonts.google.com/specimen/Exo+2
+// @link https://github.com/NDISCOVER/Exo-2.0
+// @link https://www.npmjs.com/package/@fontsource/exo-2
 @font-face {
   font-family: 'Exo2';
 
@@ -21,8 +23,8 @@ $fonts-path: '../fonts';
   // loading, see: https://tabatkins.github.io/specs/css-font-display/
   font-display: swap;
 
-  src:  url('#{$fonts-path}/Exo2/woff2/Exo2-Medium.woff2?v=1')  format('woff2'),
-        url('#{$fonts-path}/Exo2/woff/Exo2-Medium.woff?v=1')    format('woff');
+  src:  url('#{$fonts-path}/exo-2/exo-2-latin-500-normal.woff2?v=4.5.7')  format('woff2'),
+        url('#{$fonts-path}/exo-2/exo-2-latin-500-normal.woff?v=4.5.7')   format('woff');
 }
 @font-face {
   font-family: 'Exo2';
@@ -38,6 +40,6 @@ $fonts-path: '../fonts';
   // loading, see: https://tabatkins.github.io/specs/css-font-display/
   font-display: swap;
 
-  src:  url('#{$fonts-path}/Exo2/woff2/Exo2-ExtraLight.woff2?v=1')  format('woff2'),
-        url('#{$fonts-path}/Exo2/woff/Exo2-ExtraLight.woff?v=1')    format('woff');
+  src:  url('#{$fonts-path}/exo-2/exo-2-latin-200-normal.woff2?v=4.5.7')  format('woff2'),
+        url('#{$fonts-path}/exo-2/exo-2-latin-200-normal.woff?v=4.5.7')   format('woff');
 }

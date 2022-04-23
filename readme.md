@@ -55,7 +55,7 @@ To build specific things:
 
 * ```grunt favicons``` - builds all the shortcut/browser icons for the theme, using [japrescott/grunt-favicons](https://github.com/japrescott/grunt-favicons); requires [ImageMagick](https://imagemagick.org/) to be installed.
 
-* ```grunt fonts``` - convert TrueType fonts to smaller [WOFF and WOFF2 formats](https://developer.mozilla.org/en-US/docs/Web/Guide/WOFF).
+* ```grunt fonts``` - copy fonts from ```node_modules``` to ```public/fonts``` so they're web accessible.
 
 * ```grunt imagemagick``` - convert PNG screenshots to much smaller JPEG files and generate thumbnails; requires [ImageMagick](https://imagemagick.org/) to be installed.
 

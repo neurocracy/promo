@@ -68,8 +68,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('fonts', [
-    'ttf2woff',
-    'ttf2woff2',
+    'copy:fonts',
   ]);
 
   grunt.registerTask('vendor', [

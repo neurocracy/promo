@@ -11,9 +11,8 @@ public/images/icons/generated/*
 public/images/screenshots/optimized/*
 public/images/screenshots/thumbnails/*
 
-# Ignore generated fonts.
-**/fonts/**/woff
-**/fonts/**/woff2
+# Ignore third-party fonts.
+public/fonts/**
 
 # Ignore third-party code.
 public/vendor/*
