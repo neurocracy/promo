@@ -60,3 +60,11 @@ To build specific things:
 * ```grunt imagemagick``` - convert PNG screenshots to much smaller JPEG files and generate thumbnails; requires [ImageMagick](https://imagemagick.org/) to be installed.
 
 * ```grunt vendor``` - copy libraries from ```node_modules``` to ```public/vendor``` so they're web accessible.
+
+-----------------
+
+# Planned improvements
+
+* Convert stylesheets to [Sass modules](https://sass-lang.com/documentation/modules).
+
+* Convert to a [Drupal](https://www.drupal.org/) site using [Layout Builder](https://www.drupal.org/docs/8/core/modules/layout-builder) for easier content management.
