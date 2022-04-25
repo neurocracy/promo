@@ -12,7 +12,7 @@ To build assets for this project, you'll need to have
 We recommend using [Node Version Manager
 (```nvm```)](https://github.com/nvm-sh/nvm) ([Windows
 port](https://github.com/coreybutler/nvm-windows)) to ensure you're using the
-same version used to develop this codebase. Once nvm is installed, you can
+same version used to develop this codebase. Once ```nvm``` is installed, you can
 simply navigate to the project root and run ```nvm install``` to install the
 appropriate version contained in the ```.nvmrc``` file.
 
