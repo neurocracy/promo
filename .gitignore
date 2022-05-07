@@ -11,5 +11,5 @@ public/images/icons/generated/*
 public/images/screenshots/optimized/*
 public/images/screenshots/thumbnails/*
 
-# Ignore third-party code.
+# Ignore third-party assets.
 public/vendor/*
