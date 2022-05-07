@@ -1,13 +1,3 @@
-# This copies fonts from their node_modules directories to the publicly
-# accessible directory.
-fonts:
-  nonull: true
-  files:
-    - cwd: 'node_modules/@fontsource/exo-2/files/'
-      src: 'exo-2-latin-*'
-      dest: '<%= extensionPaths %>/<%= fontPaths %>/exo-2/'
-      expand: true
-
 # This copies the listed third-party libraries from their node_modules
 # directories to the publicly accessible vendor directory.
 vendor:
@@ -20,6 +10,10 @@ vendor:
         - 'ally.min.js'
         - 'ally.min.js.map'
       dest: '<%= vendorPath %>/ally.js/'
+      expand: true
+    - cwd: 'node_modules/@fontsource/exo-2/'
+      src: '**'
+      dest: '<%= vendorPath %>/exo-2/'
       expand: true
     - cwd: 'node_modules/headroom.js/dist/'
       src: 'headroom.min.js'

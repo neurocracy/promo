@@ -15,10 +15,6 @@ module.exports = function(grunt) {
     javascript: [
       'javascript',
     ],
-    // Font directory names/paths, relative to extension directories.
-    fonts: [
-      'fonts',
-    ],
   };
 
   for (const propertyName in paths) {
@@ -49,7 +45,6 @@ module.exports = function(grunt) {
       extensionPaths:   paths.extensions,
       stylesheetPaths:  paths.stylesheets,
       javascriptPaths:  paths.javascript,
-      fontPaths:        paths.fonts,
       vendorPath:       'public/vendor'
     }
   });
@@ -58,17 +53,12 @@ module.exports = function(grunt) {
     'css',
     'favicons',
     'imagemagick',
-    'fonts',
     'vendor',
   ]);
 
   grunt.registerTask('css', [
     'sass',
     'postcss',
-  ]);
-
-  grunt.registerTask('fonts', [
-    'copy:fonts',
   ]);
 
   grunt.registerTask('vendor', [
