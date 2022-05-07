@@ -57,7 +57,7 @@ To build specific things:
 
 * ```grunt imagemagick``` - convert PNG screenshots to much smaller JPEG files and generate thumbnails; requires [ImageMagick](https://imagemagick.org/) to be installed.
 
-* ```grunt vendor``` - copy libraries from ```node_modules``` to ```public/vendor``` so they're web accessible.
+* ```grunt vendor``` - copy assets from ```node_modules``` to ```public/vendor``` so they're web accessible.
 
 -----------------
 
