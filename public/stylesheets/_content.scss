@@ -59,7 +59,9 @@ $home-stacking-order: background, background-reveal, content;
       font-size:    300%;
     }
 
-    font-weight:    $font-weight-normal;
+    // Explicitly set weight rather than use $font-weight-* variables as this
+    // needs to be art directed separately.
+    font-weight:    200;
     line-height:    1;
     text-transform: uppercase;
   }
