@@ -53,6 +53,7 @@ module.exports = function(grunt) {
     'css',
     'favicons',
     'imagemagick',
+    'svgstore',
     'vendor',
   ]);
 

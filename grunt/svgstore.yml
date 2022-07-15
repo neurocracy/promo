@@ -1,0 +1,10 @@
+neurocracy:
+  options:
+    cleanup:
+      # Removes the inline fill attributes from IcoMoon so that we can colour
+      # these dynamically via CSS.
+      - fill
+    prefix: icon-
+  files:
+    public/images/icons/generated/neurocracy.svg:
+      - public/images/icons/neurocracy/*.svg
