@@ -229,6 +229,31 @@ $persistent-promo-reveal-animation-delay:
     }
   }
 
+  &__patreon {
+
+    ///
+    /// Patreon orange, darkened for better contrast and accessibility.
+    ///
+    $patreon-orange-darkened: scale-color(
+      $patreon-orange, $lightness: -25%, $saturation: -20%
+    );
+
+    :any-link {
+      background-color: $patreon-orange-darkened;
+    }
+
+    .ambientimpact-icon__icon {
+
+      fill: $patreon-orange-darkened;
+
+      // Scale and move the icon slightly to make it feel more visually balanced
+      // inside the circle.
+      transform: scale(0.95) translateX(7%) translateY(2%);
+
+    }
+
+  }
+
   &__trailer {
     :any-link {
       // We're using Omnipedia blue rather than Vimeo's blue here as it Vimeo's
