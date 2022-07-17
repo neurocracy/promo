@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 (function() {
+
   if (
     !('querySelector' in document) ||
     !('PhotoSwipe' in window) ||
@@ -19,6 +20,7 @@
   var items = [];
 
   for (var i = 0; i < itemLinks.length; i++) {
+
     items.push({
       el:   itemLinks[i],
       src:  itemLinks[i].href,
@@ -28,6 +30,7 @@
     });
 
     itemLinks[i].setAttribute('data-photoswipe-gallery-index', i);
+
   }
 
   if (items.length === 0) {
@@ -35,7 +38,9 @@
   }
 
   for (var i = 0; i < itemLinks.length; i++) {
+
     itemLinks[i].addEventListener('click', function(event) {
+
       // Don't do anything and defer to the default action if a modifier key
       // was pressed during the click (to open the link in a new tab, window,
       // etc.) - note that this is a truthy check rather than a strict check
@@ -60,12 +65,14 @@
       // specified. If the thumbnail callback isn't set, PhotoSwipe will not do
       // the zoom transition in and out on open and close.
       if (!window.matchMedia('(prefers-reduced-motion)').matches) {
+
         galleryOptions.getThumbBoundsFn = function(index) {
           var thumbnail = items[index].el.getElementsByTagName('img')[0],
               pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
               rect = thumbnail.getBoundingClientRect();
 
           return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+
         };
 
       // If reduced motion is specified, tell PhotoSwipe to do a fade in and out
@@ -103,6 +110,9 @@
       // Always prevent the default link action at the end of the handler, in
       // case of an exception in the preceding code.
       event.preventDefault();
+
     });
+
   }
+
 })();

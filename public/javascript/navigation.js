@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 (function() {
+
   if (
     !('querySelector' in document) ||
     !('classList' in document.createElement('div')) ||
@@ -26,13 +27,17 @@
   // allows us to hide it via CSS as it's redundant when viewing the Home
   // section.
   var observer = new IntersectionObserver(function(entries, observer) {
+
     entries.forEach(function(entry) {
+
       if (entry.isIntersecting) {
         homeListItem.classList.add(menuItemHiddenClass);
       } else {
         homeListItem.classList.remove(menuItemHiddenClass);
       }
+
     });
+
   }, {
     // The rough threshold of surface area visible at which the observer
     // callback is triggered, i.e. going from less than this to more, or vice
@@ -41,4 +46,5 @@
   });
 
   observer.observe(homeContent);
+
 })();
