@@ -20,14 +20,14 @@
    *
    * @type {HTMLELement}
    */
-  let photoswipeElement = document.querySelector('.pswp');
+  const photoswipeElement = document.querySelector('.pswp');
 
   /**
    * All media links in the features section.
    *
    * @type {NodeList}
    */
-  let itemLinks = document.querySelectorAll('.features-section__media a');
+  const itemLinks = document.querySelectorAll('.features-section__media a');
 
   /**
    * PhotoSwipe gallery items.
@@ -75,7 +75,7 @@
        *
        * @type {HTMLAnchorElement}
        */
-      let link = this;
+      const link = this;
 
       /**
        * PhotoSwipe gallery options for this gallery.
@@ -100,14 +100,14 @@
            *
            * @type {HTMLImageElement}
            */
-          let thumbnail = items[index].el.getElementsByTagName('img')[0];
+          const thumbnail = items[index].el.getElementsByTagName('img')[0];
 
           /**
            * Current vertical scroll of the viewport in pixels.
            *
            * @type {Number}
            */
-          let pageYScroll = (
+          const pageYScroll = (
             window.pageYOffset || document.documentElement.scrollTop
           );
 
@@ -116,7 +116,7 @@
            *
            * @type {DOMRect}
            */
-          let rect = thumbnail.getBoundingClientRect();
+          const rect = thumbnail.getBoundingClientRect();
 
           return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
 

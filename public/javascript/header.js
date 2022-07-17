@@ -15,7 +15,7 @@
    *
    * @type {HTMLELement}
    */
-  let header = document.querySelector('.layout-header');
+  const header = document.querySelector('.layout-header');
 
   /**
    * Headroom instance for the site header.

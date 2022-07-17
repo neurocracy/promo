@@ -19,14 +19,14 @@
    *
    * @type {HTMLElement}
    */
-  let homeListItem = document.querySelector('.menu-item--home');
+  const homeListItem = document.querySelector('.menu-item--home');
 
   /**
    * The home content element.
    *
    * @type {HTMLElement}
    */
-  let homeContent = document.getElementById('home');
+  const homeContent = document.getElementById('home');
 
   /**
    * The class applied to a menu item when it's to be visually hidden.

@@ -15,7 +15,7 @@
    *
    * @type {HTMLELement}
    */
-  let persistentPromo = document.querySelector('.persistent-promo');
+  const persistentPromo = document.querySelector('.persistent-promo');
 
   /**
    * Headroom instance for the persistent promo.
