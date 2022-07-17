@@ -152,17 +152,17 @@ $home-stacking-order: background, background-reveal, content;
 
   // Remove dark mode image links when not in dark mode. Note that we're using
   // visibility so that it can't be focused via keyboard or other means.
-  .image-link--dark {
+  [data-colour-scheme='dark']:any-link {
     visibility: hidden;
   }
 
   // Remove light mode image links in dark mode and show dark mode image links.
   @include on-dark-colour-scheme {
-    .image-link--light {
+    [data-colour-scheme='light']:any-link {
       visibility: hidden;
     }
 
-    .image-link--dark {
+    [data-colour-scheme='dark']:any-link {
       visibility: visible;
     }
   }
