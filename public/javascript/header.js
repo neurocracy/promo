@@ -10,8 +10,18 @@
     return;
   }
 
+  /**
+   * The site header.
+   *
+   * @type {HTMLELement}
+   */
   let header = document.querySelector('.layout-header');
 
+  /**
+   * Headroom instance for the site header.
+   *
+   * @type {Headroom}
+   */
   let headroom = new Headroom(header, {
     tolerance: 5,
     classes: {

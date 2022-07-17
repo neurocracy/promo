@@ -10,8 +10,18 @@
     return;
   }
 
+  /**
+   * The persistent promo container.
+   *
+   * @type {HTMLELement}
+   */
   let persistentPromo = document.querySelector('.persistent-promo');
 
+  /**
+   * Headroom instance for the persistent promo.
+   *
+   * @type {Headroom}
+   */
   let headroom = new Headroom(persistentPromo, {
     tolerance: 5,
     classes: {

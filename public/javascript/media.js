@@ -15,10 +15,25 @@
     return;
   }
 
+  /**
+   * The PhotoSwipe container element.
+   *
+   * @type {HTMLELement}
+   */
   let photoswipeElement = document.querySelector('.pswp');
 
+  /**
+   * All media links in the features section.
+   *
+   * @type {NodeList}
+   */
   let itemLinks = document.querySelectorAll('.features-section__media a');
 
+  /**
+   * PhotoSwipe gallery items.
+   *
+   * @type {Array}
+   */
   let items = [];
 
   for (let i = 0; i < itemLinks.length; i++) {
@@ -55,8 +70,18 @@
         return;
       }
 
+      /**
+       * The link element for this gallery index that was clicked.
+       *
+       * @type {HTMLAnchorElement}
+       */
       let link = this;
 
+      /**
+       * PhotoSwipe gallery options for this gallery.
+       *
+       * @type {Object}
+       */
       let galleryOptions = {
         index:    parseInt(this.getAttribute('data-photoswipe-gallery-index')),
         shareEl:  false,
@@ -69,9 +94,29 @@
       if (!window.matchMedia('(prefers-reduced-motion)').matches) {
 
         galleryOptions.getThumbBoundsFn = function(index) {
-          let thumbnail = items[index].el.getElementsByTagName('img')[0],
-              pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
-              rect = thumbnail.getBoundingClientRect();
+
+          /**
+           * The thumbnail image element for this gallery item.
+           *
+           * @type {HTMLImageElement}
+           */
+          let thumbnail = items[index].el.getElementsByTagName('img')[0];
+
+          /**
+           * Current vertical scroll of the viewport in pixels.
+           *
+           * @type {Number}
+           */
+          let pageYScroll = (
+            window.pageYOffset || document.documentElement.scrollTop
+          );
+
+          /**
+           * Thumbnail element DOMRect object.
+           *
+           * @type {DOMRect}
+           */
+          let rect = thumbnail.getBoundingClientRect();
 
           return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
 
@@ -84,10 +129,22 @@
         galleryOptions.showHideOpacity = true;
       }
 
+      /**
+       * PhotoSwipe instance for this gallery.
+       *
+       * @type {PhotoSwipe}
+       */
       let gallery = new PhotoSwipe(
         photoswipeElement, PhotoSwipeUI_Default, items, galleryOptions
       );
 
+      /**
+       * The ally.js focus disabled instance handle, if active.
+       *
+       * @type {Object|undefined}
+       *
+       * @see https://allyjs.io/api/maintain/disabled.html
+       */
       let focusDisabledHandle;
 
       gallery.listen('initialZoomInEnd', function() {
