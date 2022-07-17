@@ -47,13 +47,14 @@
       Tell browsers that support preloading to preemptively fetch these.
 
       @see https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
+      @see https://stackoverflow.com/questions/70183153/why-do-we-need-the-crossorigin-attribute-when-preloading-font-files
     -->
     <link rel="preload" href="images/home.svg?v=2" type="image/svg+xml" as="image">
     <link rel="preload" href="images/site_logo.svg?v=1" type="image/svg+xml" as="image">
     <!-- Use for the home "Neurocracy". -->
-    <link rel="preload" href="vendor/exo-2/files/exo-2-latin-200-normal.woff2" type="font/woff2" as="font">
+    <link rel="preload" href="vendor/exo-2/files/exo-2-latin-200-normal.woff2" type="font/woff2" as="font" crossorigin="anonymous">
     <!-- Used for the various headings. -->
-    <link rel="preload" href="vendor/exo-2/files/exo-2-latin-400-normal.woff2" type="font/woff2" as="font">
+    <link rel="preload" href="vendor/exo-2/files/exo-2-latin-400-normal.woff2" type="font/woff2" as="font" crossorigin="anonymous">
 
     <link rel="stylesheet" media="all" href="stylesheets/neurocracy.css?v=73" />
     <link rel="stylesheet" media="all" href="vendor/exo-2/200.css?v=4.5.7">
