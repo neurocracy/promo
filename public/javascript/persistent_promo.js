@@ -10,9 +10,9 @@
     return;
   }
 
-  var persistentPromo = document.querySelector('.persistent-promo');
+  let persistentPromo = document.querySelector('.persistent-promo');
 
-  var headroom = new Headroom(persistentPromo, {
+  let headroom = new Headroom(persistentPromo, {
     tolerance: 5,
     classes: {
       initial:    'persistent-promo--initialized',

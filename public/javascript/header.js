@@ -10,9 +10,9 @@
     return;
   }
 
-  var header = document.querySelector('.layout-header');
+  let header = document.querySelector('.layout-header');
 
-  var headroom = new Headroom(header, {
+  let headroom = new Headroom(header, {
     tolerance: 5,
     classes: {
       initial:    'layout-header--initialized',

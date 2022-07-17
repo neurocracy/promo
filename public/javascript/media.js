@@ -15,13 +15,13 @@
     return;
   }
 
-  var photoswipeElement = document.querySelector('.pswp');
+  let photoswipeElement = document.querySelector('.pswp');
 
-  var itemLinks = document.querySelectorAll('.features-section__media a');
+  let itemLinks = document.querySelectorAll('.features-section__media a');
 
-  var items = [];
+  let items = [];
 
-  for (var i = 0; i < itemLinks.length; i++) {
+  for (let i = 0; i < itemLinks.length; i++) {
 
     items.push({
       el:   itemLinks[i],
@@ -39,14 +39,14 @@
     return;
   }
 
-  for (var i = 0; i < itemLinks.length; i++) {
+  for (let i = 0; i < itemLinks.length; i++) {
 
     itemLinks[i].addEventListener('click', function(event) {
 
       // Don't do anything and defer to the default action if a modifier key
       // was pressed during the click (to open the link in a new tab, window,
       // etc.) - note that this is a truthy check rather than a strict check
-      // for the existence of and boolean true value of the various event
+      // for the existence of and boolean true value of the letious event
       // properties:
       // * https://ambientimpact.com/web/snippets/conditional-statements-and-truthy-values-robust-client-side-javascript
       // * https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/ctrlKey
@@ -55,9 +55,9 @@
         return;
       }
 
-      var link = this;
+      let link = this;
 
-      var galleryOptions = {
+      let galleryOptions = {
         index:    parseInt(this.getAttribute('data-photoswipe-gallery-index')),
         shareEl:  false,
         galleryUID: 'features',
@@ -69,7 +69,7 @@
       if (!window.matchMedia('(prefers-reduced-motion)').matches) {
 
         galleryOptions.getThumbBoundsFn = function(index) {
-          var thumbnail = items[index].el.getElementsByTagName('img')[0],
+          let thumbnail = items[index].el.getElementsByTagName('img')[0],
               pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
               rect = thumbnail.getBoundingClientRect();
 
@@ -84,11 +84,11 @@
         galleryOptions.showHideOpacity = true;
       }
 
-      var gallery = new PhotoSwipe(
+      let gallery = new PhotoSwipe(
         photoswipeElement, PhotoSwipeUI_Default, items, galleryOptions
       );
 
-      var focusDisabledHandle;
+      let focusDisabledHandle;
 
       gallery.listen('initialZoomInEnd', function() {
         focusDisabledHandle = ally.maintain.disabled({

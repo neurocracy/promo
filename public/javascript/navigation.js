@@ -14,11 +14,11 @@
     return;
   }
 
-  var homeListItem = document.querySelector('.menu-item--home');
+  let homeListItem = document.querySelector('.menu-item--home');
 
-  var homeContent = document.getElementById('home');
+  let homeContent = document.getElementById('home');
 
-  var menuItemHiddenClass = 'menu-item--hidden';
+  const menuItemHiddenClass = 'menu-item--hidden';
 
   if (!homeListItem || !homeContent) {
     return;
@@ -28,7 +28,7 @@
   // section is visible, and removes it when less than 20% is visible. This
   // allows us to hide it via CSS as it's redundant when viewing the Home
   // section.
-  var observer = new IntersectionObserver(function(entries, observer) {
+  let observer = new IntersectionObserver(function(entries, observer) {
 
     entries.forEach(function(entry) {
 
