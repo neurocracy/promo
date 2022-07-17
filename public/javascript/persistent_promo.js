@@ -4,6 +4,8 @@
 
 (function() {
 
+  'use strict';
+
   if (!('querySelector' in document)) {
     return;
   }
