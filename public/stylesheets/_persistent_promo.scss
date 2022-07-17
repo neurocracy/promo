@@ -102,6 +102,12 @@ $persistent-promo-reveal-animation-delay:
   pointer-events: none;
 
   &__item {
+
+    ///
+    /// Local stacking order. Later in the list means a higher z-index.
+    ///
+    $local-stacking-order: shadow, content;
+
     font-family:    $heading-font-stack;
     font-weight:    $font-weight-strong;
     text-transform: uppercase;
@@ -118,8 +124,50 @@ $persistent-promo-reveal-animation-delay:
     // Re-enable clicking/tapping on list items.
     pointer-events: auto;
 
+    &::before,
+    :any-link {
+      border-radius: 4em;
+    }
+
+    // This provides the shadow for this item. The reason the shadow isn't
+    // applied to the list item or link itself is so that all the shadows can be
+    // layered together below all links, so that one item's shadow doesn't
+    // overlap a link. This isn't a problem on the dark colour scheme but does
+    // occur in the light scheme with its much larger shadow radius.
+    &::before {
+
+      content: '';
+
+      height: 100%;
+
+      z-index: index($local-stacking-order, shadow);
+
+      display: block;
+
+      // Background colour is to fill in the shadow element in case of sub-pixel
+      // rounding errors in rendering leaking the content underneath through.
+      background-color: $background-colour-light;
+
+      box-shadow: $persistent-promo-drop-shadow-on-light;
+
+      @include on-dark-colour-scheme {
+
+        background-color: $background-colour-dark;
+
+        box-shadow: $persistent-promo-drop-shadow-on-dark;
+
+      }
+
+    }
+
     :any-link {
       position: relative;
+
+      // Offsets the link back up where it would have been if the ::before
+      // pseudo element wasn't taking up vertical space.
+      transform: translateY(-100%);
+
+      z-index: index($local-stacking-order, content);
 
       @supports (grid-area: auto) {
         display:  grid;
@@ -138,14 +186,6 @@ $persistent-promo-reveal-animation-delay:
       html[dir='rtl'] & {
         padding-left:   0.8em;
         padding-right:  0.5em;
-      }
-
-      border-radius: 4em;
-
-      box-shadow: $persistent-promo-drop-shadow-on-light;
-
-      @include on-dark-colour-scheme {
-        box-shadow: $persistent-promo-drop-shadow-on-dark;
       }
 
       color: $foreground-colour-on-dark;
