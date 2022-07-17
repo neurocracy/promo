@@ -83,8 +83,10 @@
        * @type {Object}
        */
       let galleryOptions = {
-        index:    parseInt(this.getAttribute('data-photoswipe-gallery-index')),
-        shareEl:  false,
+        index:      parseInt(
+          this.getAttribute('data-photoswipe-gallery-index')
+        ),
+        shareEl:    false,
         galleryUID: 'features',
       };
 
@@ -118,7 +120,7 @@
            */
           const rect = thumbnail.getBoundingClientRect();
 
-          return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+          return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
 
         };
 
