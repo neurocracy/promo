@@ -275,7 +275,7 @@ $persistent-promo-reveal-animation-delay:
     /// Patreon orange, darkened for better contrast and accessibility.
     ///
     $patreon-orange-darkened: scale-color(
-      $patreon-orange, $lightness: -25%, $saturation: -20%
+      $patreon-orange, $lightness: -25%, $saturation: -45%
     );
 
     :any-link {
