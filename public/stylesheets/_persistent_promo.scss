@@ -194,6 +194,8 @@ $persistent-promo-reveal-animation-delay:
 
       &:hover {
         text-decoration-color: $foreground-colour-on-dark;
+
+        filter: brightness(130%);
       }
 
       &:active {
