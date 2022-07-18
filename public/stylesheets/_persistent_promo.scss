@@ -274,19 +274,19 @@ $persistent-promo-reveal-animation-delay:
   &__patreon {
 
     ///
-    /// Patreon orange, darkened for better contrast and accessibility.
+    /// Patreon "Fiery Coral", darkened for better contrast and accessibility.
     ///
-    $patreon-orange-darkened: scale-color(
-      $patreon-orange, $lightness: -25%, $saturation: -45%
+    $patreon-fiery-coral-darkened: scale-color(
+      $patreon-fiery-coral, $lightness: -25%, $saturation: -45%
     );
 
     :any-link {
-      background-color: $patreon-orange-darkened;
+      background-color: $patreon-fiery-coral-darkened;
     }
 
     .ambientimpact-icon__icon {
 
-      fill: $patreon-orange-darkened;
+      fill: $patreon-fiery-coral-darkened;
 
       // Scale and move the icon slightly to make it feel more visually balanced
       // inside the circle.
