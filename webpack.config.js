@@ -174,40 +174,44 @@ Encore
 //
 // @todo Switch to using the generated manifest.webmanifest and
 //   browserconfig.xml? The paths don't seem easily customizable.
-.addPlugin(new FaviconsWebpackPlugin({
+.when(function(Encore) { return Encore.isProduction(); }, function(Encore) {
 
-  logo:         './public/images/icons/icon.png',
-  logoMaskable: './public/images/icons/icon_maskable.png',
+  return Encore.addPlugin(new FaviconsWebpackPlugin({
 
-  outputPath:   './public/images/icons/generated',
+    logo:         './public/images/icons/icon.png',
+    logoMaskable: './public/images/icons/icon_maskable.png',
 
-  favicons: {
+    outputPath:   './public/images/icons/generated',
 
-    appName:      'Neurocracy',
-    appShortName: 'Neurocracy',
+    favicons: {
 
-    start_url: '/',
+      appName:      'Neurocracy',
+      appShortName: 'Neurocracy',
 
-    // background: '#ffffff',
-    // theme_color: '#c07300',
+      start_url: '/',
 
-    display:  'browser',
-    lang:     'en-GB',
+      // background: '#ffffff',
+      // theme_color: '#c07300',
 
-    // @todo This doesn't seem to add a version query string?
-    version:  '1',
+      display:  'browser',
+      lang:     'en-GB',
 
-    icons: {
+      // @todo This doesn't seem to add a version query string?
+      version:  '1',
 
-      // We provide our own rather than have them generated.
-      windows: false,
+      icons: {
 
-      yandex: false,
+        // We provide our own rather than have them generated.
+        windows: false,
+
+        yandex: false,
+
+      },
 
     },
 
-  },
+  }))
 
-}));
+});
 
 module.exports = Encore.getWebpackConfig();
