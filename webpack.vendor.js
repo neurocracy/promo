@@ -105,6 +105,6 @@ Encore
 // Encore will refuse to run.
 .disableSingleRuntimeChunk()
 
-.copyFiles(copyConfig)
+.copyFiles(copyConfig);
 
 module.exports = Encore.getWebpackConfig();
