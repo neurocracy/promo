@@ -1258,7 +1258,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/exo-2@npm:^4.5.7":
+"@fontsource/exo-2@npm:^4.5.10":
   version: 4.5.10
   resolution: "@fontsource/exo-2@npm:4.5.10"
   checksum: 1f05614e0b13a68bdde3b059b5eb3519d7a70fb005ce40a11419f2df5042d1f9f056057366690e5d4bb64987e7be1cce4319dde4e8ea8588baf8b234641e6bd1
@@ -5065,7 +5065,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.20.2
     "@babel/preset-env": ^7.20.2
-    "@fontsource/exo-2": ^4.5.7
+    "@fontsource/exo-2": ^4.5.10
     "@symfony/webpack-encore": ^4.1.1
     ally.js: ^1.4.1
     autoprefixer: ^10.4.4
