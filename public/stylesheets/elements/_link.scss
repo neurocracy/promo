@@ -1,0 +1,163 @@
+// -----------------------------------------------------------------------------
+//   Link element partial
+// -----------------------------------------------------------------------------
+
+@use '../variables/colours' as colour-variables;
+@use '../helpers/colour' as colour-helpers;
+@use '../helpers/transition' as transition;
+
+///
+/// Link colour on light backgrounds when not highlighted/activated.
+///
+$normal-colour-on-light: colour-variables.$material-primary;
+
+///
+/// Link colour on dark backgrounds when not highlighted/activated.
+///
+/// @require {variable} colour-variables.$material-primary
+/// @require {function} colour-helpers.invert-lightness
+///
+$normal-colour-on-dark: colour-helpers.invert-lightness(
+  colour-variables.$material-primary
+);
+
+///
+/// Link colour on light backgrounds when hovered/focused.
+///
+$hover-colour-on-light: lighten($normal-colour-on-light, 10%);
+
+///
+/// Link colour on dark backgrounds when hovered/focused.
+///
+$hover-colour-on-dark: lighten($normal-colour-on-dark,  10%);
+
+///
+/// Link colour on light backgrounds when activated.
+///
+$active-colour-on-light: rgba($normal-colour-on-light, 0.6);
+
+///
+/// Link colour on dark backgrounds when activated.
+///
+$active-colour-on-dark: rgba($normal-colour-on-dark, 0.6);
+
+///
+/// Link underline colour on light backgrounds when not highlighted/activated.
+///
+$underline-normal-colour-on-light: rgba($normal-colour-on-light, 0.6);
+
+///
+/// Link underline colour on dark backgrounds when not highlighted/activated.
+///
+$underline-normal-colour-on-dark: rgba($normal-colour-on-dark, 0.6);
+
+///
+/// Link underline colour on light backgrounds when hovered/focused.
+///
+$underline-hover-colour-on-light: $hover-colour-on-light;
+
+///
+/// Link underline colour on dark backgrounds when hovered/focused.
+///
+$underline-hover-colour-on-dark: $hover-colour-on-dark;
+
+///
+/// Link underline colour on light backgrounds when activated.
+///
+$underline-active-colour-on-light: $active-colour-on-light;
+
+///
+/// Link underline colour on dark backgrounds when activated.
+///
+$underline-active-colour-on-dark: $active-colour-on-dark;
+
+///
+/// Image element filters in a link when link is not highlighted/actived.
+///
+$image-normal-filters: contrast(100%) brightness(100%);
+
+///
+/// Image element filters in a link when link is highlighted.
+///
+$image-hover-filters: contrast(75%) brightness(125%);
+
+///
+/// Image element filters in a link when link is activated.
+///
+$image-active-filters: contrast(100%) brightness(100%);
+
+///
+/// Elements that are considered "image" elements, inside of a link.
+///
+$image-elements: img, picture;
+
+:any-link {
+  color: $normal-colour-on-light;
+  text-decoration-color: $underline-normal-colour-on-light;
+
+  // This should apply to focus outlines when browsers implement it.
+  //
+  // @link https://bugzilla.mozilla.org/show_bug.cgi?id=315209
+  border-radius: 2px;
+
+  @include transition.fade-base;
+
+  &:hover, &:focus {
+    @include transition.fade-highlight;
+  }
+
+  &:hover {
+    color: $hover-colour-on-light;
+    text-decoration-color: $underline-hover-colour-on-light;
+  }
+
+  &:active {
+    color: $active-colour-on-light;
+    text-decoration-color: $underline-active-colour-on-light;
+  }
+
+  @include colour-helpers.on-dark-scheme {
+    color: $normal-colour-on-dark;
+    text-decoration-color: $underline-normal-colour-on-dark;
+
+    &:hover {
+      color: $hover-colour-on-dark;
+      text-decoration-color: $underline-hover-colour-on-dark;
+    }
+
+    &:active {
+      color: $active-colour-on-dark;
+      text-decoration-color: $underline-active-colour-on-dark;
+    }
+  }
+}
+
+.ambientimpact-link-has-image {
+  display: block;
+
+  border: 1px solid currentColor;
+
+  #{$image-elements} {
+    display: block;
+
+    filter: $image-normal-filters;
+
+    @include transition.fade-base(
+      $props: filter
+    );
+  }
+
+  &:hover {
+    #{$image-elements} {
+      filter: $image-hover-filters;
+
+      @include transition.fade-highlight;
+    }
+  }
+
+  &:active {
+    #{$image-elements} {
+      filter: $image-active-filters;
+    }
+  }
+}

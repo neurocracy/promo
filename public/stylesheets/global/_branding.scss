@@ -2,10 +2,13 @@
 //   Branding partial
 // -----------------------------------------------------------------------------
 
+@use '../helpers/hide' as hide;
+@use '../layout/config' as layout-config;
+
 .site-logo {
   // Ensure the logo doesn't get too large, regardless of the dimensions set in
   // the HTML. Since the logo is square, we can just use the height variable.
-  max-width: $header-height;
+  max-width: layout-config.$header-height;
 
   &__link {
     border-width: 0;
@@ -13,5 +16,5 @@
 }
 
 .site-name {
-  @include hide-me;
+  @include hide.me;
 }

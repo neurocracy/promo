@@ -2,20 +2,10 @@
 //   Reveal animations for the site
 // -----------------------------------------------------------------------------
 
-///
-/// Reveal overlay animation duration.
-///
-$reveal-overlay-animation-duration: 0.5s;
-
-///
-/// Site reveal overlay animation delay.
-///
-/// This should be just long enough that most browsers will have already done
-/// most of their layout rendering and most DOMContentLoaded JavaScript has
-/// (hopefully) finished executing so the reveal animation has a better chance
-/// of playing smoothly and without too many frames dropped.
-///
-$site-reveal-overlay-animation-delay: 0.3s;
+@use '../helpers/colour' as colour-helpers;
+@use '../layout/config' as layout-config;
+@use '../variables/animation' as animation-variables;
+@use '../variables/colours' as colour-variables;
 
 ///
 /// Site reveal overlay keyframes.
@@ -53,12 +43,12 @@ $site-reveal-overlay-animation-delay: 0.3s;
 
     width:    100vw;
 
-    z-index:  index($layout-stacking-order, reveal-overlay);
+    z-index:  index(layout-config.$stacking-order, reveal-overlay);
 
-    background-color: $background-colour-light;
+    background-color: colour-variables.$background-light;
 
-    @include on-dark-colour-scheme {
-      background-color: $background-colour-dark;
+    @include colour-helpers.on-dark-scheme {
+      background-color: colour-variables.$background-dark;
     }
 
     // Default to hidden and click-through in case animations are not properly
@@ -68,9 +58,9 @@ $site-reveal-overlay-animation-delay: 0.3s;
     opacity: 0;
 
     animation-name:             reveal-overlay;
-    animation-duration:         $reveal-overlay-animation-duration;
+    animation-duration:         animation-variables.$reveal-overlay-duration;
     animation-timing-function:  linear;
     animation-fill-mode:        backwards;
-    animation-delay:            $site-reveal-overlay-animation-delay;
+    animation-delay:            animation-variables.$site-reveal-overlay-delay;
   }
 }

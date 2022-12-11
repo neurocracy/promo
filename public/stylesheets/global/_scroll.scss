@@ -2,6 +2,8 @@
 //   Scroll partial
 // -----------------------------------------------------------------------------
 
+@use '../layout/config' as layout-config;
+
 html {
   scroll-behavior: smooth;
 
@@ -15,5 +17,7 @@ html {
   }
 
   // This offsets the scrolling to a #hash by the height of the fixed header.
-  scroll-padding-top: $header-height + ($viewport-padding * 2);
+  scroll-padding-top: layout-config.$header-height + (
+    layout-config.$viewport-padding * 2
+  );
 }

@@ -2,34 +2,42 @@
 //   Persistent promo partial
 // -----------------------------------------------------------------------------
 
+@use '../helpers/colour' as colour-helpers;
+@use '../helpers/motion';
+@use '../layout/config' as layout-config;
+@use '../typography/config' as typography-config;
+@use '../typography/heading';
+@use '../variables/animation' as animation-variables;
+@use '../variables/colours' as colour-variables;
+
 ///
 /// Minimum viewport width to display persistent promo in two columns.
 ///
-$persistent-promo-two-column-min-width: 40rem;
+$two-column-min-width: 40rem;
 
 ///
 /// Persistent promo base font size.
 ///
-$persistent-promo-base-font-size: 110%;
+$base-font-size: 110%;
 
 ///
 /// Persistent promo font size increments.
 ///
 /// Keys are @media min-widths while the values are the font sizes.
 ///
-/// @require {variable} $persistent-promo-two-column-min-width
+/// @require {variable} $two-column-min-width
 ///
-$persistent-promo-font-size-increments: (
-  30em: $persistent-promo-base-font-size + 10%,
-  40em: $persistent-promo-base-font-size + 20%,
-  50em: $persistent-promo-base-font-size + 30%,
-  60em: $persistent-promo-base-font-size + 40%,
+$font-size-increments: (
+  30em: $base-font-size + 10%,
+  40em: $base-font-size + 20%,
+  50em: $base-font-size + 30%,
+  60em: $base-font-size + 40%,
 );
 
 ///
 /// Persistent promo icon size.
 ///
-$persistent-promo-icon-size: 1.95em;
+$icon-size: 1.95em;
 
 ///
 /// Persistent promo drop shadow value on light backgrounds.
@@ -38,26 +46,25 @@ $persistent-promo-icon-size: 1.95em;
 /// the effect we want. This seems to perform more smoothly on mobile than
 /// layering three shadows, which was the previous method we used.
 ///
-$persistent-promo-drop-shadow-on-light:
-  0 0 1rem 0.8rem $background-colour-light;
+$drop-shadow-on-light: 0 0 1rem 0.8rem colour-variables.$background-light;
 
 ///
 /// Persistent promo drop shadow value on dark backgrounds.
 ///
-$persistent-promo-drop-shadow-on-dark: 0 0 0.3rem $background-colour-dark;
+$drop-shadow-on-dark: 0 0 0.3rem colour-variables.$background-dark;
 
 ///
 /// Persistent promo reveal animation delay.
 ///
-$persistent-promo-reveal-animation-delay:
-  $home-reveal-animation-delay + $home-reveal-animation-duration;
+$reveal-animation-delay: animation-variables.$home-reveal-delay +
+  animation-variables.$home-reveal-duration;
 
 ///
 /// Persistent promo reveal animation keyframes.
 ///
 @keyframes persistent-promo-reveal {
   0% {
-    transform: translateY(calc(100% + #{$viewport-padding}));
+    transform: translateY(calc(100% + #{layout-config.$viewport-padding}));
   }
   100% {
     transform: translateY(0%);
@@ -67,7 +74,7 @@ $persistent-promo-reveal-animation-delay:
 .persistent-promo {
   // Replace default list styles.
   margin:     0 auto;
-  padding:    $viewport-padding !important;
+  padding:    layout-config.$viewport-padding !important;
   list-style: none;
 
   // Remove the margin between list items if modern grid is supported.
@@ -77,7 +84,7 @@ $persistent-promo-reveal-animation-delay:
     }
   }
 
-  max-width:  $layout-max-width;
+  max-width:  layout-config.$max-width;
 
   position: fixed;
 
@@ -87,12 +94,12 @@ $persistent-promo-reveal-animation-delay:
 
   @supports (grid-area: auto) {
     display: grid;
-    grid-gap: $viewport-padding;
+    grid-gap: layout-config.$viewport-padding;
 
     grid-template-columns: minmax(min-content, 1fr);
     justify-items: start;
 
-    @media (min-width: $persistent-promo-two-column-min-width) {
+    @media (min-width: $two-column-min-width) {
       grid-template-columns: repeat(2, max-content);
     }
   }
@@ -108,14 +115,14 @@ $persistent-promo-reveal-animation-delay:
     ///
     $local-stacking-order: shadow, content;
 
-    font-family:    $heading-font-stack;
-    font-weight:    $font-weight-strong;
+    font-family:    heading.$font-stack;
+    font-weight:    typography-config.$font-weight-strong;
     text-transform: uppercase;
 
-    font-size:      $persistent-promo-base-font-size;
+    font-size:      $base-font-size;
 
     // Output the font size increments at their specified viewport min-widths.
-    @each $min-width, $font-size in $persistent-promo-font-size-increments {
+    @each $min-width, $font-size in $font-size-increments {
       @media (min-width: $min-width) {
         font-size:  $font-size;
       }
@@ -146,15 +153,15 @@ $persistent-promo-reveal-animation-delay:
 
       // Background colour is to fill in the shadow element in case of sub-pixel
       // rounding errors in rendering leaking the content underneath through.
-      background-color: $background-colour-light;
+      background-color: colour-variables.$background-light;
 
-      box-shadow: $persistent-promo-drop-shadow-on-light;
+      box-shadow: $drop-shadow-on-light;
 
-      @include on-dark-colour-scheme {
+      @include colour-helpers.on-dark-scheme {
 
-        background-color: $background-colour-dark;
+        background-color: colour-variables.$background-dark;
 
-        box-shadow: $persistent-promo-drop-shadow-on-dark;
+        box-shadow: $drop-shadow-on-dark;
 
       }
 
@@ -188,19 +195,19 @@ $persistent-promo-reveal-animation-delay:
         padding-right:  0.5em;
       }
 
-      color: $foreground-colour-on-dark;
+      color: colour-variables.$foreground-on-dark;
 
-      text-decoration-color: rgba($foreground-colour-on-dark, 0.6);
+      text-decoration-color: rgba(colour-variables.$foreground-on-dark, 0.6);
 
       &:hover {
-        text-decoration-color: $foreground-colour-on-dark;
+        text-decoration-color: colour-variables.$foreground-on-dark;
 
         filter: brightness(130%);
       }
 
       &:active {
-        color: rgba($foreground-colour-on-dark, 0.6);
-        text-decoration-color: rgba($foreground-colour-on-dark, 0.6);
+        color: rgba(colour-variables.$foreground-on-dark, 0.6);
+        text-decoration-color: rgba(colour-variables.$foreground-on-dark, 0.6);
       }
 
       &::before {
@@ -215,14 +222,14 @@ $persistent-promo-reveal-animation-delay:
 
         z-index: 1;
 
-        width:  $persistent-promo-icon-size;
-        height: $persistent-promo-icon-size;
+        width:  $icon-size;
+        height: $icon-size;
 
-        margin-top: calc(#{$persistent-promo-icon-size} / 2 * -1);
+        margin-top: calc(#{$icon-size} / 2 * -1);
 
         border-radius: 100%;
 
-        background-color: $foreground-colour-on-dark;
+        background-color: colour-variables.$foreground-on-dark;
       }
 
       // This converts the icons to grid so that things line up well vertically
@@ -254,7 +261,7 @@ $persistent-promo-reveal-animation-delay:
 
   &__kickstarter {
     :any-link {
-      background-color: $kickstarter-green;
+      background-color: colour-variables.$kickstarter-green;
     }
 
     .ambientimpact-icon__icon {
@@ -277,7 +284,7 @@ $persistent-promo-reveal-animation-delay:
     /// Patreon "Fiery Coral", darkened for better contrast and accessibility.
     ///
     $patreon-fiery-coral-darkened: scale-color(
-      $patreon-fiery-coral, $lightness: -25%, $saturation: -45%
+      colour-variables.$patreon-fiery-coral, $lightness: -25%, $saturation: -45%
     );
 
     :any-link {
@@ -300,27 +307,27 @@ $persistent-promo-reveal-animation-delay:
     :any-link {
       // We're using Omnipedia blue rather than Vimeo's blue here as it Vimeo's
       // clashes a bit with our colour scheme.
-      background-color: $omnipedia-blue;
+      background-color: colour-variables.$omnipedia-blue;
     }
 
     // Use Vimeo blue for the play icon.
     .ambientimpact-icon__icon {
-      fill: $vimeo-blue;
+      fill: colour-variables.$vimeo-blue;
 
       position: relative;
       // This needs shifting slightly to make it feel properly centred. Magic
       // number alert.
-      left: $persistent-promo-icon-size * 0.077;
+      left: $icon-size * 0.077;
     }
   }
 
   &__site {
     :any-link {
-      background-color: $omnipedia-blue;
+      background-color: colour-variables.$omnipedia-blue;
     }
 
     .ambientimpact-icon__icon {
-      fill: $omnipedia-blue;
+      fill: colour-variables.$omnipedia-blue;
 
       transform: scale(1.3) translateX(2%);
     }
@@ -336,15 +343,15 @@ $persistent-promo-reveal-animation-delay:
     &__item + &__item {
       animation-name:             persistent-promo-reveal;
       animation-duration:         0.4s;
-      animation-timing-function:  $easing-decelerate;
+      animation-timing-function:  motion.$easing-decelerate;
       animation-fill-mode:        backwards;
     }
 
-    animation-delay: $persistent-promo-reveal-animation-delay;
+    animation-delay: $reveal-animation-delay;
 
     // Apply a longer delay to the second list item for a staggered effect.
     &__item + &__item {
-      animation-delay: $persistent-promo-reveal-animation-delay + 0.3s;
+      animation-delay: $reveal-animation-delay + 0.3s;
     }
   }
 
@@ -357,7 +364,7 @@ $persistent-promo-reveal-animation-delay:
   &--initialized &__item + &__item {
     transition-property:        transform;
     transition-duration:        250ms;
-    transition-timing-function: $easing-standard;
+    transition-timing-function: motion.$easing-standard;
 
     will-change: transform;
   }
@@ -378,7 +385,7 @@ $persistent-promo-reveal-animation-delay:
   // Hides the list and items if Headroom.js marks the unpinned.
   &--unpinned,
   &--unpinned &__item + &__item {
-    transform: translateY(calc(100% + #{$viewport-padding}));
+    transform: translateY(calc(100% + #{layout-config.$viewport-padding}));
   }
 
   // This adds a brief delay on the second list item's transition to give it a

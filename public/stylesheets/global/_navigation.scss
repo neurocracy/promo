@@ -2,31 +2,32 @@
 //   Navigation partial
 // -----------------------------------------------------------------------------
 
+@use '../helpers/motion';
+@use '../layout/config' as layout-config;
+@use '../typography/config' as typography-config;
+@use '../typography/heading';
+
 ///
 /// Navigation menu clip-path padding to account for focus outlines.
 ///
-$navigation-menu-clip-padding: 4px;
+$menu-clip-padding: 4px;
 
 ///
 /// Navigation menu clip-path value.
 ///
-/// @require {variable} $navigation-menu-clip-padding
+/// @require {variable} $menu-clip-padding
 ///
-$navigation-menu-clip-path: polygon(
-  -#{$navigation-menu-clip-padding}
-    -#{$navigation-menu-clip-padding},
-  calc(100% + #{$navigation-menu-clip-padding})
-    -#{$navigation-menu-clip-padding},
-  calc(100% + #{$navigation-menu-clip-padding})
-    calc(100% + #{$navigation-menu-clip-padding}),
-  -#{$navigation-menu-clip-padding}
-    calc(100% + #{$navigation-menu-clip-padding})
+$menu-clip-path: polygon(
+  -#{$menu-clip-padding}              -#{$menu-clip-padding},
+  calc(100% + #{$menu-clip-padding})  -#{$menu-clip-padding},
+  calc(100% + #{$menu-clip-padding})  calc(100% + #{$menu-clip-padding}),
+  -#{$menu-clip-padding}              calc(100% + #{$menu-clip-padding})
 );
 
 ///
 /// Navigation menu item hiding transition duration.
 ///
-$navigation-menu-transition-duration: 350ms;
+$menu-transition-duration: 350ms;
 
 ///
 /// Animation to hide the Home link from keyboard focus and accessibility tree.
@@ -46,11 +47,11 @@ $navigation-menu-transition-duration: 350ms;
   align-items: center;
 
   html[dir='ltr'] & {
-    margin-left: $header-spacing;
+    margin-left: layout-config.$header-spacing;
   }
 
   html[dir='rtl'] & {
-    margin-right: $header-spacing;
+    margin-right: layout-config.$header-spacing;
   }
 
   .menu {
@@ -62,27 +63,27 @@ $navigation-menu-transition-duration: 350ms;
     display: flex;
 
     // This hides the home item when it's transitioning in and out.
-    clip-path: $navigation-menu-clip-path;
+    clip-path: $menu-clip-path;
   }
 
   .menu-item {
     margin-top:   0;
 
     html[dir='ltr'] & {
-      margin-right: $header-spacing;
+      margin-right: layout-config.$header-spacing;
     }
 
     html[dir='rtl'] & {
-      margin-left: $header-spacing;
+      margin-left: layout-config.$header-spacing;
     }
 
     transition-property: transform;
-    transition-duration: $navigation-menu-transition-duration;
-    transition-timing-function: $easing-standard;
+    transition-duration: $menu-transition-duration;
+    transition-timing-function: motion.$easing-standard;
 
-    font-family:  $heading-font-stack;
+    font-family:  heading.$font-stack;
     font-size:    140%;
-    font-weight:  $font-weight-strong;
+    font-weight:  typography-config.$font-weight-strong;
 
     text-transform: uppercase;
 
@@ -100,7 +101,7 @@ $navigation-menu-transition-duration: 350ms;
       // If clip-path is not supported, just hide the menu item.
       display: none;
 
-      @supports (clip-path: $navigation-menu-clip-path) {
+      @supports (clip-path: $menu-clip-path) {
         display: list-item;
       }
 
@@ -115,13 +116,13 @@ $navigation-menu-transition-duration: 350ms;
       animation-duration:         1ms;
       animation-timing-function:  linear;
       animation-fill-mode:        forwards;
-      animation-delay:            $navigation-menu-transition-duration;
+      animation-delay:            $menu-transition-duration;
 
       &, & ~ .menu-item {
-        @supports (clip-path: $navigation-menu-clip-path) {
+        @supports (clip-path: $menu-clip-path) {
           // The first value is roughly the width of the "Home" text. Since
           // we're applying this to all items, we can't just use 100%.
-          transform: translateX(-3.9rem - $header-spacing);
+          transform: translateX(-3.9rem - layout-config.$header-spacing);
         }
       }
     }

@@ -1,0 +1,72 @@
+// -----------------------------------------------------------------------------
+//   Icon partial
+// -----------------------------------------------------------------------------
+
+///
+/// The icon width and height.
+///
+$size: 1.2em;
+
+///
+/// The spacing between an icon and its text, if visible.
+///
+$text-spacing: 0.3em;
+
+///
+/// Output icon styles.
+///
+/// @require {variable} $size
+/// @require {variable} $text-spacing
+///
+@mixin output {
+  .ambientimpact-icon {
+    &__icon {
+      width:      $size;
+      min-width:  $size;
+      height:     $size;
+
+      html[dir='ltr'] & {
+        padding-right:  $text-spacing;
+      }
+
+      html[dir='rtl'] & {
+        padding-left:   $text-spacing;
+      }
+
+      fill: currentColor;
+
+      // Prevents events being triggered in Chrome and probably any browsers based
+      // on Chromium.
+      pointer-events: none;
+
+      vertical-align: -0.2em;
+
+      :any-link & {
+        vertical-align: -0.3em;
+      }
+    }
+
+    // Force space between the icon and text to never wrap.
+    white-space: nowrap;
+
+    // This no work. :(
+    &__text {
+      // html[dir='ltr'] & {
+      //   padding-left: $size + $text-spacing;
+      // }
+
+      // html[dir='rtl'] & {
+      //   padding-right: $size + $text-spacing;
+      // }
+
+      box-decoration-break: clone;
+
+      // Allow space inside of the icon text (i.e. between words) to wrap again.
+      white-space: normal;
+    }
+
+    // &::first-line {
+    //   text-indent: -#{$size + $text-spacing};
+    // }
+  }
+}

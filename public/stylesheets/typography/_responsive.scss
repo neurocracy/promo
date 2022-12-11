@@ -1,6 +1,8 @@
 // -----------------------------------------------------------------------------
-//   Base typography responsive partial
+//   Responsive typography partial
 // -----------------------------------------------------------------------------
+
+@use '../helpers/responsive';
 
 ///
 /// Whether to use responsive type.
@@ -82,7 +84,7 @@ $font-scale-width-max: 80em !default;
     // value.
     @media (min-width: $min-screen) {
       @each $property in $properties {
-        #{$property}: calc-responsive-value(
+        #{$property}: responsive.calc-value(
           $min-screen, $min-value, $max-screen, $max-value
         );
       }
@@ -97,16 +99,30 @@ $font-scale-width-max: 80em !default;
   }
 }
 
-html {
-  // Use responsive type if set to do so. Note that the responsive-type mixin
-  // has a @supports check so we don't need one here.
+///
+/// Output responsive type.
+///
+/// This outputs responsive type styles to the <html> element if
+/// $use-responsive-type == true and @supports checks pass the
+/// typography-responsive-helper.responsive-type mixin.
+///
+/// @require {mixin} typography-responsive-helper.responsive-type
+/// @require {variable} $use-responsive-type
+/// @require {variable} $font-scale-width-min
+/// @require {variable} $font-scale-width-max
+/// @require {variable} $font-scale-min
+/// @require {variable} $font-scale-max
+///
+@mixin output {
   @if $use-responsive-type == true {
-    @include responsive-type(
-      font-size,
-      $font-scale-width-min,
-      $font-scale-width-max,
-      $font-scale-min * 1em,
-      $font-scale-max * 1em
-    );
+    html {
+      @include responsive-type(
+        font-size,
+        $font-scale-width-min,
+        $font-scale-width-max,
+        $font-scale-min * 1em,
+        $font-scale-max * 1em
+      );
+    }
   }
 }

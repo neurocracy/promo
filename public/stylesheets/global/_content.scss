@@ -2,6 +2,14 @@
 //   Content partial
 // -----------------------------------------------------------------------------
 
+@use '../components/icon';
+@use '../helpers/colour' as colour-helpers;
+@use '../helpers/transition';
+@use '../layout/config' as layout-config;
+@use '../typography/config' as typography-config;
+@use '../typography/heading';
+@use '../variables/colours' as colour-variables;
+
 ///
 /// Minimum viewport width to display content in two columns.
 ///
@@ -17,13 +25,13 @@ $home-stacking-order: background, background-reveal, content;
   flex-direction: column;
   justify-content: center;
 
-  $text-shadow-on-light:  0 0 0.5rem $background-colour-light;
-  $text-shadow-on-dark:   0 0 0.5rem $background-colour-dark;
+  $text-shadow-on-light:  0 0 0.5rem colour-variables.$background-light;
+  $text-shadow-on-dark:   0 0 0.5rem colour-variables.$background-dark;
 
   text-shadow:
     $text-shadow-on-light, $text-shadow-on-light, $text-shadow-on-light;
 
-  @include on-dark-colour-scheme {
+  @include colour-helpers.on-dark-scheme {
     text-shadow:
       $text-shadow-on-dark, $text-shadow-on-dark, $text-shadow-on-dark;
   }
@@ -37,7 +45,10 @@ $home-stacking-order: background, background-reveal, content;
     // This fixes an issue where the hitting the max responsive font size would
     // cause the height of one of these to get larger than the other, which
     // would cause the background to be misaligned.
-    height: calc(50vh - #{$viewport-padding * 3} - #{$header-height});
+    height: calc(
+      50vh - #{layout-config.$viewport-padding * 3} -
+        #{layout-config.$header-height}
+    );
 
     margin-top:     0;
     margin-bottom:  0;
@@ -157,7 +168,7 @@ $home-stacking-order: background, background-reveal, content;
   }
 
   // Remove light mode image links in dark mode and show dark mode image links.
-  @include on-dark-colour-scheme {
+  @include colour-helpers.on-dark-scheme {
     [data-colour-scheme='light']:any-link {
       visibility: hidden;
     }
@@ -199,14 +210,14 @@ $home-stacking-order: background, background-reveal, content;
   // start of first line text, rather than the icon.
 
   html[dir='ltr'] & {
-    padding-left: $icon-size + $icon-text-spacing;
+    padding-left: icon.$size + icon.$text-spacing;
   }
 
   html[dir='rtl'] & {
-    padding-right: $icon-size + $icon-text-spacing;
+    padding-right: icon.$size + icon.$text-spacing;
   }
 
-  text-indent: -#{$icon-size + $icon-text-spacing};
+  text-indent: -#{icon.$size + icon.$text-spacing};
 }
 
 ///
@@ -217,10 +228,10 @@ $home-stacking-order: background, background-reveal, content;
 @mixin heading-level2 {
   margin-bottom: 2rem;
 
-  border-bottom: 1px solid hsl(0, 0, 75%);
+  border-bottom: 1px solid hsl(0, 0%, 75%);
 
-  @include on-dark-colour-scheme {
-    border-bottom-color: hsl(0, 0, 25%);
+  @include colour-helpers.on-dark-scheme {
+    border-bottom-color: hsl(0, 0%, 25%);
   }
 }
 
@@ -233,7 +244,7 @@ h2 {
   }
 }
 
-@include headings {
+@include heading.headings {
   text-transform: uppercase;
 }
 
@@ -254,20 +265,24 @@ li + li {
 details summary {
   cursor: pointer;
 
-  @include transition-fade-base;
+  @include transition.fade-base;
 
   &:hover, &:focus {
-    @include transition-fade-hover;
+    @include transition.fade-highlight;
   }
 
   &:hover {
     background-color: mix(
-      $background-colour-light, $foreground-colour-on-light, 80%
+      colour-variables.$background-light,
+      colour-variables.$foreground-on-light,
+      80%
     );
 
-    @include on-dark-colour-scheme {
+    @include colour-helpers.on-dark-scheme {
       background-color: mix(
-        $background-colour-dark, $foreground-colour-on-dark, 80%
+        colour-variables.$background-dark,
+        colour-variables.$foreground-on-dark,
+        80%
       );
     }
   }
@@ -277,7 +292,7 @@ details summary {
   &__label {
     @include heading-level2;
 
-    @include heading-font-size(2);
+    @include heading.font-size(2);
 
     // This resets the heading so that we can apply the heading styles just to
     // the <summary>.
@@ -318,8 +333,8 @@ details summary {
   // uppercase it. Note that we're reducing the font size so it roughly matches
   // the body font size.
   &__list-heading-font {
-    font-family:  $heading-font-stack;
-    font-weight:  $font-weight-strong;
+    font-family:  heading.$font-stack;
+    font-weight:  typography-config.$font-weight-strong;
     font-size:    90%;
 
     text-transform: uppercase;
@@ -409,7 +424,7 @@ details summary {
       display: block;
     }
 
-    @include on-dark-colour-scheme {
+    @include colour-helpers.on-dark-scheme {
       img {
         filter: #{'invert()'}; // Sass being dumb.
       }

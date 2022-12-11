@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------------
+//   Animation variables
+// -----------------------------------------------------------------------------
+
+///
+/// Reveal overlay animation duration.
+///
+$reveal-overlay-duration: 0.5s;
+
+///
+/// Site reveal overlay animation delay.
+///
+/// This should be just long enough that most browsers will have already done
+/// most of their layout rendering and most DOMContentLoaded JavaScript has
+/// (hopefully) finished executing so the reveal animation has a better chance
+/// of playing smoothly and without too many frames dropped.
+///
+$site-reveal-overlay-delay: 0.3s;
+
+///
+/// Home reveal animation duration.
+///
+$home-reveal-duration: 2s;
+
+///
+/// Home reveal animation delay.
+///
+$home-reveal-delay: $site-reveal-overlay-delay + $reveal-overlay-duration;

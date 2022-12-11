@@ -2,16 +2,9 @@
 //   Background partial
 // -----------------------------------------------------------------------------
 
-///
-/// Home reveal animation duration.
-///
-$home-reveal-animation-duration: 2s;
-
-///
-/// Home reveal animation delay.
-///
-$home-reveal-animation-delay:
-  $site-reveal-overlay-animation-delay + $reveal-overlay-animation-duration;
+@use '../variables/animation' as animation-variables;
+@use '../helpers/colour' as colour-helpers;
+@use '../variables/colours' as colour-variables;
 
 ///
 /// Home reveal animation keyframes (LTR).
@@ -71,7 +64,7 @@ $home-reveal-animation-delay:
     filter: brightness(65%) saturate(150%);
 
     // Remove the filters on the dark colour theme.
-    @include on-dark-colour-scheme {
+    @include colour-helpers.on-dark-scheme {
       filter: none;
     }
 
@@ -104,17 +97,17 @@ $home-reveal-animation-delay:
     width:    150%;
 
     background-image: linear-gradient(
-      to right, transparent, $background-colour-light 25%
+      to right, transparent, colour-variables.$background-light 25%
     );
 
-    @include on-dark-colour-scheme {
+    @include colour-helpers.on-dark-scheme {
       background-image: linear-gradient(
-        to right, transparent, $background-colour-dark 25%
+        to right, transparent, colour-variables.$background-dark 25%
       );
     }
 
-    animation-duration:         $home-reveal-animation-duration;
-    animation-delay:            $home-reveal-animation-delay;
+    animation-duration:         animation-variables.$home-reveal-duration;
+    animation-delay:            animation-variables.$home-reveal-delay;
     animation-timing-function:  linear;
     animation-fill-mode:        both;
 

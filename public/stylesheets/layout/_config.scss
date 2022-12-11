@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------------
+//   Layout configuration
+// -----------------------------------------------------------------------------
+
+///
+/// Padding between the site content and the viewport edges.
+///
+$viewport-padding: 0.5rem;
+
+///
+/// Spacing between header elements.
+///
+$header-spacing: 1rem;
+
+///
+/// Site header height.
+///
+$header-height: 3.5rem;
+
+///
+/// Maximum width of the site layout.
+///
+$max-width: 65rem;
+
+///
+/// Stacking order (z-index) for main site layout; later in list is higher.
+///
+$stacking-order: content, header, persistent-promo, reveal-overlay;

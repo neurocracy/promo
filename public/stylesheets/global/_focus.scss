@@ -2,15 +2,20 @@
 //   Focus partial
 // -----------------------------------------------------------------------------
 
+@use '../variables/colours' as colour-variables;
+@use '../helpers/colour' as colour-helpers;
+
 ///
 /// Focus outline colour on light backgrounds.
 ///
-$focus-outline-colour-on-light: $material-primary-colour;
+$outline-colour-on-light: colour-variables.$material-primary;
 
 ///
 /// Focus outline colour on dark backgrounds.
 ///
-$focus-outline-colour-on-dark: invert-lightness($material-primary-colour);
+$outline-colour-on-dark: colour-helpers.invert-lightness(
+  colour-variables.$material-primary
+);
 
 * {
   outline: 2px solid transparent;
@@ -24,10 +29,10 @@ $focus-outline-colour-on-dark: invert-lightness($material-primary-colour);
   -moz-outline-radius: 2px;
 
   &:focus {
-    outline-color: $focus-outline-colour-on-light;
+    outline-color: $outline-colour-on-light;
 
-    @include on-dark-colour-scheme {
-      outline-color: $focus-outline-colour-on-dark;
+    @include colour-helpers.on-dark-scheme {
+      outline-color: $outline-colour-on-dark;
     }
   }
 }

@@ -1,0 +1,54 @@
+// -----------------------------------------------------------------------------
+//   Colour variables
+// -----------------------------------------------------------------------------
+
+///
+/// Omnipedia blue.
+///
+/// @link https://www.materialui.co/colors/blue/900
+///
+$omnipedia-blue: #0d47a1;
+
+///
+/// Kickstarter green.
+///
+$kickstarter-green: #007460;
+
+///
+/// Patreon "Fiery Coral".
+///
+/// @link https://www.patreon.com/brand/downloads
+///
+$patreon-fiery-coral: #FF424D;
+
+///
+/// Vimeo blue.
+///
+$vimeo-blue: #00adef;
+
+///
+/// Material Design primary colour; using Omnipedia blue.
+///
+/// @require {variable} $omnipedia-blue
+///
+$material-primary: $omnipedia-blue;
+
+///
+/// Light background colour; usually used for light themes.
+///
+$background-light: white !default;
+
+///
+/// Dark background colour; usually used for dark themes.
+///
+$background-dark: black !default;
+
+///
+/// Foreground (usually text) colour on light backgrounds.
+///
+$foreground-on-light: hsl(0, 0%, 20%) !default;
+
+///
+/// Foreground colour on dark backgrounds.
+///
+$foreground-on-dark: white !default;

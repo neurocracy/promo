@@ -1,9 +1,7 @@
 // -----------------------------------------------------------------------------
-//   Neurocracy promo root stylesheet
+//   Components output partial
 // -----------------------------------------------------------------------------
 
-@use 'typography';
-@use 'layout';
-@use 'elements';
-@use 'global';
-@use 'components';
+@use 'icon';
+
+@include icon.output;

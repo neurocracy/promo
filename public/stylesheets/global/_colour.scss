@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------------
+//   Colour output partial
+// -----------------------------------------------------------------------------
+
+@use '../variables/colours' as colour-variables;
+@use '../helpers/colour' as colour-helpers;
+
+html, body, .layout-header {
+  color: colour-variables.$foreground-on-light;
+  background-color: colour-variables.$background-light;
+
+  @include colour-helpers.on-dark-scheme {
+    color: colour-variables.$foreground-on-dark;
+    background-color: colour-variables.$background-dark;
+  }
+}
