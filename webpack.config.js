@@ -1,6 +1,7 @@
 'use strict';
 
 const autoprefixer = require('autoprefixer');
+const CopyPlugin = require('copy-webpack-plugin');
 const easingGradients = require('postcss-easing-gradients');
 const Encore = require('@symfony/webpack-encore');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
@@ -8,6 +9,7 @@ const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const sharp = require('sharp');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 
 const distPath = '.webpack-dist';
@@ -22,6 +24,20 @@ const distPath = '.webpack-dist';
  * @type {Boolean}
  */
 const outputToSourcePaths = true;
+
+/**
+ * Output paths to clean before build.
+ *
+ * This is defined here so that it can be modified in production mode with
+ * additional paths to clean. E.g. screenshots directories.
+ *
+ * @type {Array}
+ *
+ * @see https://github.com/johnagan/clean-webpack-plugin
+ */
+let cleanOutputPaths = [
+  '**/*.css', '**/*.css.map', '!public/vendor/**',
+];
 
 /**
  * Get globbed entry points.
@@ -95,7 +111,7 @@ Encore
 // libraries will get deleted.
 //
 // @see https://github.com/johnagan/clean-webpack-plugin
-.cleanupOutputBeforeBuild(['**/*.css', '**/*.css.map', '!public/vendor/**'])
+.cleanupOutputBeforeBuild(cleanOutputPaths)
 
 .enableSourceMaps(!Encore.isProduction())
 
@@ -211,6 +227,46 @@ Encore
     },
 
   }))
+
+  // Copy, convert, and resize screenshots.
+  //
+  // Most solutions to processing and altering images assume that you have them
+  // referenced or imported into one of your entry points, but since we don't do
+  // that, Webpack won't find them. The solution is to use the CopyPlugin and
+  // call sharp directly to do the conversion before saving them. Note that
+  // Encore.copyFiles() doesn't currently support any kind of transform, so we
+  // have to add the plug-in ourselves to use that option.
+  //
+  // @see https://stackoverflow.com/questions/54217627/using-webpack-to-optimise-unreferenced-images-img-loader#54220720
+  //   Based on this Stack Overflow answer.
+  //
+  // @see https://webpack.js.org/plugins/copy-webpack-plugin/
+  //
+  // @see https://sharp.pixelplumbing.com/
+  .addPlugin(new CopyPlugin({
+    patterns: [
+      {
+        from: './public/images/screenshots/*.png',
+        to:   'public/images/screenshots/thumbnails/[name].jpg',
+        transform: function(content) {
+          return sharp(content).resize(800).toFormat('jpeg').toBuffer();
+        },
+      },
+      {
+        from: './public/images/screenshots/*.png',
+        to:   'public/images/screenshots/optimized/[name].jpg',
+        transform: function(content) {
+          return sharp(content).toFormat('jpeg').toBuffer();
+        },
+      },
+    ],
+  }))
+
+  // Add the generated image directories to be cleaned before the build.
+  .cleanupOutputBeforeBuild(cleanOutputPaths.concat([
+    'public/images/screenshots/optimized/**',
+    'public/images/screenshots/thumbnails/**',
+  ]));
 
 });
 
