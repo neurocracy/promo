@@ -29,11 +29,3 @@ package-lock.json
 # Webpack Encore generated files.
 entrypoints.json
 manifest.json
-
-# Ignore generated icons and images.
-public/images/icons/generated/*
-public/images/screenshots/optimized/*
-public/images/screenshots/thumbnails/*
-
-# Ignore third-party assets.
-public/vendor
