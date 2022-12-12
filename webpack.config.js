@@ -156,43 +156,44 @@ Encore
   },
 })
 
-.addPlugin(new SVGSpritemapPlugin('./public/images/icons/neurocracy/*.svg', {
-  output: {
-    filename: './public/images/icons/generated/neurocracy.svg',
-    svg: {
-      sizes: false
-    },
-    svgo: {
-      plugins: [
-        {
-          name: 'removeAttrs',
-          params: {
-            // Strip all fill attributes as icons are intended to inherit the
-            // current colour of text they're displayed with.
-            attrs: 'fill'
-          }
-        }
-      ],
-    },
-  },
-  sprite: {
-    prefix: 'icon-',
-    gutter: 0,
-    generate: {
-      title:  false,
-      symbol: true,
-      use:    true,
-    }
-  },
-}))
-
 // @see https://www.npmjs.com/package/favicons-webpack-plugin
 //
 // @todo Switch to using the generated manifest.webmanifest and
 //   browserconfig.xml? The paths don't seem easily customizable.
 .when(function(Encore) { return Encore.isProduction(); }, function(Encore) {
 
-  return Encore.addPlugin(new FaviconsWebpackPlugin({
+  return Encore.addPlugin(new SVGSpritemapPlugin(
+    './public/images/icons/neurocracy/*.svg', {
+    output: {
+      filename: './public/images/icons/generated/neurocracy.svg',
+      svg: {
+        sizes: false
+      },
+      svgo: {
+        plugins: [
+          {
+            name: 'removeAttrs',
+            params: {
+              // Strip all fill attributes as icons are intended to inherit the
+              // current colour of text they're displayed with.
+              attrs: 'fill'
+            }
+          }
+        ],
+      },
+    },
+    sprite: {
+      prefix: 'icon-',
+      gutter: 0,
+      generate: {
+        title:  false,
+        symbol: true,
+        use:    true,
+      }
+    },
+  }))
+
+  .addPlugin(new FaviconsWebpackPlugin({
 
     logo:         './public/images/icons/icon.png',
     logoMaskable: './public/images/icons/icon_maskable.png',
@@ -264,6 +265,7 @@ Encore
 
   // Add the generated image directories to be cleaned before the build.
   .cleanupOutputBeforeBuild(cleanOutputPaths.concat([
+    'public/images/icons/generated/**',
     'public/images/screenshots/optimized/**',
     'public/images/screenshots/thumbnails/**',
   ]));
