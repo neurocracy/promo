@@ -40,7 +40,7 @@ let cleanOutputPaths = [
 ];
 
 /**
- * Get globbed entry points.
+ * Get globbed stylesheet entry points.
  *
  * This uses the 'glob' package to automagically build the array of entry
  * points, as there are a lot of them spread out over many components.
@@ -49,7 +49,7 @@ let cleanOutputPaths = [
  *
  * @see https://www.npmjs.com/package/glob
  */
-function getGlobbedEntries() {
+function getStylesheetEntries() {
 
   return glob.sync(
     // This specifically only searches for SCSS files that aren't partials, i.e.
@@ -104,7 +104,7 @@ Encore
   assets: '[file][query]',
 
 })
-.addEntries(getGlobbedEntries())
+.addEntries(getStylesheetEntries())
 
 // Clean out any previously built files in case of source files being removed or
 // renamed. We need to exclude the vendor directory or CSS bundled with
