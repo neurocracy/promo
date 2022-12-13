@@ -8,7 +8,7 @@
     "build": "webpack --progress --config webpack.config.js",
     "build:production": "cross-env NODE_ENV=production yarn build",
     "build:vendor": "webpack --progress --config webpack.vendor.js",
-    "postinstall": "yarn run build:vendor"
+    "postinstall": "yarn build:vendor"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
