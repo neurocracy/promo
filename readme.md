@@ -1,70 +1,92 @@
 This contains the source files for the [Neurocracy promo site](https://neurocracy.site/).
 
+----
+
+# Why open source?
+
+We're dismayed by how much knowledge and technology is kept under lock and key
+in the videogame industry, with years of work often never seeing the light of
+day when projects are cancelled. We've gotten to where we are by building upon
+the work of countless others, and we want to keep that going. We hope that some
+part of this codebase is useful or will inspire someone out there.
+
+----
+
+# Requirements
+
+To build front-end assets for this project, [Node.js](https://nodejs.org/) and
+[Yarn](https://yarnpkg.com/) are required.
+
 -----------------
 
 # Installation
 
-To build assets for this project, you'll need to have
-[Node.js](https://nodejs.org/) installed.
+To build front-end assets for this project, you'll need to install
+[Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/). If you don't
+have Yarn installed yet, follow [its installation
+instructions](https://yarnpkg.com/getting-started/install). Then run `yarn
+install` and let it do the rest.
 
-## Using ```nvm```
+## Optional: use `nvm`
 
-We recommend using [Node Version Manager
-(```nvm```)](https://github.com/nvm-sh/nvm) ([Windows
-port](https://github.com/coreybutler/nvm-windows)) to ensure you're using the
-same version used to develop this codebase. Once ```nvm``` is installed, you can
-simply navigate to the project root and run ```nvm install``` to install the
-appropriate version contained in the ```.nvmrc``` file.
+If you want to be sure you're using the same Node.js version we're using, we
+support using [Node Version Manager (`nvm`)](https://github.com/nvm-sh/nvm)
+([Windows port](https://github.com/coreybutler/nvm-windows)). Once `nvm` is
+installed, you can simply navigate to the project root and run `nvm install`
+to install the appropriate version contained in the `.nvmrc` file.
 
 Note that if you're using the [Windows
-port](https://github.com/coreybutler/nvm-windows), it [does not support
-```.nvmrc```
+port](https://github.com/coreybutler/nvm-windows), it [does not support `.nvmrc`
 files](https://github.com/coreybutler/nvm-windows/wiki/Common-Issues#why-isnt-nvmrc-supported-why-arent-some-nvm-for-macoslinux-features-supported),
-so you'll have to provide the version contained in the ```.nvmrc``` as a
-parameter: ```nvm install <version>``` (without the ```<``` and ```>```).
+so you'll have to provide the version contained in the `.nvmrc` as a parameter:
+`nvm install <version>` (replacing `<version>` with that found in the file).
 
-## Dependencies
-
-Once Node.js is installed, run ```npm install``` in the project root to install
-all dependencies.
-
-## Grunt CLI
-
-We also recommend installing the [Grunt
-CLI](https://gruntjs.com/getting-started) globally from the commandline:
-```npm install -g grunt-cli```
-
-Note that if you use ```nvm```, this must be done for each Node.js version that
-you plan to use it for.
-
-## ImageMagick
-
-To build icons, optimize screenshots, and create screenshot thumbnails, you'll
-also need to install [ImageMagick](https://imagemagick.org/).
+This step is not required, and may be dropped in the future as Node.js is fairly
+mature and stable at this point.
 
 -----------------
 
 # Building
 
-To build everything, you can run ```grunt all``` in the commandline in the
-project root.
+We use [Webpack](https://webpack.js.org/) and [Symfony Webpack
+Encore](https://symfony.com/doc/current/frontend.html) to automate most of the
+build process. These will have been installed for you if you followed the Yarn
+installation instructions above.
 
-To build specific things:
+The following commands can be run from the root of the project to build:
 
-* ```grunt css``` - compiles CSS files from Sass; applies [Autoprefixer](https://github.com/postcss/autoprefixer).
+* `yarn build` - Development build; primarily compiles Sass (SCSS) into CSS without minifying it and with sourcemaps.
 
-* ```grunt favicons``` - builds all the shortcut/browser icons for the theme, using [japrescott/grunt-favicons](https://github.com/japrescott/grunt-favicons); requires [ImageMagick](https://imagemagick.org/) to be installed.
+* `yarn build:production` - Builds everything for production:
 
-* ```grunt imagemagick``` - convert PNG screenshots to much smaller JPEG files and generate thumbnails; requires [ImageMagick](https://imagemagick.org/) to be installed.
+  * Sass is compiled into minified CSS without sourcemaps.
 
-* ```grunt vendor``` - copy assets from ```node_modules``` to ```public/vendor``` so they're web accessible.
+  * Optimized and thumbnail versions of screenshots are generated.
+
+  * SVG icon bundle is built from individual source files.
+
+  * Shortcut icons are generated at multiple sizes from a single source file.
+
+* `yarn build:vendor` - Copies third-party front-end assets from the Yarn viritual file system into the publicly accessible web directory. Running this manually should not be required as it's set as [a `postinstall` lifecycle script](https://yarnpkg.com/advanced/lifecycle-scripts) and so should be run automatically by Yarn when you first install and subsequently if dependencies of this project change.
 
 -----------------
 
 # Planned improvements
 
-* Switch from [Node Sass to Dart Sass](https://sass-lang.com/blog/libsass-is-deprecated).
-
-* Convert stylesheets to [Sass modules](https://sass-lang.com/documentation/modules).
-
 * Convert to a [Drupal](https://www.drupal.org/) site using [Layout Builder](https://www.drupal.org/docs/8/core/modules/layout-builder) for easier content management.
+
+-----------------
+
+# Breaking changes
+
+The following major version bumps indicate breaking changes:
+
+* 2.x:
+
+  * Front-end dependencies now installed via [Yarn](https://yarnpkg.com/).
+
+  * Front-end build process ported to [Webpack](https://webpack.js.org/)
+
+  * Switched from [Node Sass to Dart Sass](https://sass-lang.com/blog/libsass-is-deprecated).
+
+  * Converted stylesheets to [Sass modules](https://sass-lang.com/documentation/modules).
