@@ -31,3 +31,11 @@ $stacking-order: content, header, persistent-promo, reveal-overlay;
 /// Minimum viewport width to display content in two columns.
 ///
 $content-two-column-min-width: 40rem;
+
+///
+/// Spacing between layout sections.
+///
+/// This is primarily used between main content layout sections and between the
+/// main content and the footer.
+///
+$section-spacing: 8em;

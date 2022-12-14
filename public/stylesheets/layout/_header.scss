@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+//   Layout header partial
+// -----------------------------------------------------------------------------
+
+@use 'config' as layout-config;
+
+.layout-header {
+
+  @supports (display: flex) and (box-sizing: border-box) and (scroll-padding-top: 1px) {
+
+    position: fixed;
+
+    z-index: index(layout-config.$stacking-order, header);
+
+    display: flex;
+
+    width: 100%;
+
+    margin-top:   layout-config.$viewport-padding * -1;
+    margin-left:  layout-config.$viewport-padding * -1;
+    margin-right: layout-config.$viewport-padding * -1;
+
+    padding: layout-config.$viewport-padding;
+
+    box-sizing: border-box;
+
+  }
+
+}

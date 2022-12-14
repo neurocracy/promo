@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+//   Layout section partial
+// -----------------------------------------------------------------------------
+
+@use 'config' as layout-config;
+
+.layout-section {
+
+  min-height: calc(
+    100vh - #{layout-config.$viewport-padding * 3} -
+    #{layout-config.$header-height}
+  );
+
+  // This accounts for the fixed header over the first section.
+  &:first-child {
+    margin-top: layout-config.$viewport-padding + layout-config.$header-height;
+  }
+
+  z-index: index(layout-config.$stacking-order, content);
+
+  & + & {
+    margin-top: layout-config.$section-spacing;
+  }
+
+  &__sub-section + &__sub-section {
+    margin-top: 3em;
+  }
+
+}

@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------------
+//   Layout footer partial
+// -----------------------------------------------------------------------------
+
+@use 'config' as layout-config;
+
+footer[role='contentinfo'] {
+
+  margin-top:     layout-config.$section-spacing;
+  margin-bottom:  6em;
+
+}

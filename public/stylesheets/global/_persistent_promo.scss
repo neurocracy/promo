@@ -104,6 +104,8 @@ $reveal-animation-delay: animation-variables.$home-reveal-delay +
     }
   }
 
+  z-index: index(layout-config.$stacking-order, persistent-promo);
+
   // Disable pointer events so that empty areas of the list don't block clicks/
   // taps to content underneath. This is undone in &__item {} rule lower down.
   pointer-events: none;

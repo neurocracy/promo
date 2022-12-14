@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------------
+//   Layout container partial
+// -----------------------------------------------------------------------------
+
+@use 'config' as layout-config;
+
+.layout-container {
+
+  // These two are required for the reveal overlay.
+  position:   relative;
+  overflow-x: hidden;
+
+  max-width: layout-config.$max-width;
+
+  margin-left:  auto;
+  margin-right: auto;
+
+  padding: layout-config.$viewport-padding;
+
+}
