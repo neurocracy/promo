@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @use 'config';
+@use '../helpers/colour' as colour-helpers;
 @use 'sass:list';
 @use 'sass:math';
 @use 'sassy-cast';
@@ -125,6 +126,23 @@ $font-weight: config.$font-weight-strong !default;
 }
 
 ///
+/// Heading level 2 (h2) styles.
+///
+/// @require {mixin} colour-helpers.on-dark-scheme
+///
+@mixin level2 {
+
+  margin-bottom: 2rem;
+
+  border-bottom: 1px solid hsl(0, 0%, 75%);
+
+  @include colour-helpers.on-dark-scheme {
+    border-bottom-color: hsl(0, 0%, 25%);
+  }
+
+}
+
+///
 /// Output base heading styles.
 ///
 /// @require {mixin} headings
@@ -134,17 +152,27 @@ $font-weight: config.$font-weight-strong !default;
 ///
 @mixin output {
 
-  // Apply heading font stack and weight to all headings.
   @include headings {
+
+    // Apply heading font stack and weight to all headings.
     font-family: $font-stack;
     font-weight: $font-weight;
+
+    text-transform: uppercase;
+
   }
 
   // Apply heading font sizes. This has to be done individually, per level.
   @for $i from 1 through 6 {
+
     h#{$i} {
       @include font-size($i);
     }
+
+  }
+
+  h2 {
+    @include level2;
   }
 
 }

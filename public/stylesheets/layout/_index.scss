@@ -68,3 +68,7 @@ footer[role='contentinfo'] {
 footer[role='contentinfo'] {
   margin-bottom: 6em;
 }
+
+.layout-section__sub-section + .layout-section__sub-section {
+  margin-top: 3em;
+}

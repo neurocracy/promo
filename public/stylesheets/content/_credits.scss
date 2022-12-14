@@ -1,0 +1,73 @@
+// -----------------------------------------------------------------------------
+//   Credits content section partial
+// -----------------------------------------------------------------------------
+
+@use '../typography/config' as typography-config;
+@use '../typography/heading';
+
+.credits {
+
+  &__label {
+
+    @include heading.level2;
+
+    @include heading.font-size(2);
+
+    // This resets the heading so that we can apply the heading styles just to
+    // the <summary>.
+    h2 {
+
+      display: inline;
+
+      font-size: 100%;
+
+    }
+
+  }
+
+  &__list {
+
+    // This lays out the credits list as multiple columns when space allows.
+    @supports (column-gap: 2em) {
+
+      // The minimum width of columns when displaying as multiple columns.
+      //
+      // @link https://developer.mozilla.org/en-US/docs/Web/CSS/column-width
+      column-width: 20em;
+      // The gap between columns. This must be larger than the padding on lists
+      // to accomodate the list markers.
+      column-gap:   2em;
+
+      li {
+
+        // Don't break to a new column within list items.
+        //
+        // @see http://stackoverflow.com/a/7785711
+
+        // Chrome and Safari.
+        -webkit-column-break-inside: avoid;
+        // Firefox 20+.
+        page-break-inside: avoid;
+        // IE 11.
+        break-inside: avoid-column;
+
+      }
+
+    }
+
+  }
+
+  // Give the heading font credit item the heading font family, weight, and
+  // uppercase it. Note that we're reducing the font size so it roughly matches
+  // the body font size.
+  &__list-heading-font {
+
+    font-family:  heading.$font-stack;
+    font-weight:  typography-config.$font-weight-strong;
+    font-size:    90%;
+
+    text-transform: uppercase;
+
+  }
+
+}

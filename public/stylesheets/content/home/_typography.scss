@@ -1,0 +1,41 @@
+// -----------------------------------------------------------------------------
+//   Home typography partial
+// -----------------------------------------------------------------------------
+
+@use '../../helpers/colour' as colour-helpers;
+@use '../../variables/colours' as colour-variables;
+
+#home {
+
+  $text-shadow-on-light:  0 0 0.5rem colour-variables.$background-light;
+  $text-shadow-on-dark:   0 0 0.5rem colour-variables.$background-dark;
+
+  text-shadow:
+    $text-shadow-on-light, $text-shadow-on-light, $text-shadow-on-light;
+
+  @include colour-helpers.on-dark-scheme {
+    text-shadow:
+      $text-shadow-on-dark, $text-shadow-on-dark, $text-shadow-on-dark;
+  }
+
+  h1 {
+
+    font-size:      250%;
+
+    @media (min-width: 22em) {
+      font-size:    275%;
+    }
+
+    @media (min-width: 25em) {
+      font-size:    300%;
+    }
+
+    // Explicitly set weight rather than use $font-weight-* variables as this
+    // needs to be art directed separately.
+    font-weight:    200;
+    line-height:    1;
+    text-transform: uppercase;
+
+  }
+
+}

@@ -1,8 +1,9 @@
 // -----------------------------------------------------------------------------
-//   Elements output partial
+//   Hidden elements/components partial
 // -----------------------------------------------------------------------------
 
-@use 'link';
-@use 'image';
-@use 'list';
-@use 'summary';
+@use '../helpers/hide';
+
+.visually-hidden {
+  @include hide.me;
+}

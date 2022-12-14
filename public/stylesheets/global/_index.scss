@@ -2,18 +2,12 @@
 //   Global styles output partial
 // -----------------------------------------------------------------------------
 
+@use 'hidden';
 @use 'colour';
 @use 'focus';
 @use 'header';
 @use 'reveal';
-@use 'background';
 @use 'scroll';
 @use 'branding';
 @use 'navigation';
-@use 'content';
 @use 'persistent_promo';
-@use '../helpers/hide';
-
-.visually-hidden {
-  @include hide.me;
-}

@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------------
+//   Play content section partial
+// -----------------------------------------------------------------------------
+
+@use '../components/icon';
+@use '../layout/config' as layout-config;
+
+.play-content {
+
+  @media (min-width: layout-config.$content-two-column-min-width) {
+
+    display: grid;
+
+    grid-template-columns:  2fr 1fr;
+
+    grid-gap: 1em;
+
+    // Remove the subsequent section top margin if modern grid is supported, as
+    // that's only needed on narrow viewports and if modern is not supported.
+    @supports (grid-area: omg) {
+      .play-section + .play-section {
+        margin-top: 0;
+      }
+    }
+  }
+
+  @media (min-width: #{layout-config.$content-two-column-min-width + 10rem}) {
+    grid-column-gap: 3em;
+  }
+
+}
+
+.play-link-list {
+
+  // The icons for each list item make the list markers feel redundant, so we
+  // remove the markers.
+  list-style: none;
+
+  // Padding + negative text indent allow lines after the first to align with
+  // start of first line text, rather than the icon.
+
+  html[dir='ltr'] & {
+    padding-left: icon.$size + icon.$text-spacing;
+  }
+
+  html[dir='rtl'] & {
+    padding-right: icon.$size + icon.$text-spacing;
+  }
+
+  text-indent: -#{icon.$size + icon.$text-spacing};
+
+}

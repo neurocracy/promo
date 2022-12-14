@@ -26,3 +26,8 @@ $max-width: 65rem;
 /// Stacking order (z-index) for main site layout; later in list is higher.
 ///
 $stacking-order: content, header, persistent-promo, reveal-overlay;
+
+///
+/// Minimum viewport width to display content in two columns.
+///
+$content-two-column-min-width: 40rem;

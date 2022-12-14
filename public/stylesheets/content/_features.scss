@@ -1,0 +1,98 @@
+// -----------------------------------------------------------------------------
+//   Features content section partial
+// -----------------------------------------------------------------------------
+
+@use '../helpers/colour' as colour-helpers;
+@use '../layout/config' as layout-config;
+
+.features-section {
+
+  @media (min-width: layout-config.$content-two-column-min-width) {
+
+    display: grid;
+
+    grid-template-areas:    "heading      media"
+                            "description  media";
+
+    // Reverse the layout every second section. Note that this seems to start at
+    // 0 rather than 1, so 0 = odd, 1 = even.
+    &:nth-child(odd) {
+      grid-template-areas:  "media  heading"
+                            "media  description";
+    }
+
+    grid-template-columns:  1fr 1fr;
+    grid-template-rows:     min-content 1fr;
+
+    grid-gap: 1em;
+
+    @media (min-width: #{layout-config.$content-two-column-min-width + 10rem}) {
+      grid-column-gap: 3em;
+    }
+
+    &__media {
+      grid-area: media;
+    }
+
+    &__heading {
+      grid-area: heading;
+
+      @supports (grid-area: heading) {
+        margin-top:     -0.15em;
+        margin-bottom:  0;
+
+        line-height:    1;
+      }
+    }
+
+    &__description {
+      grid-area: description;
+
+      @supports (grid-area: description) {
+        margin-top:     0;
+        margin-bottom:  0;
+      }
+
+    }
+
+  }
+
+  &__media {
+
+    display: grid;
+
+    grid-template-columns:  1fr;
+    grid-template-rows:     1fr;
+
+    // So that links don't end up spanning the full height.
+    align-items: start;
+
+    :any-link {
+      // This layers both the light and dark links on top of each other so
+      // whichever one that's hidden doesn't take up extra space.
+      grid-column:  1;
+      grid-row:     1;
+    }
+
+  }
+
+  // Remove dark mode image links when not in dark mode. Note that we're using
+  // visibility so that it can't be focused via keyboard or other means.
+  [data-colour-scheme='dark']:any-link {
+    visibility: hidden;
+  }
+
+  // Remove light mode image links in dark mode and show dark mode image links.
+  @include colour-helpers.on-dark-scheme {
+
+    [data-colour-scheme='light']:any-link {
+      visibility: hidden;
+    }
+
+    [data-colour-scheme='dark']:any-link {
+      visibility: visible;
+    }
+
+  }
+
+}

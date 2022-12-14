@@ -1,0 +1,45 @@
+// -----------------------------------------------------------------------------
+//   Summary element partial
+// -----------------------------------------------------------------------------
+
+@use '../helpers/colour' as colour-helpers;
+@use '../helpers/transition';
+@use 'sass:color';
+@use '../variables/colours' as colour-variables;
+
+summary {
+
+  cursor: pointer;
+
+  @include transition.fade-base;
+
+  &:hover, &:focus {
+    @include transition.fade-highlight;
+  }
+
+  &:hover {
+
+    background-color: color.mix(
+      colour-variables.$background-light,
+      colour-variables.$foreground-on-light,
+      80%
+    );
+
+    @include colour-helpers.on-dark-scheme {
+
+      background-color: color.mix(
+        colour-variables.$background-dark,
+        colour-variables.$foreground-on-dark,
+        80%
+      );
+
+    }
+
+  }
+
+  h2 {
+    margin-bottom: 0;
+    border-bottom-width: 0;
+  }
+
+}

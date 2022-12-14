@@ -1,0 +1,112 @@
+// -----------------------------------------------------------------------------
+//   Home layout partial
+// -----------------------------------------------------------------------------
+
+@use 'sass:list';
+@use '../../layout/config' as layout-config;
+
+///
+/// Stacking order (z-index) for home section; later in list is higher.
+///
+$stacking-order: background, background-reveal, content;
+
+#home {
+
+  display: flex;
+
+  flex-direction:   column;
+  justify-content:  center;
+
+  position: relative;
+
+  h1, p {
+
+    // This ensures these are above the background image generated content, so
+    // that the text-shadow correctly occludes it.
+    position: relative;
+    z-index:  list.index($stacking-order, content);
+
+    // This fixes an issue where the hitting the max responsive font size would
+    // cause the height of one of these to get larger than the other, which
+    // would cause the background to be misaligned.
+    height: calc(
+      50vh - #{layout-config.$viewport-padding * 3} -
+        #{layout-config.$header-height}
+    );
+
+    margin-top:     0;
+    margin-bottom:  0;
+
+  }
+
+  h1 {
+
+    display: flex;
+    align-items: flex-end;
+
+    padding-bottom: 1.2rem;
+
+  }
+
+  p {
+    max-width: 18em;
+
+    padding-top: 0.7rem;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+
+    display: block;
+
+    position: absolute;
+  }
+
+  // This is the reveal overlay.
+  &::before {
+
+    content: '';
+
+    position: absolute;
+
+    top:    0;
+    bottom: 0;
+    html[dir='ltr'] & {
+      left:   0;
+    }
+    html[dir='rtl'] & {
+      right:  0;
+    }
+
+    // This pushes the point in the gradient where it transitions from
+    // transparent to the background colour just outside of the content column.
+    // This could probably be reworked as a transform?
+    width:    150%;
+
+    z-index: list.index($stacking-order, background-reveal);
+
+  }
+
+  // This contains the background image, which is applied using generated
+  // content to allow applying filters and transforms without affecting the rest
+  // of this element's content.
+  &::after {
+
+    top:    0;
+    bottom: 0;
+    left:   0;
+    right:  0;
+
+    z-index: list.index($stacking-order, background);
+
+    // This flips the background horizontally for RTL languages.
+    html[dir='rtl'] & {
+      transform: scaleX(-1);
+    }
+
+    pointer-events: none;
+
+  }
+
+}
