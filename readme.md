@@ -85,7 +85,7 @@ The following major version bumps indicate breaking changes:
 
   * Front-end dependencies now installed via [Yarn](https://yarnpkg.com/).
 
-  * Front-end build process ported to [Webpack](https://webpack.js.org/)
+  * Front-end build process ported to [Webpack](https://webpack.js.org/).
 
   * Switched from [Node Sass to Dart Sass](https://sass-lang.com/blog/libsass-is-deprecated).
 
