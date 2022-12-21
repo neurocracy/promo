@@ -1,0 +1,7 @@
+<IfModule mod_headers.c>
+
+  Content-Security-Policy "upgrade-insecure-requests; default-src 'self'; img-src 'self' data:; object-src 'self'; script-src 'self'; script-src-attr 'self'; style-src 'self' 'unsafe-inline'; form-action 'none'; worker-src 'none'; child-src 'none'; frame-src 'none'; connect-src 'none'; base-uri 'self'" "expr=%{CONTENT_TYPE} =~ m#text\/(html|javascript)|application\/pdf|xml#i"
+
+  Header always set Referrer-Policy "strict-origin-when-cross-origin" "expr=%{CONTENT_TYPE} =~ m#text\/(css|html|javascript)|application\/pdf|xml#i"
+
+</IfModule>
