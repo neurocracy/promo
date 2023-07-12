@@ -2378,6 +2378,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"b4a@npm:^1.6.4":
+  version: 1.6.4
+  resolution: "b4a@npm:1.6.4"
+  checksum: 81b086f9af1f8845fbef4476307236bda3d660c158c201db976f19cdce05f41f93110ab6b12fd7a2696602a490cc43d5410ee36a56d6eef93afb0d6ca69ac3b2
+  languageName: node
+  linkType: hard
+
 "babel-loader@npm:^8.2.5":
   version: 8.3.0
   resolution: "babel-loader@npm:8.3.0"
@@ -3694,6 +3701,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-fifo@npm:^1.1.0, fast-fifo@npm:^1.2.0":
+  version: 1.3.0
+  resolution: "fast-fifo@npm:1.3.0"
+  checksum: edc589b818eede61d0048f399daf67cbc5ef736588669482a20f37269b4808356e54ab89676fd8fa59b26c216c11e5ac57335cc70dca54fbbf692d4acde10de6
+  languageName: node
+  linkType: hard
+
 "fast-glob@npm:^3.2.11":
   version: 3.2.12
   resolution: "fast-glob@npm:3.2.12"
@@ -3757,14 +3771,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"favicons@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "favicons@npm:7.0.2"
+"favicons@npm:^7.1.3":
+  version: 7.1.3
+  resolution: "favicons@npm:7.1.3"
   dependencies:
     escape-html: ^1.0.3
-    sharp: ^0.31.1
-    xml2js: ^0.4.23
-  checksum: 154e07e7bbb794ce63fdb1d5786d2c8290413d39f8ffd2e61069929614e77409abaaf0c9b8f7d217171e55b6387bfcbe5d1f004dfd431b6605e6be7fcbcb9490
+    sharp: ^0.32.0
+    xml2js: ^0.5.0
+  checksum: ff298d15363673e182911e74afdba075f662885ddc3c83215e0026dd75b781c54522e8359efa533be3a6a875dd22150a3c41642306345747a11c1b80a383c81b
   languageName: node
   linkType: hard
 
@@ -5211,7 +5225,7 @@ __metadata:
     copy-webpack-plugin: ^11.0.0
     cross-env: ^7.0.3
     css-loader: ^6.7.1
-    favicons: ^7.0.2
+    favicons: ^7.1.3
     favicons-webpack-plugin: ^6.0.0-alpha.2
     file-loader: ^6.0.0
     glob: ^8.0.3
@@ -5257,6 +5271,15 @@ __metadata:
   dependencies:
     node-gyp: latest
   checksum: 7c5e2043ac37f6108784d94ed73a44ae6d3e68eb968de60680922fc6bc3d17fa69448c0feb4e0c9d3f4c74a0324822e566a8340a56916d9d6f23cb3e85620334
+  languageName: node
+  linkType: hard
+
+"node-addon-api@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "node-addon-api@npm:6.1.0"
+  dependencies:
+    node-gyp: latest
+  checksum: 3a539510e677cfa3a833aca5397300e36141aca064cdc487554f2017110709a03a95da937e98c2a14ec3c626af7b2d1b6dabe629a481f9883143d0d5bff07bf2
   languageName: node
   linkType: hard
 
@@ -6190,6 +6213,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"queue-tick@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "queue-tick@npm:1.0.1"
+  checksum: 57c3292814b297f87f792fbeb99ce982813e4e54d7a8bdff65cf53d5c084113913289d4a48ec8bbc964927a74b847554f9f4579df43c969a6c8e0f026457ad01
+  languageName: node
+  linkType: hard
+
 "randombytes@npm:^2.1.0":
   version: 2.1.0
   resolution: "randombytes@npm:2.1.0"
@@ -6649,6 +6679,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"semver@npm:^7.5.4":
+  version: 7.5.4
+  resolution: "semver@npm:7.5.4"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: 12d8ad952fa353b0995bf180cdac205a4068b759a140e5d3c608317098b3575ac2f1e09182206bf2eb26120e1c0ed8fb92c48c592f6099680de56bb071423ca3
+  languageName: node
+  linkType: hard
+
 "send@npm:0.18.0":
   version: 0.18.0
   resolution: "send@npm:0.18.0"
@@ -6745,7 +6786,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.31.1, sharp@npm:^0.31.2":
+"sharp@npm:^0.31.2":
   version: 0.31.2
   resolution: "sharp@npm:0.31.2"
   dependencies:
@@ -6759,6 +6800,23 @@ __metadata:
     tar-fs: ^2.1.1
     tunnel-agent: ^0.6.0
   checksum: 076717b7a073ea47bb522ff2931b74b6608daeb6f7ae334e4848d47fdf4d23bcb18cd49044fd5fb27ef27a1a4aa87d141894d67d1c4bb15a6e2e63cf4dbe329e
+  languageName: node
+  linkType: hard
+
+"sharp@npm:^0.32.0":
+  version: 0.32.2
+  resolution: "sharp@npm:0.32.2"
+  dependencies:
+    color: ^4.2.3
+    detect-libc: ^2.0.1
+    node-addon-api: ^6.1.0
+    node-gyp: latest
+    prebuild-install: ^7.1.1
+    semver: ^7.5.4
+    simple-get: ^4.0.1
+    tar-fs: ^3.0.4
+    tunnel-agent: ^0.6.0
+  checksum: 2d6b9bcada4c4cc6f606003213d866f975254da011a30972d422086e69ae280973dbedbdb91aa636d98de874fd0eb7af42f0aaff044c22e7e65da28e25c7d63a
   languageName: node
   linkType: hard
 
@@ -6957,6 +7015,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"streamx@npm:^2.15.0":
+  version: 2.15.0
+  resolution: "streamx@npm:2.15.0"
+  dependencies:
+    fast-fifo: ^1.1.0
+    queue-tick: ^1.0.1
+  checksum: 6f1dcdc326d57fa4ec0c2aade730b701d28e4e206047c230c6b3f6ac25b28f79809533342dd3e11861237dbd14f3af9ab83be972f569ccdf5eddc5c7ffeb657a
+  languageName: node
+  linkType: hard
+
 "string-width@npm:^1.0.2 || 2 || 3 || 4, string-width@npm:^4.2.3":
   version: 4.2.3
   resolution: "string-width@npm:4.2.3"
@@ -7145,6 +7213,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tar-fs@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "tar-fs@npm:3.0.4"
+  dependencies:
+    mkdirp-classic: ^0.5.2
+    pump: ^3.0.0
+    tar-stream: ^3.1.5
+  checksum: dcf4054f9e92ca0efe61c2b3f612914fb259a47900aa908a63106513a6d006c899b426ada53eb88d9dbbf089b5724c8e90b96a2c4ca6171845fa14203d734e30
+  languageName: node
+  linkType: hard
+
 "tar-stream@npm:^2.1.4":
   version: 2.2.0
   resolution: "tar-stream@npm:2.2.0"
@@ -7155,6 +7234,17 @@ __metadata:
     inherits: ^2.0.3
     readable-stream: ^3.1.1
   checksum: 699831a8b97666ef50021c767f84924cfee21c142c2eb0e79c63254e140e6408d6d55a065a2992548e72b06de39237ef2b802b99e3ece93ca3904a37622a66f3
+  languageName: node
+  linkType: hard
+
+"tar-stream@npm:^3.1.5":
+  version: 3.1.6
+  resolution: "tar-stream@npm:3.1.6"
+  dependencies:
+    b4a: ^1.6.4
+    fast-fifo: ^1.2.0
+    streamx: ^2.15.0
+  checksum: f3627f918581976e954ff03cb8d370551053796b82564f8c7ca8fac84c48e4d042026d0854fc222171a34ff9c682b72fae91be9c9b0a112d4c54f9e4f443e9c5
   languageName: node
   linkType: hard
 
@@ -7668,13 +7758,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xml2js@npm:^0.4.23":
-  version: 0.4.23
-  resolution: "xml2js@npm:0.4.23"
+"xml2js@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "xml2js@npm:0.5.0"
   dependencies:
     sax: ">=0.6.0"
     xmlbuilder: ~11.0.0
-  checksum: ca0cf2dfbf6deeaae878a891c8fbc0db6fd04398087084edf143cdc83d0509ad0fe199b890f62f39c4415cf60268a27a6aed0d343f0658f8779bd7add690fa98
+  checksum: 1aa71d62e5bc2d89138e3929b9ea46459157727759cbc62ef99484b778641c0cd21fb637696c052d901a22f82d092a3e740a16b4ce218e81ac59b933535124ea
   languageName: node
   linkType: hard
 
