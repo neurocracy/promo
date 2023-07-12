@@ -30,7 +30,7 @@
     "sassy-cast": "github:Ambient-Impact/SassyCast#adbbd499bb36eb0c7015ae6f23c00e3a78dc54b3",
     "sharp": "^0.31.2",
     "svg-spritemap-webpack-plugin": "^4.5.0",
-    "webpack": "^5.74.0",
+    "webpack": "^5.88.1",
     "webpack-cli": "^4.10.0",
     "webpack-remove-empty-scripts": "^1.0.1"
   },
