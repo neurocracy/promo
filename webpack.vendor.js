@@ -30,7 +30,7 @@ const path = require('path');
  *
  * @todo Make this configurable?
  */
-const vendorDir = './public/vendor';
+const vendorDir = './web/vendor';
 
 /**
  * Array of package names to be copied to the public vendor directory.

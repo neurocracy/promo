@@ -36,7 +36,7 @@ const outputToSourcePaths = true;
  * @see https://github.com/johnagan/clean-webpack-plugin
  */
 let cleanOutputPaths = [
-  '**/*.css', '**/*.css.map', '!public/vendor/**',
+  '**/*.css', '**/*.css.map', '!web/vendor/**',
 ];
 
 /**
@@ -54,7 +54,7 @@ function getStylesheetEntries() {
   return glob.sync(
     // This specifically only searches for SCSS files that aren't partials, i.e.
     // do not start with '_'.
-    `./public/stylesheets/**/!(_)*.scss`
+    `./web/stylesheets/**/!(_)*.scss`
   ).reduce(function(entries, currentPath) {
 
       const parsed = path.parse(currentPath);
@@ -167,9 +167,9 @@ Encore
   //
   // @see https://www.npmjs.com/package/svg-spritemap-webpack-plugin
   return Encore.addPlugin(new SVGSpritemapPlugin(
-    './public/images/icons/neurocracy/*.svg', {
+    './web/images/icons/neurocracy/*.svg', {
     output: {
-      filename: './public/images/icons/generated/neurocracy.svg',
+      filename: './web/images/icons/generated/neurocracy.svg',
       svg: {
         sizes: false
       },
@@ -205,10 +205,10 @@ Encore
   //   browserconfig.xml? The paths don't seem easily customizable.
   .addPlugin(new FaviconsWebpackPlugin({
 
-    logo:         './public/images/icons/icon.png',
-    logoMaskable: './public/images/icons/icon_maskable.png',
+    logo:         './web/images/icons/icon.png',
+    logoMaskable: './web/images/icons/icon_maskable.png',
 
-    outputPath:   './public/images/icons/generated',
+    outputPath:   './web/images/icons/generated',
 
     favicons: {
 
@@ -257,15 +257,15 @@ Encore
   .addPlugin(new CopyPlugin({
     patterns: [
       {
-        from: './public/images/screenshots/*.png',
-        to:   'public/images/screenshots/thumbnails/[name].jpg',
+        from: './web/images/screenshots/*.png',
+        to:   'web/images/screenshots/thumbnails/[name].jpg',
         transform: function(content) {
           return sharp(content).resize(800).toFormat('jpeg').toBuffer();
         },
       },
       {
-        from: './public/images/screenshots/*.png',
-        to:   'public/images/screenshots/optimized/[name].jpg',
+        from: './web/images/screenshots/*.png',
+        to:   'web/images/screenshots/optimized/[name].jpg',
         transform: function(content) {
           return sharp(content).toFormat('jpeg').toBuffer();
         },
@@ -275,9 +275,9 @@ Encore
 
   // Add the generated image directories to be cleaned before the build.
   .cleanupOutputBeforeBuild(cleanOutputPaths.concat([
-    'public/images/icons/generated/**',
-    'public/images/screenshots/optimized/**',
-    'public/images/screenshots/thumbnails/**',
+    'web/images/icons/generated/**',
+    'web/images/screenshots/optimized/**',
+    'web/images/screenshots/thumbnails/**',
   ]));
 
 });

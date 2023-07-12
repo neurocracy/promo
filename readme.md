@@ -90,3 +90,7 @@ The following major version bumps indicate breaking changes:
   * Switched from [Node Sass to Dart Sass](https://sass-lang.com/blog/libsass-is-deprecated).
 
   * Converted stylesheets to [Sass modules](https://sass-lang.com/documentation/modules).
+
+* 3.x:
+
+  * Renamed `public` directory to `web` in keeping with Drupal projects.
