@@ -93,4 +93,6 @@ The following major version bumps indicate breaking changes:
 
 * 3.x:
 
+  * Content updates for *Neurocracy 2.049* re-release.
+
   * Renamed `public` directory to `web` in keeping with Drupal projects.
