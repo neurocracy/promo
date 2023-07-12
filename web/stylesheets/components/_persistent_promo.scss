@@ -261,6 +261,25 @@ $reveal-animation-delay: animation-variables.$home-reveal-delay +
     }
   }
 
+  &__itch {
+
+    ///
+    /// itch.io "itchy carnation", darkened for better contrast/accessibility.
+    ///
+    $itchy-carnation-darkened: scale-color(
+      colour-variables.$itchy-carnation, $lightness: -15%, $saturation: -25%
+    );
+
+    :any-link {
+      background-color: $itchy-carnation-darkened;
+    }
+
+    .ambientimpact-icon__icon {
+      fill: $itchy-carnation-darkened;
+    }
+
+  }
+
   &__kickstarter {
     :any-link {
       background-color: colour-variables.$kickstarter-green;
