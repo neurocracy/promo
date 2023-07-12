@@ -23,5 +23,5 @@ yarn.build-error.log
 **/*.css.map
 
 # Webpack Encore generated files.
-entrypoints.json
-manifest.json
+/entrypoints.json
+/manifest.json
