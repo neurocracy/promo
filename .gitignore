@@ -1,12 +1,4 @@
-# Ignore development directories and files.
-sftp-config.json
-
-# Ignore Node dependencies and some Yarn files.
-node_modules
-yarn-error.log
-yarn.build-error.log
-# Should not be present when using Yarn but excluded just to be sure.
-package-lock.json
+# @see https://git-scm.com/docs/gitignore
 
 # Yarn cache and Plug-n-Play files. If we decide to switch over to the Yarn
 # zero-installs philosophy, these rules will need adjusting:
@@ -21,6 +13,10 @@ package-lock.json
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Yarn logs.
+yarn-error.log
+yarn.build-error.log
 
 # Ignore generated CSS files and their associated map files.
 **/*.css
