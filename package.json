@@ -22,7 +22,7 @@
     "file-loader": "^6.0.0",
     "glob": "^8.0.3",
     "mini-css-extract-plugin": "^2.6.1",
-    "postcss": "^8.3.5",
+    "postcss": "^8.4.31",
     "postcss-easing-gradients": "github:Ambient-Impact/postcss-easing-gradients",
     "postcss-loader": "^7.3.3",
     "sass": "^1.43.3",
