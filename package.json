@@ -11,8 +11,8 @@
     "postinstall": "yarn build:vendor"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.9",
-    "@babel/preset-env": "^7.22.9",
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
     "@symfony/webpack-encore": "^4.4.0",
     "autoprefixer": "^10.4.4",
     "copy-webpack-plugin": "^11.0.0",
