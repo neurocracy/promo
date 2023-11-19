@@ -6,7 +6,6 @@ const easingGradients = require('postcss-easing-gradients');
 const Encore = require('@symfony/webpack-encore');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const glob = require('glob');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const sharp = require('sharp');
