@@ -2,8 +2,8 @@
   "name": "neurocracy-promo",
   "version": "2.0.0",
   "license": "GPL-2.0",
-  "repository": "gitlab:neurocracy/promo",
-  "packageManager": "yarn@3.2.4",
+  "repository": "github:neurocracy/promo",
+  "packageManager": "yarn@3.7.0",
   "scripts": {
     "build": "webpack --progress --config webpack.config.js",
     "build:production": "cross-env NODE_ENV=production yarn build",
