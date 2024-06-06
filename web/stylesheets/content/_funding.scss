@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------------
+//   Funding content section partial
+// -----------------------------------------------------------------------------
+
+@use '../helpers/colour' as colour-helpers;
+
+.funding-section {
+
+  &__logo-link {
+
+    display: block;
+
+    max-width: 18em;
+
+    margin-top: 1em;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &:active {
+      opacity: 1;
+    }
+
+    img {
+
+      display: block;
+
+      width: 100%;
+
+    }
+
+    &--consensus {
+
+      @include colour-helpers.on-dark-scheme {
+
+        img {
+          filter: brightness(1.5);
+        }
+
+      }
+
+    }
+
+  }
+
+}
