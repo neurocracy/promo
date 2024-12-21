@@ -3,7 +3,11 @@
   "version": "2.0.0",
   "license": "GPL-2.0",
   "repository": "github:neurocracy/promo",
-  "packageManager": "yarn@3.7.0",
+  "packageManager": "yarn@4.5.0",
+  "engines": {
+    "node": ">=20 <21",
+    "yarn": ">=4.5.0"
+  },
   "scripts": {
     "build": "webpack --progress --config webpack.config.js",
     "build:production": "cross-env NODE_ENV=production yarn build",
