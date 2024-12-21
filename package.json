@@ -15,8 +15,8 @@
     "postinstall": "yarn build:vendor"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/preset-env": "^7.23.2",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
     "@symfony/webpack-encore": "^4.7.0",
     "autoprefixer": "^10.4.4",
     "copy-webpack-plugin": "^11.0.0",
@@ -26,14 +26,14 @@
     "file-loader": "^6.2.0",
     "glob": "^8.0.3",
     "mini-css-extract-plugin": "^2.9.2",
-    "postcss": "^8.4.31",
+    "postcss": "^8.4.49",
     "postcss-easing-gradients": "github:Ambient-Impact/postcss-easing-gradients",
     "postcss-loader": "^7.3.3",
     "sass": "^1.43.4 <1.79.0",
     "sass-loader": "^13.3.3",
     "sassy-cast": "github:Ambient-Impact/SassyCast#adbbd499bb36eb0c7015ae6f23c00e3a78dc54b3",
     "sharp": "^0.32.6",
-    "svg-spritemap-webpack-plugin": "^4.5.0",
+    "svg-spritemap-webpack-plugin": "^4.7.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
     "webpack-remove-empty-scripts": "^1.0.1"
