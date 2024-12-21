@@ -29,7 +29,7 @@
     "postcss": "^8.4.31",
     "postcss-easing-gradients": "github:Ambient-Impact/postcss-easing-gradients",
     "postcss-loader": "^7.3.3",
-    "sass": "^1.43.3",
+    "sass": "^1.43.4 <1.79.0",
     "sass-loader": "^13.3.3",
     "sassy-cast": "github:Ambient-Impact/SassyCast#adbbd499bb36eb0c7015ae6f23c00e3a78dc54b3",
     "sharp": "^0.32.6",
