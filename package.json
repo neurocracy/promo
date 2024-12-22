@@ -10,8 +10,7 @@
   "scripts": {
     "build": "webpack --progress --config webpack.config.mjs",
     "build:production": "cross-env NODE_ENV=production yarn build",
-    "build:vendor": "yarn run vendorize",
-    "postinstall": "yarn run build:vendor"
+    "build:vendor": "yarn run vendorize"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
