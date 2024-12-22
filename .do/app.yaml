@@ -1,0 +1,31 @@
+name: promo-production
+
+region: nyc
+
+ingress:
+  rules:
+  - component:
+      name: web
+    match:
+      path:
+        prefix: /
+
+static_sites:
+- build_command: yarn build:production
+  environment_slug: node-js
+  github:
+    branch: 3.x
+    repo: neurocracy/promo
+  index_document: index.htm
+  name: web
+  output_dir: web
+  source_dir: /
+
+envs:
+  # Reusing Yarn cache on App Platform seems to not work as expected and results
+  # in a failed build due to error:
+  #
+  # mv: cannot move '/layers/heroku_nodejs/shim/node/cache/yarn' to '/workspace/.yarn/cache': No such file or directory
+- key: USE_YARN_CACHE
+  scope: BUILD_TIME
+  value: 'false'

@@ -54,6 +54,21 @@ The following commands can be run from the root of the project to build:
 
 -----------------
 
+# Deploying
+
+We have a fully automated deployment process on [DigitalOcean's App
+Platform](https://docs.digitalocean.com/products/app-platform/). See [our deploy
+template](../.do/deploy.template.yaml) for an overview of how our app spec is
+structured. The App Platform build process builds all our front-end assets via
+[Yarn](https://yarnpkg.com/).
+
+If you'd like to give this repository a try (and also potentially get us
+referral credits 👉👈 🥺), use this link:
+
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/neurocracy/promo/tree/3.x&refcode=44bfd65c116f)
+
+-----------------
+
 # Planned improvements
 
 * Convert to a [Drupal](https://www.drupal.org/) site using [Layout Builder](https://www.drupal.org/docs/8/core/modules/layout-builder) for easier content management.
