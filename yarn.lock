@@ -3135,6 +3135,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"corepack@npm:^0.30.0":
+  version: 0.30.0
+  resolution: "corepack@npm:0.30.0"
+  bin:
+    corepack: ./dist/corepack.js
+    pnpm: ./dist/pnpm.js
+    pnpx: ./dist/pnpx.js
+    yarn: ./dist/yarn.js
+    yarnpkg: ./dist/yarnpkg.js
+  checksum: 10/19650318e191b146b5749a90f74617ee8ebdc66afaabaf84d5ba4b2a3b4dcf87d1a58c8cab05bc6585db5969bc2027c8ea2bb7d54367ecce895f43aadced4334
+  languageName: node
+  linkType: hard
+
 "cosmiconfig@npm:^8.2.0":
   version: 8.2.0
   resolution: "cosmiconfig@npm:8.2.0"
@@ -5722,6 +5735,7 @@ __metadata:
     ally.js: "npm:^1.4.1"
     autoprefixer: "npm:^10.4.4"
     copy-webpack-plugin: "npm:^11.0.0"
+    corepack: "npm:^0.30.0"
     cross-env: "npm:^7.0.3"
     css-loader: "npm:^6.11.0"
     favicons: "npm:^7.1.4"
