@@ -56,7 +56,7 @@ The following commands can be run from the root of the project to build:
 
 # Deploying
 
-This promo has a fully automated deployment process on [DigitalOcean's App
+We have a fully automated deployment process on [DigitalOcean's App
 Platform](https://docs.digitalocean.com/products/app-platform/). See [our deploy
 template](../.do/deploy.template.yaml) for an overview of how our app spec is
 structured. The App Platform build process builds all our front-end assets via
