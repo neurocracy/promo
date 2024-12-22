@@ -5,8 +5,7 @@
   "repository": "github:neurocracy/promo",
   "packageManager": "yarn@4.5.0",
   "engines": {
-    "node": ">=20 <21",
-    "yarn": ">=4.5.0"
+    "node": ">=20 <21"
   },
   "scripts": {
     "build": "webpack --progress --config webpack.config.mjs",
@@ -36,12 +35,13 @@
     "sharp": "^0.32.6",
     "svg-spritemap-webpack-plugin": "^4.7.0",
     "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1",
+    "webpack-cli": "^4.10.0",
     "webpack-remove-empty-scripts": "^1.0.1"
   },
   "dependencies": {
     "@fontsource/exo-2": "^4.5.10",
     "ally.js": "^1.4.1",
+    "corepack": "^0.30.0",
     "cross-env": "^7.0.3",
     "headroom.js": "^0.12.0",
     "photoswipe": "^4.1.3"
