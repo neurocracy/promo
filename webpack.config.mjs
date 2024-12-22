@@ -1,15 +1,26 @@
-'use strict';
+import Encore from '@symfony/webpack-encore';
+import { glob } from 'glob';
+import * as path from 'node:path';
+import { default as vendorize } from '@consensus.enterprises/pnp-vendorize';
 
-const autoprefixer = require('autoprefixer');
-const CopyPlugin = require('copy-webpack-plugin');
-const easingGradients = require('postcss-easing-gradients');
-const Encore = require('@symfony/webpack-encore');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const glob = require('glob');
-const path = require('path');
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
-const sharp = require('sharp');
-const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+// The remaining modules are CommonJS only. Because of this, they must be
+// import()ed and destructured like so to behave similarly to ESM imports.
+const { default: autoprefixer } = await import('autoprefixer');
+const { default: easingGradients } = await import(
+  '@neurocracy/postcss-easing-gradients',
+);
+const { default: FaviconsWebpackPlugin } = await import(
+  'favicons-webpack-plugin',
+);
+const { default: RemoveEmptyScriptsPlugin } = await import(
+  'webpack-remove-empty-scripts',
+);
+const { default: CopyPlugin } = await import('copy-webpack-plugin');
+
+const { default: sharp } = await import('sharp');
+const { default: SVGSpritemapPlugin } = await import(
+  'svg-spritemap-webpack-plugin',
+);
 
 const distPath = '.webpack-dist';
 
@@ -35,34 +46,48 @@ const outputToSourcePaths = true;
  * @see https://github.com/johnagan/clean-webpack-plugin
  */
 let cleanOutputPaths = [
-  '**/*.css', '**/*.css.map', '!web/vendor/**',
+  '**/*.css', '**/*.css.map', `!${vendorize.getVendorDirName()}/**`,
 ];
 
 /**
- * Get globbed stylesheet entry points.
+ * Get globbed entry points.
  *
  * This uses the 'glob' package to automagically build the array of entry
  * points, as there are a lot of them spread out over many components.
  *
- * @return {Array}
+ * @return {Object.<string, string>}
  *
  * @see https://www.npmjs.com/package/glob
  */
-function getStylesheetEntries() {
+function getGlobbedEntries() {
 
-  return glob.sync(
-    // This specifically only searches for SCSS files that aren't partials, i.e.
-    // do not start with '_'.
-    `./web/stylesheets/**/!(_)*.scss`
-  ).reduce(function(entries, currentPath) {
+  /**
+   * Entries to be returned.
+   *
+   * @type {Object.<string, string>}
+   *
+   * @see Encore#addEntries()
+   *   Explains expected format.
+   */
+  let entries = {};
 
-      const parsed = path.parse(currentPath);
+  const results = glob.sync(`./**/!(_)*.scss`, {
+    ignore: [
+      `./${distPath}/**`,
+      `./${vendorize.getVendorDirName()}/**`,
+    ],
+  });
 
-      entries[`${parsed.dir}/${parsed.name}`] = currentPath;
+  for (const result of results) {
 
-      return entries;
+    const parsed = path.parse(result);
 
-  }, {});
+    // Note the leading './'
+    entries[`./${parsed.dir}/${parsed.name}`] = `./${result}`;
+
+  }
+
+  return entries;
 
 };
 
@@ -71,8 +96,10 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
   Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
-Encore
-.setOutputPath(path.resolve(__dirname, (outputToSourcePaths ? '.' : distPath)))
+Encore.setOutputPath(path.resolve(
+  path.dirname(new URL(import.meta.url).pathname),
+  (outputToSourcePaths ? '.' : distPath)
+))
 
 // Encore will complain if the public path doesn't start with a slash.
 // Unfortunately, it doesn't seem Webpack's automatic public path works here.
@@ -103,7 +130,7 @@ Encore
   assets: '[file][query]',
 
 })
-.addEntries(getStylesheetEntries())
+.addEntries(getGlobbedEntries())
 
 // Clean out any previously built files in case of source files being removed or
 // renamed. We need to exclude the vendor directory or CSS bundled with
@@ -281,4 +308,4 @@ Encore
 
 });
 
-module.exports = Encore.getWebpackConfig();
+export default Encore.getWebpackConfig();
