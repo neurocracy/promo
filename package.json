@@ -21,8 +21,6 @@
     "@symfony/webpack-encore": "^4.7.0",
     "autoprefixer": "^10.4.4",
     "copy-webpack-plugin": "^11.0.0",
-    "corepack": "^0.30.0",
-    "cross-env": "^7.0.3",
     "css-loader": "^6.11.0",
     "favicons": "^7.1.4",
     "favicons-webpack-plugin": "^6.0.0",
@@ -43,6 +41,8 @@
   "dependencies": {
     "@fontsource/exo-2": "^4.5.10",
     "ally.js": "^1.4.1",
+    "corepack": "^0.30.0",
+    "cross-env": "^7.0.3",
     "headroom.js": "^0.12.0",
     "photoswipe": "^4.1.3"
   },
