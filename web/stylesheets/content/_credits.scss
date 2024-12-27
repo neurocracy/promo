@@ -9,13 +9,11 @@
 
   &__label {
 
-    @include heading.level2;
-
-    @include heading.font-size(2);
+    @include heading.font-size(3);
 
     // This resets the heading so that we can apply the heading styles just to
     // the <summary>.
-    h2 {
+    h3 {
 
       display: inline;
 
