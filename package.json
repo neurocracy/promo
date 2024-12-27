@@ -5,7 +5,8 @@
   "repository": "github:neurocracy/promo",
   "packageManager": "yarn@4.5.0",
   "engines": {
-    "node": ">=20 <21"
+    "node": ">=20 <21",
+    "yarn": ">=4.5.0"
   },
   "scripts": {
     "build": "webpack --progress --config webpack.config.mjs",
