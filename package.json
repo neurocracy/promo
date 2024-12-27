@@ -11,6 +11,7 @@
     "build": "webpack --progress --config webpack.config.mjs",
     "build:production": "cross-env NODE_ENV=production yarn build",
     "build:vendor": "yarn run vendorize",
+    "heroku-prebuild": "echo 'Installing local corepack to fix App Platform issue'; yarn add corepack",
     "postinstall": "yarn run build:vendor"
   },
   "devDependencies": {
