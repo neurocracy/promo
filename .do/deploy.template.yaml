@@ -1,6 +1,6 @@
 spec:
 
-  name: promo-production
+  name: promo
 
   features:
     # @see https://docs.digitalocean.com/products/app-platform/how-to/upgrade-stack/
