@@ -10,8 +10,6 @@ spec:
     # @see https://docs.digitalocean.com/products/app-platform/how-to/migrate-nodejs-buildpack/
     - new-nodejs-buildpack=true
 
-  region: nyc
-
   ingress:
     rules:
     - component:
