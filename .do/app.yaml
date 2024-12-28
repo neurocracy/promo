@@ -1,5 +1,13 @@
 name: promo-production
 
+features:
+  # @see https://docs.digitalocean.com/products/app-platform/how-to/upgrade-stack/
+  - buildpack-stack=ubuntu-22
+  # Opt in to the new Heroku Node.js buildpack if app is on the legacy one.
+  #
+  # @see https://docs.digitalocean.com/products/app-platform/how-to/migrate-nodejs-buildpack/
+  - new-nodejs-buildpack=true
+
 region: nyc
 
 ingress:
