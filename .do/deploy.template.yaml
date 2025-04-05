@@ -21,7 +21,7 @@ spec:
   static_sites:
   - build_command: yarn build:production
     environment_slug: node-js
-    github:
+    gitlab:
       branch: 3.x
       repo: neurocracy/promo
     index_document: index.htm
