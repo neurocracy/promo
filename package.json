@@ -2,7 +2,7 @@
   "name": "neurocracy-promo",
   "version": "3.0.0",
   "license": "GPL-2.0",
-  "repository": "github:neurocracy/promo",
+  "repository": "https://gitlab.com/neurocracy/promo",
   "packageManager": "yarn@4.5.0",
   "engines": {
     "node": ">=20 <21"
