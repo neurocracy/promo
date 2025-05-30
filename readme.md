@@ -69,12 +69,6 @@ referral credits 👉👈 🥺), use this link:
 
 -----------------
 
-# Planned improvements
-
-* Convert to a [Drupal](https://www.drupal.org/) site using [Layout Builder](https://www.drupal.org/docs/8/core/modules/layout-builder) for easier content management.
-
------------------
-
 # Breaking changes
 
 The following major version bumps indicate breaking changes:
