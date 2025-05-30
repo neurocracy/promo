@@ -20,7 +20,7 @@ static_sites:
 - build_command: yarn build:production
   environment_slug: node-js
   gitlab:
-    branch: 3.x
+    branch: main
     repo: neurocracy/promo
   index_document: index.htm
   name: web
