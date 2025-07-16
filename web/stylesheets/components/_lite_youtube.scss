@@ -1,9 +1,7 @@
 // -----------------------------------------------------------------------------
-//   Components output partial
+//   Lite YouTube Embed partial
 // -----------------------------------------------------------------------------
 
-@use 'icon';
-@use 'persistent_promo';
-@use 'lite_youtube';
-
-@include icon.output;
+lite-youtube {
+  margin-inline: auto;
+}

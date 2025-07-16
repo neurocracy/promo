@@ -5339,6 +5339,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lite-youtube-embed@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "lite-youtube-embed@npm:0.3.3"
+  checksum: 10/575ff8e600464881db366120d5d7628f8902008a5bc2a7e207f3d3d6e82ae7bc2d5e9acb9caa4e15932824afbc38a53bc6477f37435651a012f8acbbd78be0a3
+  languageName: node
+  linkType: hard
+
 "loader-runner@npm:^4.2.0":
   version: 4.3.0
   resolution: "loader-runner@npm:4.3.0"
@@ -5853,6 +5860,7 @@ __metadata:
     file-loader: "npm:^6.2.0"
     glob: "npm:^11.0.0"
     headroom.js: "npm:^0.12.0"
+    lite-youtube-embed: "npm:^0.3.3"
     mini-css-extract-plugin: "npm:^2.9.2"
     photoswipe: "npm:^4.1.3"
     postcss: "npm:^8.4.49"
