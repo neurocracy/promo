@@ -2,6 +2,7 @@
 //   Credits content section partial
 // -----------------------------------------------------------------------------
 
+@use '../layout/config' as layout-config;
 @use '../typography/config' as typography-config;
 @use '../typography/heading';
 
@@ -65,6 +66,82 @@
     font-size:    90%;
 
     text-transform: uppercase;
+
+  }
+
+  &__by {
+
+    @media (min-width: #{layout-config.$content-two-column-min-width}) {
+
+      display: grid;
+
+      grid-template-columns: 1fr 2fr;
+
+      grid-template-areas:
+        'playthroughline  stories'
+        'visuals          stories';
+
+    }
+
+    @media (min-width: #{layout-config.$content-two-column-min-width + 10rem}) {
+
+      grid-template-columns: 1fr 1fr 3fr;
+
+      grid-template-areas:
+        'playthroughline visuals stories';
+
+    }
+
+    column-gap: 2em;
+    row-gap:    1em;
+
+    &-subsection--playthroughline {
+      grid-area: playthroughline;
+    }
+
+    &-subsection--visuals {
+      grid-area: visuals;
+    }
+
+    &-subsection--stories {
+      grid-area: stories;
+    }
+
+    &-subsection-heading {
+
+      margin-block-start: 0;
+
+      font-size: 95%;
+      text-transform: none;
+
+    }
+
+    &-subsection--stories .credits__by-multicolumn-list {
+
+      // The minimum width of columns when displaying as multiple columns.
+      //
+      // @link https://developer.mozilla.org/en-US/docs/Web/CSS/column-width
+      column-width: 7em;
+      // The gap between columns. This must be larger than the padding on lists
+      // to accomodate the list markers.
+      column-gap:   2em;
+
+      li {
+
+        // Don't break to a new column within these.
+        //
+        // @see http://stackoverflow.com/a/7785711
+
+        // Chrome and Safari.
+        -webkit-column-break-inside: avoid;
+        // Firefox 20+.
+        page-break-inside: avoid;
+        // IE 11.
+        break-inside: avoid-column;
+
+      }
+
+    }
 
   }
 
