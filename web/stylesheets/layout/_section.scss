@@ -11,6 +11,10 @@
     #{layout-config.$header-height}
   );
 
+  &--content-height {
+    min-height: auto;
+  }
+
   // This accounts for the fixed header over the first section.
   &:first-child {
     margin-top: layout-config.$viewport-padding + layout-config.$header-height;
