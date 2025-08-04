@@ -17,6 +17,18 @@ spec:
       match:
         path:
           prefix: /
+    # Vanity URL for our Discord server invite.
+    #
+    # @see https://docs.digitalocean.com/products/app-platform/how-to/url-rewrites/#configure-a-redirect
+    - match:
+        authority:
+          exact: ''
+        path:
+          prefix: /discord
+      redirect:
+        authority: discord.com
+        redirect_code: 302
+        uri: /invite/9ghXDan
 
   static_sites:
   - build_command: yarn build:production
