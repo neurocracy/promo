@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @use '../../helpers/colour' as colour-helpers;
+@use '../../variables/colours' as colour-variables;
 
 #home {
 
@@ -24,14 +25,30 @@
     background-position:  0 50%;
     background-size:      contain;
 
+    // This scales the background to the left of the skull slightly to position
+    // the right ends of the lines on top of it.
+    transform:        scale(0.85);
+    transform-origin: left;
+
     // The background image doesn't contrast well against the light colour theme
     // background colour, so we reduce the brightness and increase the
     // saturation.
-    filter: brightness(65%) saturate(150%);
+    --adjustment-filters: brightness(65%) saturate(150%);
 
-    // Remove the filters on the dark colour theme.
+    --drop-shadow-filters: ;
+
+    filter: var(--adjustment-filters) var(--drop-shadow-filters);
+
     @include colour-helpers.on-dark-scheme {
-      filter: none;
+
+      // Remove the adjustment filters on the dark colour theme...
+      --adjustment-filters: ;
+
+      // ...and add a drop shadow to outline the lines against the skull.
+      --drop-shadow-filters: drop-shadow(0 0 0.15rem #{
+        colour-variables.$background-dark
+      });
+
     }
 
   }

@@ -1,0 +1,35 @@
+// -----------------------------------------------------------------------------
+//   Home skull partial
+// -----------------------------------------------------------------------------
+
+@use '../../helpers/colour' as colour-helpers;
+
+#home-skull {
+
+  // Tell the Webpack css-loader to not try and resolve this so that we don't
+  // end up with the path incorrectly nested. MiniCssExtractPlugin will still
+  // resolve this correctly, and as a result, this is still defined as relative
+  // to this partial and not the non-partial SCSS or compiled CSS file.
+  //
+  // @see https://webpack.js.org/loaders/css-loader/#disable-url-resolving-using-the--webpackignore-true--comment
+  //
+  // @todo Implement proper path resolving in webpack.config.js
+  //
+  /* webpackIgnore: true */
+  background-image:     url('../../../images/skull_home.webp?v=1');
+  background-repeat:    no-repeat;
+  background-size:      contain;
+  background-position:  0 50%;
+
+  pointer-events: none;
+
+  // Invert the skull colours in light mode to contrast better behind the lines.
+  filter: invert(1);
+
+  @include colour-helpers.on-dark-scheme {
+
+    filter: none;
+
+  }
+
+}
