@@ -11,6 +11,8 @@
     #{layout-config.$header-height}
   );
 
+  z-index: index(layout-config.$stacking-order, content);
+
   &--content-height {
     min-height: auto;
   }
@@ -19,8 +21,6 @@
   &:first-child {
     margin-top: layout-config.$viewport-padding + layout-config.$header-height;
   }
-
-  z-index: index(layout-config.$stacking-order, content);
 
   & + & {
     margin-top: layout-config.$section-spacing;

@@ -25,14 +25,6 @@ $text-spacing: 0.3em;
       min-width:  $size;
       height:     $size;
 
-      html[dir='ltr'] & {
-        padding-right:  $text-spacing;
-      }
-
-      html[dir='rtl'] & {
-        padding-left:   $text-spacing;
-      }
-
       fill: currentColor;
 
       // Prevents events being triggered in Chrome and probably any browsers based
@@ -44,10 +36,20 @@ $text-spacing: 0.3em;
       :any-link & {
         vertical-align: -0.3em;
       }
+
+      html[dir='ltr'] & {
+        padding-right:  $text-spacing;
+      }
+
+      html[dir='rtl'] & {
+        padding-left:   $text-spacing;
+      }
     }
 
     // Force space between the icon and text to never wrap.
-    white-space: nowrap;
+    & {
+      white-space: nowrap;
+    }
 
     // This no work. :(
     &__text {

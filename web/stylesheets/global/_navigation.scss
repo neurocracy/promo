@@ -69,14 +69,6 @@ $menu-transition-duration: 350ms;
   .menu-item {
     margin-top:   0;
 
-    html[dir='ltr'] & {
-      margin-right: layout-config.$header-spacing;
-    }
-
-    html[dir='rtl'] & {
-      margin-left: layout-config.$header-spacing;
-    }
-
     transition-property: transform;
     transition-duration: $menu-transition-duration;
     transition-timing-function: motion.$easing-standard;
@@ -86,6 +78,14 @@ $menu-transition-duration: 350ms;
     font-weight:  typography-config.$font-weight-strong;
 
     text-transform: uppercase;
+
+    html[dir='ltr'] & {
+      margin-right: layout-config.$header-spacing;
+    }
+
+    html[dir='rtl'] & {
+      margin-left: layout-config.$header-spacing;
+    }
 
     &:last-child {
       html[dir='ltr'] & {
@@ -98,12 +98,6 @@ $menu-transition-duration: 350ms;
     }
 
     &--hidden {
-      // If clip-path is not supported, just hide the menu item.
-      display: none;
-
-      @supports (clip-path: $menu-clip-path) {
-        display: list-item;
-      }
 
       // This animation removes the hidden link from the tabbing order and
       // accessibility tree.
@@ -117,6 +111,13 @@ $menu-transition-duration: 350ms;
       animation-timing-function:  linear;
       animation-fill-mode:        forwards;
       animation-delay:            $menu-transition-duration;
+
+      // If clip-path is not supported, just hide the menu item.
+      display: none;
+
+      @supports (clip-path: $menu-clip-path) {
+        display: list-item;
+      }
 
       &, & ~ .menu-item {
         @supports (clip-path: $menu-clip-path) {

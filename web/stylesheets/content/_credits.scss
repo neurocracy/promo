@@ -92,8 +92,12 @@
 
     }
 
-    column-gap: 2em;
-    row-gap:    1em;
+    & {
+
+      column-gap: 2em;
+      row-gap:    1em;
+
+    }
 
     &-subsection--playthroughline {
       grid-area: playthroughline;

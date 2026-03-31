@@ -45,12 +45,6 @@
 
     z-index:  index(layout-config.$stacking-order, reveal-overlay);
 
-    background-color: colour-variables.$background-light;
-
-    @include colour-helpers.on-dark-scheme {
-      background-color: colour-variables.$background-dark;
-    }
-
     // Default to hidden and click-through in case animations are not properly
     // supported or running.
     visibility: hidden;
@@ -62,5 +56,12 @@
     animation-timing-function:  linear;
     animation-fill-mode:        backwards;
     animation-delay:            animation-variables.$site-reveal-overlay-delay;
+
+    background-color: colour-variables.$background-light;
+
+    @include colour-helpers.on-dark-scheme {
+      background-color: colour-variables.$background-dark;
+    }
+
   }
 }

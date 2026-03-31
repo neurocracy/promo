@@ -91,10 +91,14 @@
       );
     }
 
-    animation-duration:         animation-variables.$home-reveal-duration;
-    animation-delay:            animation-variables.$home-reveal-delay;
-    animation-timing-function:  linear;
-    animation-fill-mode:        both;
+    & {
+
+      animation-duration:         animation-variables.$home-reveal-duration;
+      animation-delay:            animation-variables.$home-reveal-delay;
+      animation-timing-function:  linear;
+      animation-fill-mode:        both;
+
+    }
 
     html[dir='ltr'] & {
       animation-name: home-reveal-ltr;

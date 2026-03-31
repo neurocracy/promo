@@ -10,6 +10,11 @@
   --row-gap:    1em;
   --column-gap: 1em;
 
+  display: grid;
+
+  column-gap: var(--column-gap);
+  row-gap:    var(--row-gap);
+
   &__item {
     margin: 0;
   }
@@ -17,11 +22,6 @@
   // &__item + &__item {
   //   margin-top: var(--row-gap);
   // }
-
-  display: grid;
-
-  column-gap: var(--column-gap);
-  row-gap:    var(--row-gap);
 
   @media (min-width: layout-config.$content-two-column-min-width) {
 

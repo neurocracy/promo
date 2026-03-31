@@ -77,13 +77,6 @@ $reveal-animation-delay: animation-variables.$home-reveal-delay +
   padding:    layout-config.$viewport-padding !important;
   list-style: none;
 
-  // Remove the margin between list items if modern grid is supported.
-  @supports (grid-area: auto) {
-    &__item + &__item {
-      margin-top: 0;
-    }
-  }
-
   max-width:  layout-config.$max-width;
 
   position: fixed;
@@ -91,6 +84,13 @@ $reveal-animation-delay: animation-variables.$home-reveal-delay +
   left:     0;
   right:    0;
   bottom:   0;
+
+  // Remove the margin between list items if modern grid is supported.
+  @supports (grid-area: auto) {
+    &__item + &__item {
+      margin-top: 0;
+    }
+  }
 
   @supports (grid-area: auto) {
     display: grid;
@@ -104,11 +104,16 @@ $reveal-animation-delay: animation-variables.$home-reveal-delay +
     }
   }
 
-  z-index: index(layout-config.$stacking-order, persistent-promo);
+  & {
 
-  // Disable pointer events so that empty areas of the list don't block clicks/
-  // taps to content underneath. This is undone in &__item {} rule lower down.
-  pointer-events: none;
+    z-index: index(layout-config.$stacking-order, persistent-promo);
+
+    // Disable pointer events so that empty areas of the list don't block
+    // clicks/ taps to content underneath. This is undone in &__item {} rule
+    // lower down.
+    pointer-events: none;
+
+  }
 
   &__item {
 
@@ -131,7 +136,9 @@ $reveal-animation-delay: animation-variables.$home-reveal-delay +
     }
 
     // Re-enable clicking/tapping on list items.
-    pointer-events: auto;
+    & {
+      pointer-events: auto;
+    }
 
     &::before,
     :any-link {
@@ -178,15 +185,15 @@ $reveal-animation-delay: animation-variables.$home-reveal-delay +
 
       z-index: index($local-stacking-order, content);
 
-      @supports (grid-area: auto) {
-        display:  grid;
-        align-items: center;
-      }
-
       min-height: 1.5em;
 
       padding-top:    0.4em;
       padding-bottom: 0.4em;
+
+      @supports (grid-area: auto) {
+        display:      grid;
+        align-items:  center;
+      }
 
       html[dir='ltr'] & {
         padding-left:   0.5em;
@@ -197,9 +204,13 @@ $reveal-animation-delay: animation-variables.$home-reveal-delay +
         padding-right:  0.5em;
       }
 
-      color: colour-variables.$foreground-on-dark;
+      & {
 
-      text-decoration-color: rgba(colour-variables.$foreground-on-dark, 0.6);
+        color: colour-variables.$foreground-on-dark;
+
+        text-decoration-color: rgba(colour-variables.$foreground-on-dark, 0.6);
+
+      }
 
       &:hover {
         text-decoration-color: colour-variables.$foreground-on-dark;
@@ -368,7 +379,9 @@ $reveal-animation-delay: animation-variables.$home-reveal-delay +
       animation-fill-mode:        backwards;
     }
 
-    animation-delay: $reveal-animation-delay;
+    & {
+      animation-delay: $reveal-animation-delay;
+    }
 
     // Apply a longer delay to the second list item for a staggered effect.
     &__item + &__item {

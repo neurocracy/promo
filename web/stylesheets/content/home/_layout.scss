@@ -70,6 +70,13 @@ $stacking-order: skull, background, background-reveal, content;
 
     position: absolute;
 
+    // This pushes the point in the gradient where it transitions from
+    // transparent to the background colour just outside of the content column.
+    // This could probably be reworked as a transform?
+    width:    150%;
+
+    z-index: list.index($stacking-order, background-reveal);
+
     top:    0;
     bottom: 0;
     html[dir='ltr'] & {
@@ -78,13 +85,6 @@ $stacking-order: skull, background, background-reveal, content;
     html[dir='rtl'] & {
       right:  0;
     }
-
-    // This pushes the point in the gradient where it transitions from
-    // transparent to the background colour just outside of the content column.
-    // This could probably be reworked as a transform?
-    width:    150%;
-
-    z-index: list.index($stacking-order, background-reveal);
 
   }
 
@@ -100,12 +100,12 @@ $stacking-order: skull, background, background-reveal, content;
 
     z-index: list.index($stacking-order, background);
 
+    pointer-events: none;
+
     // This flips the background horizontally for RTL languages.
     html[dir='rtl'] & {
       transform: scaleX(-1);
     }
-
-    pointer-events: none;
 
   }
 
