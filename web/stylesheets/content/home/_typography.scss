@@ -20,13 +20,20 @@
 
   h1 {
 
-    font-size:      250%;
+    // Note that the breakpoints and sizes are specifically chosen to avoid
+    // overlapping the skull as much as possible.
 
-    @media (min-width: 22em) {
-      font-size:    275%;
+    font-size:      200%;
+
+    @media (min-width: 24em) {
+      font-size:    215%;
     }
 
-    @media (min-width: 25em) {
+    @media (min-width: 26em) {
+      font-size:    250%;
+    }
+
+    @media (min-width: 32em) {
       font-size:    300%;
     }
 
