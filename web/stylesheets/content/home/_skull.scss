@@ -21,6 +21,8 @@
   background-size:      contain;
   background-position:  0 50%;
 
+  transform-origin: right center;
+  transform:        scale(1.07);
   pointer-events: none;
 
   // Invert the skull colours in light mode to contrast better behind the lines.
