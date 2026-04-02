@@ -23,15 +23,7 @@
 
   transform-origin: right center;
   transform:        scale(1.07);
+
   pointer-events: none;
-
-  // Invert the skull colours in light mode to contrast better behind the lines.
-  filter: invert(1);
-
-  @include colour-helpers.on-dark-scheme {
-
-    filter: none;
-
-  }
 
 }

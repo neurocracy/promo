@@ -39,10 +39,17 @@
 
     filter: var(--adjustment-filters) var(--drop-shadow-filters);
 
+    // This helps the lines stand out on top of the skull.
+    --blend-mode: color-dodge;
+
+    mix-blend-mode: var(--blend-mode);
+
     @include colour-helpers.on-dark-scheme {
 
-      // Remove the adjustment filters on the dark colour theme...
+      // Remove the adjustment filters and blend mode on the dark colour
+      // theme...
       --adjustment-filters: ;
+      --blend-mode: ;
 
       // ...and add a drop shadow to outline the lines against the skull.
       --drop-shadow-filters: drop-shadow(0 0 0.15rem #{
