@@ -94,12 +94,7 @@
     & {
 
       animation-duration:         animation-variables.$home-reveal-duration;
-      // animation-delay:            animation-variables.$home-reveal-delay;
-      animation-delay:            animation-variables.$home-reveal-delay + 0.6;
-      // animation-delay:
-      //   animation-variables.$home-reveal-delay +
-      //   animation-variables.$home-reveal-duration -
-      //   animation-variables.$home-reveal-duration * 0.4;
+      animation-delay:            animation-variables.$home-reveal-delay;
       animation-timing-function:  linear;
       animation-fill-mode:        both;
 
@@ -120,11 +115,10 @@
 
   animation-name:             home-skull-intro-no-flicker;
   animation-duration:         0.5s;
-  animation-delay:            animation-variables.$home-reveal-delay;
-  // animation-delay:
-  //   animation-variables.$home-reveal-delay +
-  //   animation-variables.$home-reveal-duration -
-  //   animation-variables.$home-reveal-duration * 0.4;
+  animation-delay:
+    animation-variables.$home-reveal-delay +
+    animation-variables.$home-reveal-duration -
+    animation-variables.$home-reveal-duration * 0.4;
   animation-timing-function:  linear;
   animation-fill-mode:        backwards;
   // This ensures we don't flicker by default for people with photosensitivity
